@@ -1,0 +1,10 @@
+version = 1
+id = "check-fable-pos-re-review-reply"
+kind = "heartbeat"
+name = "Check Fable POS re-review reply"
+prompt = "Every 10 minutes, check Gmail thread 19f90107c01e33a1 for a new inbound reply after sent message 19f90c97196915a6 (sent 2026-07-23T21:02:28Z) to sol@ppdc.mx regarding the final POS-central re-review. Read any new response fully. If there is no new inbound response, do not send a user-facing update. If a new response exists and has not already been reported in this Codex task, notify Javier here with the sender, timestamp, exact heads reviewed, conclusion, blockers or missing gates, and the exact next decision; make no merges, migrations, deployment, configuration, data, secret, Linear, or production changes. Do not repeatedly report the same Gmail message."
+status = "PAUSED"
+rrule = "FREQ=MINUTELY;INTERVAL=10"
+target_thread_id = "019f8930-2743-7983-9c52-bdd1af78e094"
+created_at = 1784841202494
+updated_at = 1784861934479

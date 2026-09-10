@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Session PPM"
+  short_description: "Coordina y da seguimiento a varias sesiones Codex"
+  default_prompt: "Usa $codex-session-ppm para coordinar estas sesiones Codex y muestra un tablero compacto con estado, evidencia y siguiente acción."

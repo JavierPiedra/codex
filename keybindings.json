@@ -1,0 +1,54 @@
+[
+  {
+    "command": "composer.togglePlanMode",
+    "key": "Shift+Tab"
+  },
+  {
+    "command": "copyConversationMarkdown",
+    "key": "Ctrl+Command+Alt+C"
+  },
+  {
+    "command": "focusQuickChat",
+    "key": null
+  },
+  {
+    "command": "forceReloadSkills",
+    "key": "Command+S"
+  },
+  {
+    "command": "hotkeyWindow",
+    "key": "Alt+Space"
+  },
+  {
+    "command": "newTask",
+    "key": "CmdOrCtrl+N"
+  },
+  {
+    "command": "newWindow",
+    "key": "Command+Shift+N"
+  },
+  {
+    "command": "openAvatarOverlay",
+    "key": null
+  },
+  {
+    "command": "openSideChat",
+    "key": "Command+Shift+T"
+  },
+  {
+    "command": "openThreadInNewWindow",
+    "key": "Ctrl+M"
+  },
+  {
+    "command": "reopenClosedTab",
+    "key": null
+  },
+  {
+    "command": "temporaryChat",
+    "key": null
+  },
+  {
+    "command": "toggleTerminal",
+    "key": "Ctrl+`"
+  }
+]

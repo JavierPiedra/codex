@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pro Problem Statement"
+  short_description: "Turn discussion into a Pro-ready problem statement"
+  default_prompt: "Use $pro-problem-statement to turn this discussion into a project-aware problem statement for Pro, write it to a Markdown file in the current project, and make it ready for PRD generation."

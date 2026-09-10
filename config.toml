@@ -1,0 +1,705 @@
+model = "gpt-5.6-sol"
+model_context_window = 272000
+model_auto_compact_token_limit = 260000
+model_reasoning_effort = "low"
+personality = "pragmatic"
+model_verbosity = "medium"
+
+
+
+
+approval_policy = "on-request"
+approvals_reviewer = "user"
+sandbox_mode = "workspace-write"
+
+
+notify = ["/Users/javierpiedra/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+service_tier = "default"
+model_reasoning_summary = "concise"
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/javierpiedra/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/javierpiedra/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.903.71938"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/javierpiedra/.codex/plugins/cache/openai-bundled/browser/26.903.71938/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_SERVICE_PATH = "/Users/javierpiedra/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
+
+[mcp_servers.linear]
+url = "https://mcp.linear.app/mcp"
+
+[features]
+multi_agent = true
+memories = true
+js_repl = false
+default_mode_request_user_input = true
+
+[agents]
+max_concurrent_threads_per_session = 6
+
+[plugins."google-calendar@openai-curated"]
+enabled = true
+
+[plugins."gmail@openai-curated"]
+enabled = true
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[plugins."google-drive@openai-curated"]
+enabled = true
+
+[plugins."linear@openai-curated"]
+enabled = true
+
+[plugins."hugging-face@openai-curated"]
+enabled = true
+
+[plugins."build-ios-apps@openai-curated"]
+enabled = true
+
+[plugins."build-macos-apps@openai-curated"]
+enabled = true
+
+[plugins."expo@openai-curated"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."sentry@openai-curated"]
+enabled = true
+
+[plugins."cloudflare@openai-curated"]
+enabled = true
+
+[plugins."vercel@openai-curated"]
+enabled = true
+
+[plugins."supabase@openai-curated"]
+enabled = true
+
+[plugins."openai-developers@openai-curated"]
+enabled = true
+
+[plugins."build-web-apps@openai-curated"]
+enabled = true
+
+[plugins."twilio-developer-kit@openai-curated"]
+enabled = true
+
+[plugins."codex-security@openai-curated"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."sites@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."bro@bro"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."awra@awra"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[projects."/Users/javierpiedra/Desktop/goodancestor/newsletter-gpt"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/farcoyo-ui"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/farmacias-de-barrio"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/transcribe"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/goodancestor/newsletter-ui"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-04-19-ayudame-a-producir-un-prompt-para"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-04-22-ayudame-a-hacer-un-csv-con"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-04-23/is-there-a-way-to-convert"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/farmacoyo"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/javierpiedracom"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/farcoyo"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-04-27/computer-use-plugin-computer-use-openai"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-04-27/pease-edit-agents-md-to-add"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/New project"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-04-27/que-sabes-de-mi-y-awra"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-01/computer-plugin-computer-use-openai-bundled"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-01/can-you-help-me-convert-pdf"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-04/create-qr-code-with-this-https"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-05/computer-plugin-computer-use-openai-bundled"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-05/files-mentioned-by-the-user-farmacias"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-06/skill-creator-users-javierpiedra-codex-skills"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-07/files-mentioned-by-the-user-awra"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-09/files-mentioned-by-the-user-awra"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/New project 2"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/awra-web"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-14/est-s-vivo"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-17/help-me-turn-this-prompt-into"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-19/read-019e41bf-c551-7d81-ad2d-f6e216dbb4ce"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-22/help-me-generate-an-issue-for"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-26/files-mentioned-by-the-user-whatsapp"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-27/qu-fue-lo-ltimo-que-me"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-05-28/verifica-si-tienes-acceso-de-solo"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-06-01/lee-users-javierpiedra-clawd-whatsapp-followups"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/assisstant"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-06-05/invoice-goodancestor-users-javierpiedra-codex-skills"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-06-13/busca-en-mis-documentos-un-documento"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-06-24/ple"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-06-29/use-skill-creator-to-create-a"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-06-29/use-skill-creator-to-create-an"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/goodancestor/legacy"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-02/hel"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-02/let-s-set-up-a-scheduled"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-09/sites-plugin-sites-openai-bundled-create"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-09/loo"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-10/awr-620-auth-orchestrated"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-13/he"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-14/monitor-documentos-pos-luis"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-14/dond"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-17/lee-lo-que-te-voy-a"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-17/are-you-alive"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-17/what-happen-with-session-called-monitor"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-20/legacy-pr-follow-up"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-23/ca"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-23/use-skill-creator-to-create-a"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-23/hel"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-23/help-me-create-a-skill"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-23/linear-plugin-linear-openai-curated-remote"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-23/linear-plugin-linear-openai-curated-remote-2"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-23/search-a-skill-that-is-not"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-23/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-24/ppm-needs-javier-reporter"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/awra-pharma-pos"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/honestpolicy/integral"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-30/awra-impi-preparacion-clases-35-42"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-31/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-07-31/quiero-que-realices-dos-an-lisis"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-02/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-03/ay-dame-a-mejorar-un-prompt"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-03/assistant-goodancestor-skill-ingestion"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-07/usa"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/assisstant/awra-dev-guidance"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-09/chrome-tabs-the-user-has-the"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-09/mue"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-09/analiza-mi-historial-de-sesiones-de"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-09/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-09/modifica-el-goal-implementation-loop-users"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-10/dime-todo-lo-que-esta-pendiente"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-12/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-12/farcoyo-ui-stock-hotfix-orchestrator"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/ChatGPT/awra-supabase"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-13/re"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-14/luna-spawn-capability-test"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-16/que-sesion"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-16/pos-central-child-01-canonical-contract"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-17/algu"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-18/wtf"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-18/pos-central-child-02-awra-supabase"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/wevote"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-19/quie"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-19/pos-central-readonly-audit"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-20/awr-957"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-20/do"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-21/awr855-luna-review"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/voterbase"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-24/ana"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-24/audit-and-refactor-my-codex-orchestration"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-24/awra-plugin-verification"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-27/refactor-goal-implementation-loop-into-a"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-27/audit-and-simplify-codex-subagents-audit"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-27/r"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-30/me-gustar-a-que-le-hici"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-08-31/open-this-staging-site-in-the"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-05/files-pasted-by-the-user-created"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-05/r"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-06/como-puedo-hacerle-para-ver-los"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-07/how-to-clean-git-untracked-shit"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-08/me-x20"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-08/a-que-crees-que-se-deba"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-08/que-x20"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-08/files-mentioned-by-the-user-whatsapp"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-08/bus"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-09/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-10/help-me-create-this-skill-please"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-10/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-10/ope"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-10/hatch-pet-users-javierpiedra-codex-skills"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-10/edi"]
+trust_level = "trusted"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/Users/javierpiedra/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/Users/javierpiedra/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[marketplaces.bro]
+last_updated = "2026-08-19T20:17:16Z"
+last_revision = "0537a9fc42c03f4900f3d16218abfd9425fa4f6a"
+source_type = "git"
+source = "https://github.com/backnotprop/bro.git"
+
+[marketplaces.awra]
+last_updated = "2026-08-25T02:59:39Z"
+source_type = "git"
+source = "https://github.com/Awra-HQ/awra-dev-guidance.git"
+
+[apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools."linear mcp server_save_issue"]
+approval_mode = "approve"
+
+[apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools."linear.save_issue"]
+approval_mode = "approve"
+
+[apps.connector_76869538009648d5b282a4bb21c3d157.tools.github_create_pull_request]
+approval_mode = "approve"
+
+[apps.connector_76869538009648d5b282a4bb21c3d157.tools."github.update_pull_request"]
+approval_mode = "approve"
+
+[apps.connector_76869538009648d5b282a4bb21c3d157.tools."github.merge_pull_request"]
+approval_mode = "approve"
+
+[apps.connector_76869538009648d5b282a4bb21c3d157.tools."github.mark_pull_request_ready_for_review"]
+approval_mode = "approve"
+
+[apps.connector_5f3c8c41a1e54ad7a76272c89e2554fa.tools."google drive_batch_update_spreadsheet"]
+approval_mode = "approve"
+
+[apps.asdk_app_69d3e5ee6a708191baa733f7b8931995.tools."supabase.execute_sql"]
+approval_mode = "approve"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[memories]
+generate_memories = true
+use_memories = true
+
+[[skills.config]]
+name = "build-web-apps:stripe-best-practices"
+enabled = false
+
+[[skills.config]]
+name = "build-web-apps:shadcn"
+enabled = false
+
+[desktop]
+appearanceTheme = "system"
+usePointerCursors = true
+browser-annotation-screenshots-mode = "always"
+dictationDictionary = []
+followUpQueueMode = "queue"
+preventSleepWhileRunning = true
+keepRemoteControlAwakeWhilePluggedIn = true
+selected-avatar-id = "custom:pimienta"
+git-branch-prefix = "feature/<epic>/<linear-branch>"
+git-commit-instructions = '''
+Write commit messages in this format:
+
+<type>[scope]: <imperative subject <= 50 chars>
+
+<body wrapped around 72 chars>
+
+<issue footer, only when an issue exists>
+
+Allowed types:
+feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert.
+
+Rules:
+- Use square-bracket scope, like `fix[inventory]: ...`.
+- Write the subject in imperative mood.
+- Keep the subject concrete and at 50 characters or less.
+- Use real newlines. Never include literal `\n` sequences.
+- Wrap body lines around 72 characters.
+- Explain what changed and why, not every implementation detail.
+- Include an issue footer only when a real issue exists, such as `part of FAR-438` or `closes FAR-438`.
+- Do not invent issue ids.
+- Do not assume all Awra apps use the same issue prefix.
+- Do not mention agents, lanes, worktrees, branches, or process bookkeeping in the subject.
+- Keep commits atomic: one logical change per commit.
+- Before committing, check the worktree and stage only files that belong to the commit.
+- Before any history rewrite, check whether the branch exists on `origin`.
+- Do not rewrite pushed history unless Javier explicitly approves after that check.
+
+Good examples:
+fix[inventory]: reject duplicate stock rows
+docs[agents]: index shared Awra docs
+test[catalogue]: cover Rappi import dry run
+
+Bad examples:
+fix[inventory]: improved upload flow
+chore[repo]: cleanup
+refactor[api]: make code better
+
+Full example:
+```
+fix[inventory]: gate Rappi sends by catalogue
+
+Only send Rappi inventory rows for products that belong to the
+channel catalogue. Keep Awra stock writes unchanged and return a
+structured skip reason for excluded rows.
+
+part of FAR-438
+```'''
+git-pr-instructions = """
+Generate a pull request title and description from the change details below.
+
+PR title rules:
+- Use `Feature: <Epic or Module> - <Description>` for new capability or meaningful expansion.
+- Use `Fix: <Epic or Module> - <Description>` for bug fixes, regressions, or corrective changes.
+- Keep the title concrete and specific.
+- Do not use vague words like “improve”, “cleanup”, “enhance”, or “update” unless the exact behavior is named.
+- Do not mention agents, branches, worktrees, or implementation bookkeeping.
+- Do not invent issue IDs.
+
+PR description rules:
+- Be direct and concise.
+- Explain what changed and why.
+- Include tests/checks actually run.
+- If checks were not run, say `Not run` and explain why.
+- Mention migrations, config changes, or operational impact if relevant.
+- Mention risks or rollback notes if relevant.
+- Do not include hype or broad strategy language.
+
+Use this format:
+
+Title:
+<generated PR title>
+
+Description:
+## Summary
+- <what changed>
+- <why it matters>
+
+## Changes
+- <concrete change 1>
+- <concrete change 2>
+- <concrete change 3>
+
+## Checks
+- <command or verification result>
+- <command or verification result>
+
+## Migrations / Config
+- <migration or config note, or `None`>
+
+## Risks / Rollback
+- <risk or rollback note, or `None`>
+
+## Linked Issues
+- <issue id or `None`>
+
+Change details:
+<paste diff summary, commit messages, files changed, checks run, and issue context here>"""
+git-create-pull-request-as-draft = false
+show-context-window-usage = true
+hotkey-window-projectless-default-enabled = true
+notifications-turn-mode = "unfocused"
+conversationDetailMode = "STEPS_COMMANDS"
+avatar-overlay-mascot-width-px = 224
+dock-icon-preference = "codex-system"
+enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "max"]
+show-ultra-in-model-picker-slider = false
+realtimeVoiceScreenContextEnabled = false
+worktree-keep-count = 15
+worktree-upstream-refresh-mode = "best-effort"
+toys-confetti-enabled = true
+toys-audio-visualizer-enabled = false
+external-agent-import-sync-enabled = false
+
+[desktop.open-in-target-preferences]
+global = "vscode"
+
+[desktop.open-in-target-preferences.perPath]
+"/Users/javierpiedra/Desktop/awra-web" = "vscode"
+"/Users/javierpiedra/Desktop/farcoyo" = "vscode"
+"/Users/javierpiedra/Desktop/farcoyo-ui" = "vscode"
+"/Users/javierpiedra/Desktop/farmacias-de-barrio" = "vscode"
+"/Users/javierpiedra/Desktop/goodancestor/newsletter-gpt" = "vscode"
+"/Users/javierpiedra/Desktop/honestpolicy/integral" = "vscode"
+"/Users/javierpiedra/.codex/worktrees/1f30/awra-web" = "vscode"
+
+[shell_environment_policy.set]
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "9230e2bd8b24b7ac7a0ba6774c64bf0d78ecdabbdd91d0ed627b02a587bae2df"

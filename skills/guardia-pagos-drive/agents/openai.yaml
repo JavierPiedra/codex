@@ -1,0 +1,4 @@
+interface:
+  display_name: "Guardia Pagos Drive"
+  short_description: "Registra pagos con comprobantes Drive"
+  default_prompt: "Use $guardia-pagos-drive to register a payment receipt in Guardia Javier Piedra Perea from a Drive link or attached proof."

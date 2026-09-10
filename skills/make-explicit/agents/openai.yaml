@@ -1,0 +1,6 @@
+interface:
+  display_name: "Make Explicit"
+  short_description: "Rewrite text for clarity and precision"
+  default_prompt: "Use $make-explicit to rewrite the previous message so it has one clear interpretation."
+policy:
+  allow_implicit_invocation: false

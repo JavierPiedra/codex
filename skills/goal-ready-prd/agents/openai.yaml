@@ -1,0 +1,4 @@
+interface:
+  display_name: "Goal Ready PRD"
+  short_description: "Turn approved goals into durable PRDs or issues"
+  default_prompt: "Use $goal-ready-prd to investigate the approved goal, close material decisions, and write the smallest durable PRD or Linear-ready issue without implementation mutations."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Linear Issues"
+  short_description: "Create scoped, verified Linear issues"
+  default_prompt: "Use $create-linear-issues to create the smallest useful Linear issue structure for this approved scope."

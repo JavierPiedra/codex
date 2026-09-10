@@ -1,0 +1,4 @@
+interface:
+  display_name: "Format WhatsApp Message"
+  short_description: "Create copy-ready WhatsApp-formatted messages"
+  default_prompt: "Use $format-whatsapp-message to convert this content into a copy-ready WhatsApp message."

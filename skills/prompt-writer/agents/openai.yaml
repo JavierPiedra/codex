@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prompt Writer"
+  short_description: "Write English-first OpenAI prompts"
+  default_prompt: "Use $prompt-writer to draft a copyable English prompt for this task without executing it."

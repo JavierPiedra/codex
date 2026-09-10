@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Telegram Notify"
+  short_description: "Notify Javier through Telegram with OpenClaw"
+  default_prompt: "Use $openclaw-telegram-notify to send Javier a concise Telegram alert."

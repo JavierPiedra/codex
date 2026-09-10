@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session TLDR"
+  short_description: "Summarize the active session concisely"
+  default_prompt: "Use $session-tldr to summarize this session."

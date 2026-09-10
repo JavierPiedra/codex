@@ -1,0 +1,6 @@
+interface:
+  display_name: "Which Model Now"
+  short_description: "Show the latest session model"
+  default_prompt: "Use $which-model-rn to show the current session model."
+policy:
+  allow_implicit_invocation: false

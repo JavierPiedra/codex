@@ -1,0 +1,4 @@
+interface:
+  display_name: "Confirm"
+  short_description: "Confirm shared understanding before action"
+  default_prompt: "Use $confirm to restate the task and wait for approval."

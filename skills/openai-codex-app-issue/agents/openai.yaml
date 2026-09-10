@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenAI Codex App Issue"
+  short_description: "Draft privacy-safe Codex App bug reports"
+  default_prompt: "Use $openai-codex-app-issue to turn the observed Codex App bug into sanitized, paste-ready content for the official openai/codex app issue template without publishing it."

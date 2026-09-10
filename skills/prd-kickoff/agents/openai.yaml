@@ -1,0 +1,4 @@
+interface:
+  display_name: "PRD Kickoff"
+  short_description: "Prepare any approved PRD for implementation"
+  default_prompt: "Use $prd-kickoff to create or reuse this approved PRD's Linear structure and branch/worktree, then stop at execution handoff."

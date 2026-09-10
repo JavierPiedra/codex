@@ -1,0 +1,11 @@
+version = 1
+id = "integrar-deep-research-al-council"
+kind = "heartbeat"
+name = "Integrar deep research al council"
+prompt = "Revisa en modo estrictamente read-only el reporte Deep Research compartido en https://chatgpt.com/share/6a6f379d-d20c-83e8-aea3-768ab32ff459. Si todavía no está disponible o completo, informa sólo que sigue pendiente y conserva el seguimiento. Cuando esté disponible, descarga o lee el reporte completo, verifica sus fuentes y contraevidencia, intégralo al proceso feature-council de esta misma tarea sobre SEO, descubrimiento por agentes, metadata y MCP de Awra, pide al mismo consejo reevaluar cualquier conclusión material, y entrega aquí el PRD final. Mantén las decisiones aceptadas 1A, 2A y 3A: catálogo público limitado a identidad, farmacias y productos autorizados sin receta; agentes sólo para descubrimiento, disponibilidad indicativa y deep links; Awra conserva resumen final, confirmación y pago. No implementes ni edites archivos, no crees branch, worktree, commit o PR, y no cambies sistemas externos. Tras integrar exitosamente el reporte y entregar el PRD, desactiva esta automatización."
+status = "PAUSED"
+rrule = "FREQ=MINUTELY;INTERVAL=30"
+notification_policy = "failed_runs_only"
+target_thread_id = "019fc264-cc18-7fd2-b8fa-7e35757fa761"
+created_at = 1785673873974
+updated_at = 1785675925284

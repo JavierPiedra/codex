@@ -1,0 +1,7 @@
+interface:
+  display_name: "PRD Council Review"
+  short_description: "Review a requested PRD council"
+  default_prompt: "Use $prd-council-review to convene the requested council for this PRD and return independent evidence and a decision memo."
+
+policy:
+  allow_implicit_invocation: false

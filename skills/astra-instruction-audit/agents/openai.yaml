@@ -1,0 +1,4 @@
+interface:
+  display_name: "Astra Instruction Audit"
+  short_description: "Audit skills and prompts for Astra"
+  default_prompt: "Use $astra-instruction-audit to audit these skills, prompts, or AGENTS.md files for GPT-6 Astra risks and return evidence-grounded corrections without editing."

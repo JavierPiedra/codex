@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rename Current Session"
+  short_description: "Rename the current session from completed work"
+  default_prompt: "Use $rename-current-session to rename this session based on what was accomplished."

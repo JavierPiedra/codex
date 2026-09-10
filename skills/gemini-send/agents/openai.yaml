@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gemini Send"
+  short_description: "Send a bounded prompt to Gemini CLI"
+  default_prompt: "Use $gemini-send to ask Gemini a bounded question."

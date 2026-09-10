@@ -1,0 +1,50 @@
+# Track maintained configuration; ignore runtime state and unknown root entries.
+/*
+!/.gitignore
+!/*.md
+!/config.toml
+!/keybindings.json
+!/agents/
+!/rules/
+!/skills/
+!/automations/
+
+# Bundled skills are installed and updated by Codex.
+/skills/.system/
+/skills/codex-primary-runtime/
+
+# Automation definitions and helper scripts, without run history or state.
+/automations/*
+!/automations/*/
+/automations/*/*
+!/automations/*/automation.toml
+!/automations/*/*.py
+!/automations/*/*.sh
+
+# Local secrets and generated files inside maintained directories.
+.env
+.env.*
+!.env.example
+!.env.sample
+secrets/
+credentials/
+auth.json
+*.pem
+*.key
+*.p12
+*.pfx
+.DS_Store
+__pycache__/
+*.py[cod]
+node_modules/
+.venv/
+.pytest_cache/
+.cache/
+*.log
+*.sqlite*
+*.db
+*.db-shm
+*.db-wal
+*.bak
+*.tmp
+*~

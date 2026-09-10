@@ -1,0 +1,4 @@
+interface:
+  display_name: "Show Task Progress"
+  short_description: "Display the Codex task-progress widget"
+  default_prompt: "Use $show-task-progress to display the current task progress."

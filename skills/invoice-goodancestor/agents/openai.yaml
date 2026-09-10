@@ -1,0 +1,4 @@
+interface:
+  display_name: "Invoice GoodAncestor"
+  short_description: "Prepare Good Ancestor invoice hours"
+  default_prompt: "Use $invoice-goodancestor to prepare my Good Ancestor invoice for January 2026."

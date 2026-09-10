@@ -1,0 +1,7 @@
+interface:
+  display_name: "Gemini Code Review"
+  short_description: "Run a read-only Gemini code review"
+  default_prompt: "Use $gemini-code-review to review this exact change with one sanitized Gemini CLI pass."
+
+policy:
+  allow_implicit_invocation: false

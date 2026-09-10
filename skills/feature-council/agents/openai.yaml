@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feature Council"
+  short_description: "Evaluate features with an adaptive expert council"
+  default_prompt: "Use $feature-council to investigate this feature in the relevant repositories, ask me the material questions, and recommend whether and how to build it."

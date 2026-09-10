@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review Fix Loop"
+  short_description: "Review, fix, and verify code work"
+  default_prompt: "Use $review-fix-loop to review and fix this branch until its goal and objective checks pass."
+
+policy:
+  allow_implicit_invocation: false

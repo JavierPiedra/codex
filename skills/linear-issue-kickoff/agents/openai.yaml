@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linear Issue Kickoff"
+  short_description: "Create scoped Linear kickoff work"
+  default_prompt: "Use $linear-issue-kickoff to confirm the Linear project, create the smallest useful issue structure, and prepare an optional branch/worktree handoff without implementing."

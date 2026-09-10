@@ -1,0 +1,7 @@
+interface:
+  display_name: "CTO"
+  short_description: "Direct engineering objectives through orchestrators"
+  default_prompt: "Use $cto to direct the assigned engineering objective."
+
+policy:
+  allow_implicit_invocation: false

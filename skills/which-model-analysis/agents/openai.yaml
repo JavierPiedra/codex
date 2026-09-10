@@ -1,0 +1,6 @@
+interface:
+  display_name: "Which Model Analysis"
+  short_description: "Show a session model history"
+  default_prompt: "Use $which-model-analysis to show this session model history."
+policy:
+  allow_implicit_invocation: false

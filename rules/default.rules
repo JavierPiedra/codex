@@ -1,0 +1,39 @@
+prefix_rule(pattern=["git", "commit"], decision="allow")
+prefix_rule(pattern=["git", "branch"], decision="allow")
+prefix_rule(pattern=["git", "add"], decision="allow")
+prefix_rule(pattern=["git", "checkout"], decision="allow")
+prefix_rule(pattern=["poetry", "run", "alembic"], decision="allow")
+prefix_rule(pattern=["yarn", "codegen"], decision="allow")
+prefix_rule(pattern=["rm", "-f", ".git/index.lock"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-lc", "NEXT_PUBLIC_GPT_GRAPHQL_URL=\"http://localhost:8000/graphql\" yarn codegen"], decision="allow")
+prefix_rule(pattern=["curl", "-sS", "-X", "POST", "http://localhost:8000/graphql"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-lc", "NEXT_PUBLIC_GPT_GRAPHQL_URL=\"http://localhost:8000/graphql\" node scripts/fetch-introspection-schema.mjs"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-lc", "NEXT_PUBLIC_GPT_GRAPHQL_URL=\"http://localhost:8000/graphql\" yarn schema:introspect"], decision="allow")
+prefix_rule(pattern=["poetry", "run", "python"], decision="allow")
+prefix_rule(pattern=["yarn", "typecheck"], decision="allow")
+prefix_rule(pattern=["git", "-C", "../newsletter-ui", "add", "docs/progress.txt", "src/components/lovable/collection-setup/SetupWizardModal.test.tsx", "src/utils/collectionSetupReviewState.test.ts"], decision="allow")
+prefix_rule(pattern=["git", "-C", "../newsletter-ui", "commit", "-m", "test(collection-setup): align review fixtures", "-m", "Update the remaining review-ready test fixtures to model backend-authored weighted jobs and add a modal regression for the change-request path returning to discovery. Keep the production Builder review-state logic unchanged while locking the expected frontend behavior.", "-m", "part of GOO-2202"], decision="allow")
+prefix_rule(pattern=["flyctl", "secrets"], decision="allow")
+prefix_rule(pattern=["open", "-a", "Google Chrome"], decision="allow")
+prefix_rule(pattern=["osascript", "-e", "tell application \"Google Chrome\" to get URL of active tab of front window"], decision="allow")
+prefix_rule(pattern=["osascript", "-e", "tell application \"Google Chrome\" to execute active tab of front window javascript \"document.title\""], decision="allow")
+prefix_rule(pattern=["screencapture", "-x"], decision="allow")
+prefix_rule(pattern=["open", "-na", "Google Chrome"], decision="allow")
+prefix_rule(pattern=["osascript", "-e", "tell application \"Google Chrome\" to get title of active tab of front window"], decision="allow")
+prefix_rule(pattern=["osascript", "-e", "tell application \"Google Chrome\" to execute javascript \"document.title\" in active tab of front window"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-lc", "pbcopy < prompts/03-historia-clinica-inicial.txt"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-lc", "case \"$1\" in prompts/*.txt) pbcopy < \"$1\";; *) exit 2;; esac"], decision="allow")
+
+prefix_rule(
+    pattern=["/Users/javierpiedra/.codex/automations/rappi-inveotry-upload-report/run_report.sh"],
+    decision="allow",
+    justification="Run the read-only Rappi inventory freshness report outside the sandbox because sandboxed outbound Supabase HTTPS is denied.",
+    match=[
+        "/Users/javierpiedra/.codex/automations/rappi-inveotry-upload-report/run_report.sh",
+    ],
+)
+prefix_rule(pattern=["./node_modules/.bin/tsc", "-p"], decision="allow")
+prefix_rule(pattern=["git", "-C", "../newsletter-ui", "add"], decision="allow")
+prefix_rule(pattern=["git", "-C", "../newsletter-ui", "commit"], decision="allow")
+prefix_rule(pattern=["supabase", "db", "query"], decision="allow")
+prefix_rule(pattern=["git", "ls-remote"], decision="allow")

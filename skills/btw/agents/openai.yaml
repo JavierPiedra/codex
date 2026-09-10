@@ -1,0 +1,4 @@
+interface:
+  display_name: "By the way"
+  short_description: "Send a non-interrupting steering note"
+  default_prompt: "Use $btw to send this note without interrupting active work."

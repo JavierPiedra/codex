@@ -1,0 +1,7 @@
+interface:
+  display_name: "Gemini Adversarial"
+  short_description: "Challenge a plan with Gemini CLI"
+  default_prompt: "Use $gemini-adversarial to challenge this proposal with one sanitized Gemini CLI pass."
+
+policy:
+  allow_implicit_invocation: false

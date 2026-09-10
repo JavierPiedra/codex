@@ -1,0 +1,4 @@
+interface:
+  display_name: "Luna Prompt Writer"
+  short_description: "Draft, rewrite, and audit prompts for Luna"
+  default_prompt: "Use $luna-prompt-writer to turn this task into a ready-to-paste prompt for GPT-5.6 Luna."

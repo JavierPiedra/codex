@@ -1,0 +1,4 @@
+interface:
+  display_name: "Newsletter GPT App Zip"
+  short_description: "Zip non-ignored newsletter-gpt files"
+  default_prompt: "Use $newsletter-gpt-app-zip to create newsletter_gpt_app.zip from files not ignored by .gitignore."

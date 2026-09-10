@@ -1,0 +1,3 @@
+interface:
+  display_name: "Show Subagent Profiles"
+  short_description: "List configured subagent profiles"

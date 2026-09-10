@@ -1,0 +1,7 @@
+interface:
+  display_name: "Manual QA Linear Kickoff"
+  short_description: "Plan, track, and execute manual QA"
+  default_prompt: "Use $manual-qa-linear-kickoff to plan, track, and execute persistent manual QA for this completed work."
+
+policy:
+  allow_implicit_invocation: false

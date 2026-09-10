@@ -1,0 +1,11 @@
+version = 1
+id = "awr-820-hotfix-compatibility-and-completion"
+kind = "heartbeat"
+name = "AWR-820 hotfix compatibility and completion"
+prompt = "Resume only when Javier resumes the blocked goal after the inventory hotfix has an exact merged SHA on main."
+status = "PAUSED"
+rrule = "FREQ=MINUTELY;INTERVAL=5"
+notification_policy = "failed_runs_only"
+target_thread_id = "019fcbaa-4845-7372-b0a4-420a04c04b25"
+created_at = 1786126033869
+updated_at = 1786127871182

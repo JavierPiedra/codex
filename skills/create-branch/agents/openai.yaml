@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Branch"
+  short_description: "Create a temporary-worktree branch safely"
+  default_prompt: "Use $create-branch to create a repo-conforming branch in a fresh temporary worktree."
