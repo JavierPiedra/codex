@@ -1,0 +1,7 @@
+interface:
+  display_name: "Goal Implementation Loop"
+  short_description: "Run an explicitly requested Goal to handoff"
+  default_prompt: "Use $goal-implementation-loop to run this explicitly requested Goal through scoped implementation, review, checks, and PR handoff."
+
+policy:
+  allow_implicit_invocation: false
