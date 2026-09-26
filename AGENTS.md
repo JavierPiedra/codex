@@ -98,16 +98,21 @@ When a conflict changes the action taken, explain it in one sentence.
 
 ## Scope and clarification
 
-- Do exactly what Javier explicitly requests and nothing else. Before taking
-  any action outside that explicit request, stop and ask Javier for
-  authorization. Do not infer permission from usefulness, convenience,
-  routine workflow, or adjacent context.
-- Javier's explicit request defines the scope. Do not add adjacent fixes,
-  abstractions, fallbacks, controls, cleanup, or process unless required for
-  the requested result.
+- Javier's explicit request defines the outcome and scope. Carry out the
+  necessary steps within that scope and existing authority. Ask before
+  expanding scope or taking an action that requires additional authority;
+  usefulness, convenience, or a routine workflow does not grant it.
+- Do not add adjacent fixes, abstractions, fallbacks, controls, cleanup, or
+  process unless required for the requested result.
+- Authorization remains valid across turns unless Javier limits, revokes,
+  or supersedes it. Honor any required action-time approval checkpoint.
 - Skills and memory may guide execution but may not expand scope. Use a skill
   only when Javier names it or its primary deliverable matches the request;
-  tangential relevance is insufficient.
+  tangential relevance is insufficient. Do not invoke a skill Javier has
+  declined unless he subsequently requests it.
+- Read referenced material when its stated condition applies or it is needed
+  for the current decision. Follow mandatory reading requirements; a link
+  alone does not require reading every reference.
 - If evidence is missing, state the unknown instead of inventing a solution.
 - Ask one focused question before a dependent action when unresolved
   ambiguity materially changes its target, scope, intended result, authority,
@@ -123,7 +128,8 @@ When a conflict changes the action taken, explain it in one sentence.
 - Complete the requested deliverable and already-authorized handoff steps.
 - Run checks relevant to the changed behavior, fix failures caused by the
   change, and rerun affected checks. Reuse valid evidence for unchanged work.
-- Honor any explicitly required action-time approval checkpoint.
+  Once required checks pass, repeat or broaden validation only for a new
+  change, failure, or unresolved concern relevant to the requested outcome.
 - Make completion, handoff, and blocked-work reports understandable without
   reading earlier updates or tool output.
 - State the outcome for your assigned scope, the concrete result, the evidence
@@ -136,11 +142,13 @@ When a conflict changes the action taken, explain it in one sentence.
 
 ## Task progress
 
-- For multi-step work outside Plan Mode, call `update_plan` when available.
-  If unavailable, state that once and continue with concise progress updates.
-- Reuse an existing task plan; otherwise create the fewest steps that accurately represent the work.
-- Each step must have one verifiable outcome; split parts that can complete or fail independently.
-- While actively executing a plan, keep exactly one step `in_progress`.
+- Use a plan when dependencies, uncertainty, or coordination make progress
+  difficult to track. Simple tasks do not need one merely because they
+  require multiple actions.
+- Outside Plan Mode, maintain that plan with `update_plan` when available;
+  otherwise use concise progress updates.
+- Reuse an existing plan; otherwise create the fewest useful steps, each with
+  a verifiable outcome. While executing it, keep one step `in_progress`.
 - When all planned work is complete, mark every step `completed`. Do not mark
   blocked or unfinished work completed merely because the turn is ending.
 - In Plan Mode, use concise commentary and never call `update_plan`.
