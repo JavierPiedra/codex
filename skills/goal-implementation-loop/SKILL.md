@@ -53,75 +53,73 @@ each standalone or leaf issue whose full acceptance criteria the Goal delivers.
 Include an umbrella only when the Goal also completes it. Do not use a broad,
 out-of-scope, planning, or review issue merely to obtain a closing reference.
 
-## Ownership and review
+## Roles and ownership
+
+This workflow uses the following defaults unless Javier explicitly overrides
+an assignment. These Goal-specific defaults supersede older generic routing
+model defaults; retain the applicable lifecycle and authorization policies.
+
+- The main session is the orchestrator: `gpt-6-sol` / `medium` by default.
+- One `gpt-6-luna` / `max` writer owns implementation and in-scope fixes.
+- One read-only engineering council uses `goal_engineering_advisor` with
+  `gpt-6-astra` / `high`. Include it in the validated Goal and consult it using
+  [the engineering protocol](references/engineering-advisor.md).
+- One independent read-only Daybreak reviewer handles the stable implementation.
+  Use the host-supported Daybreak route (including Daybreak Blue where exposed)
+  and current reviewer routing, with
+  medium reasoning by default or high for materially risky changes.
+
+Record the requested assignments separately from the observed runtime. A skill
+cannot change the model of an already-running main session. If its model or a
+required route is unavailable or cannot be established, explain the limitation
+and request the appropriate session/model selection instead of claiming a
+switch or silently substituting a model. Use the external-review path below
+when native Daybreak is unavailable.
 
 Keep one exclusive writer for each branch, worktree, database, deployment,
-provider, and shared integration surface. Choose coordination topology and
-model from the current routing and orchestration policies; this skill does not
-hardcode a coordinator model.
+provider, and shared integration surface. Additional Luna Max writers require
+independent issues and non-overlapping files and external mutation targets.
+The orchestrator directs the writer and reports its proposed approach and
+progress to the engineering council. The council challenges drift, unproductive
+repetition, and unnecessary complexity; it does not write code, direct competing
+writers, or replace independent Daybreak review.
 
-- One `gpt-5.6-luna` / `max` implementer owns implementation writes by default.
-- Additional Luna Max implementers require independent issues and non-overlapping
-  files and external mutation targets.
-- One read-only `gpt-daybreak-blue-latest` reviewer uses medium reasoning by
-  default, or high reasoning for materially risky changes.
+Give the writer its exact scope, governing sources, permitted mutations,
+acceptance criteria, checks, dependencies, and stop conditions. Consult the
+council before the first implementation assignment, at meaningful milestones,
+before a material change of approach or retry after failure, and before closure.
+Apply its concrete direction or document an evidence-backed reason to differ;
+escalate only decisions that change the Goal, authority, or explicit limits.
+Do not turn consultation into a per-tool approval or status-polling loop.
 
-Give each implementer its exact scope, governing sources, permitted mutations,
-acceptance criteria, checks, dependencies, and stop conditions. After the
-implementation is stable, have Daybreak review the exact diff or head against
-the Goal, repository rules, and relevant correctness, security, operations,
-complexity, and contract risks. Send consolidated actionable findings to the
-same implementer; apply in-scope fixes and rerun affected checks; have the same
-reviewer recheck. Do not create a second writer to fix review findings.
+## Daybreak review and manual handoff
 
-Stop the fix loop when findings are resolved, require a material product
-decision, exceed scope, lack required evidence, or cannot be verified.
+After implementation stabilizes, review the exact diff or head against the Goal,
+repository rules, and relevant correctness, security, operations, complexity,
+and contract risks. Confirm native Daybreak availability from the host before
+spawning. A model name alone does not establish Daybreak mode.
 
-## Optional adversarial engineering consultant
+If native spawning is unsupported, rejected, or Daybreak mode cannot be
+established, produce a ready-to-paste reviewer prompt **inside the main chat**
+using [the external-review handoff](references/external-daybreak-review.md).
+Javier can paste it into a new or existing Daybreak session. Do not repeatedly
+try alternate model identifiers, create a substitute reviewer, or require a
+native subagent when the external review can satisfy the same review contract.
 
-Enable this optional subagent when Javier requests it or the validated Goal
-explicitly includes it. Otherwise run the existing loop without a consultant.
-Use one read-only expert engineering consultant, selected through the current
-routing and orchestration policies, and reuse it throughout the Goal. It advises
-the orchestrator; it does not own implementation, replace Daybreak's independent
-review, authorize mutations, or change the Goal contract.
+The prompt must identify the originating session by its actual thread ID and
+require the reviewer to send the verdict back to that session. Record the
+external reviewer session once known and reuse it for re-review. Distinguish
+Javier's designation of the Daybreak session from independently observed runtime
+metadata; missing native spawn capability is not a failure of an otherwise
+valid review performed in the designated session. Missing review evidence still
+blocks review-dependent handoff or completion. Continue independent authorized
+work while waiting; a generated prompt is not a completed review.
 
-Give it the validated Goal, acceptance criteria, exclusions, governing contract
-sources, current plan, evidence, and any explicit time or resource limits. Its
-mandate is to challenge the orchestrator's assumptions and proposed decisions,
-not merely endorse progress reports. It must:
-
-- Detect contract drift by comparing decisions, implementation evidence, and
-  claimed progress against the Goal and governing contracts. Challenge weakened
-  acceptance criteria, scope expansion, incompatible interfaces, and unsupported
-  claims of completion.
-- Assess engineering correctness, architecture, integration risks, and whether
-  the proposed next step is the simplest durable way to satisfy the Goal.
-- Critically assess elapsed time and resource use against demonstrated progress:
-  repeated failed approaches, duplicate exploration or checks, unnecessary agent
-  fan-out, excessive coordination, and work that does not advance acceptance.
-  Use available time, token, tool, and cost evidence; identify unknowns rather
-  than inventing measurements or budgets.
-- Return concise, evidence-backed objections: the affected contract or objective,
-  the consequence, and a concrete correction or cheaper sufficient next step.
-  Recommend stopping an unproductive approach when further spending has no
-  supported path to progress. Do not reduce required acceptance or verification
-  merely to save resources, and do not manufacture objections.
-
-The orchestrator reports to the same consultant at the initial execution plan,
-meaningful milestones, before a material approach change or retry after failure,
-and before claiming completion. Each report states acceptance progress and its
-evidence, changes since the last report, blockers, available resource usage,
-and the proposed next step with its expected result. Keep reports incremental;
-do not send every tool result or create a second tracking system.
-
-Resolve objections affecting the next dependent action before proceeding with
-that action; continue independent authorized work meanwhile. The orchestrator
-records the correction or an evidence-backed reason for rejecting the advice.
-Escalate to Javier when resolution requires changing the contract, authority,
-or an explicit resource limit. Advice is not an approval gate or permission to
-stop a Goal contrary to its outcome rules. Include the consultant's material
-findings and their disposition in the compact final outcome when enabled.
+Send consolidated actionable findings to the same writer, apply in-scope fixes,
+rerun affected checks, and have the same reviewer recheck the resulting head.
+The external path follows this same loop. Do not create a second writer to fix
+review findings. Stop the fix loop when findings are resolved, require a material
+product decision, exceed scope, lack required evidence, or cannot be verified.
 
 ## Commit closure
 

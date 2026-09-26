@@ -11,19 +11,32 @@ Lifecycle and handoff rules live in
 
 | Assignment | Route | Topology |
 | --- | --- | --- |
-| CTO supervision explicitly requested by Javier | `gpt-6-astra` / `ultra` | Root CTO role only |
-| Fully defined implementation lane | `gpt-5.6-luna` / `max` | Native `spawn_agent` subagent |
-| Senior orchestration or unresolved judgment | `gpt-5.6-sol` / `medium` | Native or managed lane |
-| Independent code or security review | `gpt-daybreak-blue-latest` / `medium` or `high` | Native independent read-only lane |
-| Explicit Terra assignment | `gpt-5.6-terra` / `max` | Native lane |
-| Authorized unusually difficult decision | `gpt-5.6-sol` / `high` | Native lane |
+| CTO supervision explicitly requested by Javier | `gpt-6-astra` / `max` | Root CTO role only |
+| Fully defined implementation lane | `gpt-6-luna` / `max` | Native `spawn_agent` subagent |
+| Senior orchestration or unresolved judgment | `gpt-6-sol` / `medium` | Native or managed lane |
+| Independent code or security review | Host-supported Daybreak route / `medium` or `high` | Independent read-only native or external reviewer |
+| Authorized unusually difficult decision | `gpt-6-sol` / `high` | Native lane |
 
-The CTO route uses `gpt-6-astra` with `ultra` only when Javier explicitly
+The CTO route uses `gpt-6-astra` with `max` only when Javier explicitly
 requests CTO supervision and the host supports that exact route. A route names
 the requested assignment; it does not prove that the runtime selected or
-observed it. Do not silently substitute a model or reasoning level. Terra is
-not a Luna fallback. `ultra` is a root-session mode and must not be assigned to
-a child.
+observed it. Do not silently substitute a model or reasoning level.
+
+For independent review, use the host-supported Daybreak route, including
+Daybreak Blue where exposed, with medium reasoning by default or high for
+materially risky changes. Confirm native availability before spawning; a model
+name alone does not establish Daybreak mode. Do not silently substitute a
+non-Daybreak reviewer.
+
+If native spawning is unsupported, rejected, or Daybreak mode cannot be
+established, use the external-review handoff defined in
+`/Users/javierpiedra/.codex/skills/goal-implementation-loop/references/external-daybreak-review.md`.
+Produce its ready-to-paste prompt in the main chat, including the originating
+thread ID and the requirement to send the verdict back to that session. Do not
+repeatedly try alternate model identifiers. Distinguish Javier's designation of
+the external Daybreak session from independently observed runtime metadata;
+missing native metadata does not invalidate review from the designated session.
+A generated handoff prompt is not a completed review.
 
 Astra availability alone does not activate CTO or add a supervisory layer to a
 simple task. The exact model and reasoning identifiers above are route entries,
@@ -55,7 +68,7 @@ model or runtime switch from a policy entry.
 ## Luna Max Subagents
 
 For a delegated fully defined implementation lane, use a native
-`gpt-5.6-luna` subagent with `max` reasoning by default. A simple edit does not
+`gpt-6-luna` subagent with `max` reasoning by default. A simple edit does not
 require spawning an agent merely because this route exists.
 Use one Luna Max implementer by default. Add Luna Max subagents only for
 independent assignments with non-overlapping write and external-mutation

@@ -1,6 +1,6 @@
 name = "awra_voice"
 description = "Redacta, reescribe y evalúa contenido de Awra conforme al sistema vigente de voz, sus perfiles y sus afirmaciones aprobadas."
-model = "gpt-5.6-sol"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,0 +1,10 @@
+version = 1
+id = "revisar-prueba-local-de-wevote"
+kind = "heartbeat"
+name = "Revisar prueba local de WeVote"
+prompt = "One-time follow-up: on this scheduled wake, review current status/results of 'WeVote: bounded local refresh reproduction', thread01a0d263-d35f-7310-abbe-c1013d288d80 hostlocal, and continue this originating WeVote Goal. Read live task evidence rather than old summaries. Javier explicitly authorizes autonomous LOCAL work, including disposable Docker/database setup, safe data copying, tests and necessary corrections without repeated approvals. Preserve original source data and unrelated work; never read/expose secret values. If the experiment failed, diagnose the evidence, revise the local approach and continue local work without another local authorization. Respect the completed trial's75-minute/three-refresh limit and report it separately; further local experiments require concrete bounded hypotheses/timeboxes, not hidden retries or endless loops. Reuse the existing Sol high task; do not duplicate live work or restart solely after observation timeout. Latest user amendments override stale Goal model/budget text. No staging/QA/production changes, remote database mutations, additional paid provider calls, merge or deployment are authorized by this local permission. Give Javier a concise meaningful update. After this first scheduled review, disable this heartbeat so it never repeats; do not schedule another reminder."
+status = "PAUSED"
+rrule = "FREQ=MINUTELY;INTERVAL=75;COUNT=2"
+target_thread_id = "01a08733-7882-7b93-abc3-9f4ac6927aa0"
+created_at = 1790236982856
+updated_at = 1790241524092

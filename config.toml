@@ -1,7 +1,7 @@
-model = "gpt-5.6-sol"
+model = "gpt-6-astra"
 model_context_window = 272000
 model_auto_compact_token_limit = 260000
-model_reasoning_effort = "low"
+model_reasoning_effort = "medium"
 personality = "pragmatic"
 model_verbosity = "medium"
 
@@ -9,12 +9,11 @@ model_verbosity = "medium"
 
 
 approval_policy = "on-request"
-approvals_reviewer = "user"
+approvals_reviewer = "guardian_subagent"
 sandbox_mode = "workspace-write"
 
 
 notify = ["/Users/javierpiedra/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
-service_tier = "default"
 model_reasoning_summary = "concise"
 
 [mcp_servers.node_repl]
@@ -34,10 +33,10 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.903.71938"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/javierpiedra/.codex/plugins/cache/openai-bundled/browser/26.903.71938/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.924.22138"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/javierpiedra/.codex/plugins/cache/openai-bundled/browser/26.924.22138/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/javierpiedra/.codex/computer-use/Codex Computer Use.app"
-CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
 
 [mcp_servers.computer-use]
 command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
@@ -130,9 +129,6 @@ enabled = true
 enabled = true
 
 [plugins."template-creator@openai-primary-runtime"]
-enabled = true
-
-[plugins."sites@openai-bundled"]
 enabled = true
 
 [plugins."visualize@openai-bundled"]
@@ -507,6 +503,39 @@ trust_level = "trusted"
 [projects."/Users/javierpiedra/Documents/Codex/2026-09-10/edi"]
 trust_level = "trusted"
 
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-10/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-11/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Desktop/ppdc"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-14/a"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/.awra/dev-guidance"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-20/ayu"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-21/mez"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-21/hay-x20"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-23/add-netlify-redirects-so-the-current"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/Codex/2026-09-23/aqu"]
+trust_level = "trusted"
+
+[projects."/Users/javierpiedra/Documents/ChatGPT/compras"]
+trust_level = "trusted"
+
 [marketplaces.openai-bundled]
 source_type = "local"
 source = "/Users/javierpiedra/.codex/.tmp/bundled-marketplaces/openai-bundled"
@@ -547,11 +576,24 @@ approval_mode = "approve"
 [apps.connector_5f3c8c41a1e54ad7a76272c89e2554fa.tools."google drive_batch_update_spreadsheet"]
 approval_mode = "approve"
 
+[apps.connector_5f3c8c41a1e54ad7a76272c89e2554fa.tools."google_drive.search"]
+approval_mode = "approve"
+
+[apps.connector_5f3c8c41a1e54ad7a76272c89e2554fa.tools."google_drive.list_folder"]
+approval_mode = "approve"
+
 [apps.asdk_app_69d3e5ee6a708191baa733f7b8931995.tools."supabase.execute_sql"]
+approval_mode = "approve"
+
+[apps.connector_947e0d954944416db111db556030eea6.tools."google_calendar.create_event"]
+approval_mode = "approve"
+
+[apps.connector_2128aebfecb84f64a069897515042a44.tools."gmail.send_email"]
 approval_mode = "approve"
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+gpt-6-astra = 4
 
 [memories]
 generate_memories = true
@@ -678,7 +720,7 @@ show-context-window-usage = true
 hotkey-window-projectless-default-enabled = true
 notifications-turn-mode = "unfocused"
 conversationDetailMode = "STEPS_COMMANDS"
-avatar-overlay-mascot-width-px = 224
+avatar-overlay-mascot-width-px = 130
 dock-icon-preference = "codex-system"
 enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "max"]
 show-ultra-in-model-picker-slider = false
@@ -688,6 +730,8 @@ worktree-upstream-refresh-mode = "best-effort"
 toys-confetti-enabled = true
 toys-audio-visualizer-enabled = false
 external-agent-import-sync-enabled = false
+browser-show-full-url = true
+reduced-motion-preference = "off"
 
 [desktop.open-in-target-preferences]
 global = "vscode"
@@ -700,6 +744,11 @@ global = "vscode"
 "/Users/javierpiedra/Desktop/goodancestor/newsletter-gpt" = "vscode"
 "/Users/javierpiedra/Desktop/honestpolicy/integral" = "vscode"
 "/Users/javierpiedra/.codex/worktrees/1f30/awra-web" = "vscode"
+
+[desktop.daybreak-enabled]
+accountId = "739be100-5ba2-45a8-8d1c-40b77dba5f33"
+userId = "user-supGksOC67i1kl35SFyp310l"
+enabled = false
 
 [shell_environment_policy.set]
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "9230e2bd8b24b7ac7a0ba6774c64bf0d78ecdabbdd91d0ed627b02a587bae2df"
