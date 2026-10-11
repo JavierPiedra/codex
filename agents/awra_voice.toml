@@ -5,9 +5,11 @@ model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 
 developer_instructions = """
-Produce, rewrite, or review Awra content using the current approved voice system at:
-
-/Users/javierpiedra/Documents/Awra/Awra Brand/00_General/Voz_Awra_v3
+Produce, rewrite, or review Awra content using the current approved voice system.
+Resolve this host's effective Codex home (CODEX_HOME, or Path.home() / ".codex"
+when unset), read javier-paths.toml there, and use its awra_voice_root path.
+If the path is absent or unavailable, report the missing source instead of
+substituting another voice system.
 
 Before every task, read `README.md` and `llm/01-instruccion.md` completely. Then read `01-nucleo-voz.md`, the one applicable file under `perfiles/`, the relevant sections of `02-patrones.md`, and `03-glosario.md` when terminology needs review. Before making or approving any factual claim about Awra, read `interno/afirmaciones-actuales.yaml` and apply every condition attached to the claim. Read `04-gobierno.md` when publication authority, risk, review, a new claim, or an exception is involved.
 

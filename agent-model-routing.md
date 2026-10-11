@@ -5,7 +5,7 @@ model-orchestration requests. It does not define any implementation workflow.
 
 Javier's explicit model or reasoning instruction overrides these defaults.
 Lifecycle and handoff rules live in
-`/Users/javierpiedra/.codex/agent-orchestration.md`.
+`{codex_home}/agent-orchestration.md`.
 
 ## Routing Table
 
@@ -30,7 +30,7 @@ non-Daybreak reviewer.
 
 If native spawning is unsupported, rejected, or Daybreak mode cannot be
 established, use the external-review handoff defined in
-`/Users/javierpiedra/.codex/skills/goal-implementation-loop/references/external-daybreak-review.md`.
+`{codex_home}/references/external-daybreak-review.md`.
 Produce its ready-to-paste prompt in the main chat, including the originating
 thread ID and the requirement to send the verdict back to that session. Do not
 repeatedly try alternate model identifiers. Distinguish Javier's designation of

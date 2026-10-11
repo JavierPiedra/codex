@@ -1,0 +1,20 @@
+{
+  "name": "javier",
+  "interface": {
+    "displayName": "Javier Piedra"
+  },
+  "plugins": [
+    {
+      "name": "javier",
+      "source": {
+        "source": "local",
+        "path": "./plugins/javier"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

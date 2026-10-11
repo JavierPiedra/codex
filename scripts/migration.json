@@ -1,0 +1,192 @@
+{
+  "baseline": "ff8f16689db1024c2db70f93743be10f62d4d8ab",
+  "selected": [
+    "btw",
+    "codex-session-ppm",
+    "confirm",
+    "create-branch",
+    "create-linear-issues",
+    "cto",
+    "feature-council",
+    "format-whatsapp-message",
+    "goal-implementation-loop",
+    "goal-ready-prd",
+    "idea-council",
+    "invoice-goodancestor",
+    "linear-issue-kickoff",
+    "luna-prompt-writer",
+    "make-explicit",
+    "manual-qa-linear-kickoff",
+    "openai-codex-app-issue",
+    "ppm-managed-session",
+    "prd-council-review",
+    "prd-kickoff",
+    "pro-problem-statement",
+    "prompt-writer",
+    "rename-current-session",
+    "review-fix-loop",
+    "session-tldr",
+    "show-subagent-profiles",
+    "show-task-progress",
+    "whatsapp-group-review",
+    "which-model-analysis",
+    "which-model-rn",
+    "write-goal"
+  ],
+  "excluded": [
+    "astra-instruction-audit",
+    "gemini-adversarial",
+    "gemini-code-review",
+    "gemini-send",
+    "guardia-pagos-drive",
+    "hatch-pet",
+    "linear",
+    "newsletter-gpt-app-zip",
+    "openclaw-telegram-notify",
+    "pdf"
+  ],
+  "legacy_files": {
+    "btw": {
+      "SKILL.md": "8993d910836070de2f8a89f6574156ce3f071a0362a4d3298b3021f02894b7b5",
+      "agents/openai.yaml": "a4b1b426409e050ee308d355049479eb6a7dcfebee86e358787cd6b08261f448"
+    },
+    "codex-session-ppm": {
+      "SKILL.md": "3465200921b74a244ba5d3f3a290df255b977f10b80a2a86ad3e2e116fcf91da",
+      "references/ledger-schema.md": "11f892992b0280d12d3c80993e4e85306b595ce60cb101df30778d5f0a56da57",
+      "agents/openai.yaml": "9ddfa8c0d9ddd76e0b50669af8aea7aaf71e2b2d13bbbbf035647656de161a7b"
+    },
+    "confirm": {
+      "SKILL.md": "325cd94419667253a6a51fc6690ca5ccb9b3ae1ca61bd4913db224dccae28d1e",
+      "agents/openai.yaml": "19b66161803f68283652e196ba5bffb103979ff1f967f8e43329a6981c1919f8"
+    },
+    "create-branch": {
+      "SKILL.md": "14a0edda67735ffed6a87379ebce4c37394667c557efe0233a5c73b88b09a1da",
+      "agents/openai.yaml": "c18ee4f6d73b493bbcd25d68b82f2d46f44a03fcda77e51c2de91a8dca6abcb3"
+    },
+    "create-linear-issues": {
+      "SKILL.md": "28fada5aae3b5d9d18a20e7891c68dec075f6037c7c15b5ceef54da87baa42b1",
+      "agents/openai.yaml": "33ee8f5cd795e1e4a08a0831a1317d69f70b56ae68079ee0fce12af548644566"
+    },
+    "cto": {
+      "SKILL.md": "21c6bb3a0f189453b09f0c60d7e7d3adfc17099ee8995b68c2104cd99ad4beef",
+      "agents/openai.yaml": "a50a68b0966390d6ad83cd8d633d60f8fe48476900fa658563f1e65ae361fe1a"
+    },
+    "feature-council": {
+      "SKILL.md": "706a3f9150f57440f8112785a3e5680d16c462a153148e627b083fd93ad99791",
+      "agents/openai.yaml": "252941720eb923351c32c70d9bfd3eb8585d8246357751603db2f3f93de0b033"
+    },
+    "format-whatsapp-message": {
+      "SKILL.md": "91dc66bd946768208d4f63f19b15a5234e30af59d73bd9760559f8ccbe6007ac",
+      "agents/openai.yaml": "5f67295e75c0669e03f19788e65f977d8939e9d474ca73ad1ff15c288265bfb9"
+    },
+    "goal-implementation-loop": {
+      "SKILL.md": "990a360ad9450330002d1f39587303fb66afeb0dbf4f9bd67300d25cbc878708",
+      "references/external-daybreak-review.md": "94295d155b586a38cb1eed9ce13f64b8d9099ef2979bd6ad7b8ab51cc718ac5a",
+      "references/engineering-advisor.md": "ec7a6f5d9e5a69448342429fc98c2ed3d2bf3d42741e1f688f5040f6ca863c7d",
+      "agents/openai.yaml": "0240bda3746aac95ed4c90a03ced07a986e177081c6c8b393865319eba66f920"
+    },
+    "goal-ready-prd": {
+      "SKILL.md": "fcd7d17834b1bd4f638feded9798f55be1350171229afb5fcfd1ab8b2d7672a7",
+      "agents/openai.yaml": "22a05bd5805016e44b9432e0001e53d8574f8dd37ea8624ed190d072f6aaefc9"
+    },
+    "idea-council": {
+      "SKILL.md": "c7e653a7d78e6b42e1b7a5813072e9e00d3ecac51341e7ebaadebc31ef54b6b5",
+      "agents/openai.yaml": "646f9d27a16cc8754b9d8bb5240c6eeaa2db60e7b2c7bc30343ac83972dfecdf"
+    },
+    "invoice-goodancestor": {
+      "SKILL.md": "aac8d9e6d592107072b656116d7f79c28b523cf93344a4af46435e1ad8405921",
+      "agents/openai.yaml": "e7f7fb9d12b40cd20fffbf3006eb3e4bb933ae667143b58274819cf6f560756d",
+      "scripts/wakatime_client_hours.py": "c1f6d065f00854d4316d07b9d37dc3fd48583b24a422e2e375c91a4006b35fd7",
+      "scripts/invoice_math.py": "f7aadab4d5a03059bce5d2ef4c61adb4fb4ba64613e9a866e0ed88f7c5bc5817"
+    },
+    "linear-issue-kickoff": {
+      "SKILL.md": "87db7c2fa9c7dce03d782e345c2379f261a30ca0b96c4e0edfaecee21391f267",
+      "agents/openai.yaml": "7cd0cb34d43ac2361bdac5eba7eacf82d52166f32dd8d45b0a6cdde7f7780a93"
+    },
+    "luna-prompt-writer": {
+      "SKILL.md": "7c57ad46b8bea060d680491b10ac0de2b21208cf1370be9a7cad4412072f3412",
+      "references/task-contracts.md": "b91a7a2193891fc9d933cc8260c145adbfb04deef961bc40c1cde81a74cf235d",
+      "references/integration.md": "5078750d1ef057893365255fac9d70c48295b02a98fb4d35d81a3d5fc080d996",
+      "references/coding.md": "f32381401ecdd093937a8f3f3bcea6385b395706bb58a1d98e7eacf5af3db6f0",
+      "agents/openai.yaml": "6d4e941ebf20afbdd530c3b6808668d76f887ddaeaa7ef0c41892ef59202a35c"
+    },
+    "make-explicit": {
+      "SKILL.md": "d40ecc745d3ed0b891564a61baa3bdcb3f68b62e76ab87cfad6662f54031edb8",
+      "agents/openai.yaml": "84a8e6755feadebc3d5c5eaf36c782bcdb2d9de3dc18de71b906b16892c6b7aa"
+    },
+    "manual-qa-linear-kickoff": {
+      "SKILL.md": "3ed8b5710b47ae0b522108dbda059b8e4baa8746612e5ce3fb276ce4291a2a2f",
+      "agents/openai.yaml": "aa57bb5a561b4a9a5e823c76f5349843edc06404bcde995b95286435333686d6"
+    },
+    "openai-codex-app-issue": {
+      "SKILL.md": "9ab8103cb68201847f9d2d11b4a6d3b7cc4208729a35d9d16a5d9a45ebb54f05",
+      "agents/openai.yaml": "3d15cf29d863f5e2696a2ffdabe50a6c73306e51496f130ddbca584f328b9eac",
+      "templates/issue-output.md": "1c129167fd8b15aac5717eeaca2fde8d72e44eadddebaddf0e291f2c6cfccb57"
+    },
+    "ppm-managed-session": {
+      "SKILL.md": "d85e277810fd3cedf7fbf3a5338ce0c2c32bae97d3cf71df865468b44aba5ae6"
+    },
+    "prd-council-review": {
+      "SKILL.md": "149ad474679ed80bfc8e110f601a36b1677c1172c5bcf78761bdb09ba0dfc257",
+      "references/json-output.md": "14a1801c2978d361b014f3e5b2d72f9dcd40cb794b865c9c0540887f73ff128e",
+      "references/loop-output.md": "0da585b364cab39f37271b1719535f74eb13037aef9f0d515eb4f7735f5d341e",
+      "references/detail-output.md": "40b7c3e2d80612d5118f6f50d0290faa4d74e2f2896f3b02a42b91670c02b731",
+      "agents/openai.yaml": "e24764607339876ab50a9ac39dc4e9c2133ce5e32685a9254344a50f9208d5e8"
+    },
+    "prd-kickoff": {
+      "SKILL.md": "bf372f571ef5cc166fad59e75753a6c56841152ea8b17af6b35bd18b5543f18e",
+      "agents/openai.yaml": "9c654f2f83d5c07829791101655ea11fa48c29438364aa608bd8caa9e1c736ad"
+    },
+    "pro-problem-statement": {
+      "SKILL.md": "0ba9f24f02e7a85f59261899fc6575b6d35aa1b487960ca14267bac4b852326d",
+      "references/problem-statement-template.md": "9d9ee33739c1fdfc50688bfd31c4c7ae48f23deb645f210928b73124ee4284e1",
+      "agents/openai.yaml": "14e0db7d051e01a0565274bb2bd8c97892d93f1a417560c30c829f401f2a3650"
+    },
+    "prompt-writer": {
+      "SKILL.md": "cfed485630fd5a67bedcdb2b374531f083171bae734dbdd6ddb81fea8a361c76",
+      "references/prompting-principles.md": "461058c5809e26d86797eaf9ddc4a29566c0570c029dbde228f3054812f868c9",
+      "agents/openai.yaml": "a3a2a925b59ceecb319e84ad93d6724acf48ef2dca3c2d1732f32651f2ba7fae"
+    },
+    "rename-current-session": {
+      "SKILL.md": "753f386d40759b89944eaced464353ecef348c5e40333e307a5a410e0e72ec2e",
+      "agents/openai.yaml": "8cf9bd5a26148805a9c91b05b689d89f5def5f00a1d92306ddd4c398df5ac17a"
+    },
+    "review-fix-loop": {
+      "SKILL.md": "1fa2412745a7b49cefcd5962f3ee7021b14acd111af3d8055637de89706019dc",
+      "agents/openai.yaml": "53ed1fb72e1d6f78ca92f53add31820999938676c062c11cf895423568afeda5"
+    },
+    "session-tldr": {
+      "SKILL.md": "beed4e9e38921018cf3df1c2e542ae981f7f57147ebe7b8094222de47ea0357c",
+      "agents/openai.yaml": "d263486b574cae45b1556f5444a05010e2bdfb70132069c7d237d091df672857"
+    },
+    "show-subagent-profiles": {
+      "SKILL.md": "869ae6b43d25d5be4b8c3bea103e92a01f83b149deebd6859005b9c1aed3a03e",
+      "agents/openai.yaml": "7892b7bc83475202bb997b2976bdb005feeec7f856ce949199cc1453a5fb3743"
+    },
+    "show-task-progress": {
+      "SKILL.md": "0c0a894c157682b9ee76493928b61ca603fa1c0238924f7ad827800bee87fcfd",
+      "agents/openai.yaml": "0f3d84bb66d19353b94e97b68e31c774442254d218df35b717e503191808b65a"
+    },
+    "whatsapp-group-review": {
+      "SKILL.md": "5596c3b227809e4bc9ec507e91e3e89c6a799d8bab82eb8b0b844851fa178ee5",
+      "agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+      "scripts/export_whatsapp_group.py": "90e860ed3f330cfae56b10f489c6ab61e32bab54cbd0a08b4af68c6cfe2805fc"
+    },
+    "which-model-analysis": {
+      "SKILL.md": "f204b7eae852eaa49cb988b575ffbcf25f28de9b4e0ca6484cd71a77cc15569b",
+      "agents/openai.yaml": "b6a7c308d787a628320e62d3b48ee0579592ba573c76393bb70e7f31d5837483"
+    },
+    "which-model-rn": {
+      "SKILL.md": "0fe9536f1bd0a58b3edcfec9613c9af6d340ea8b69cb09825f114b2798c04742",
+      "agents/openai.yaml": "16bc63d74f5ace62c6bffc74838a75aa9d710c7568257b4ec2e841f8aedd0f2d",
+      "scripts/which_model.py": "56f7985143ae02f1959f7d38d928e1cf820a117ecf91980000b9e92743a9f9aa"
+    },
+    "write-goal": {
+      "SKILL.md": "263956ddd960e66ccb209312f0a88bde5c82f90f7579cf93f9da096bc52e4480",
+      "references/goal-authoring-guide.md": "c03bb1c44a8caa45c432c444c23c8391bb9b44d2cb6344c6c6179461202765e4",
+      "agents/openai.yaml": "7e4a6d00952682217c1f7da381813c4f73ccd27a88565cef2de886400efada88",
+      "scripts/validate_goal.py": "706b0c10aa46c930504f969fc3b09199989fc25f79bf5328ff1fed72e0d9d941",
+      "assets/goal-template.md": "a14f58d99b7c7c1e154a1c3b3e5e3950483293139a1b34345ac65053b2e5d60d"
+    }
+  }
+}
