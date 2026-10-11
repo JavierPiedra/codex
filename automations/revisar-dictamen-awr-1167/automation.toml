@@ -1,0 +1,10 @@
+version = 1
+id = "revisar-dictamen-awr-1167"
+kind = "heartbeat"
+name = "Revisar dictamen AWR-1167"
+prompt = "Haz una única comprobación de la sesión local 01a1058d-3183-7583-bc49-ebef32fc916d, titulada Review AWR-1167 search changes, si esta conversación todavía no ha recibido su dictamen sobre a0af1b068bcf4b683473d18a0c0f7cbc1504a6c5. Javier pidió comprobarla como máximo 15 minutos después de su solicitud, sin interrumpirla ni leerla repetidamente. No envíes mensajes ni interrumpas al reviewer. Si el dictamen ya llegó aquí, omite la lectura de esa sesión. Si no llegó, léela una sola vez y recupera el resultado si está disponible; si sigue trabajando, informa brevemente y no programes sondeos adicionales. Sigue el Goal de AWR-1167 cuando exista evidencia suficiente de revisión, conservando las comprobaciones y límites aprobados. Esta comprobación es de una sola ejecución."
+status = "PAUSED"
+rrule = "FREQ=DAILY;COUNT=1;BYHOUR=0;BYMINUTE=30;BYSECOND=0"
+target_thread_id = "01a10318-b4c5-74f1-b182-c9404c637c11"
+created_at = 1791094732209
+updated_at = 1791095281179

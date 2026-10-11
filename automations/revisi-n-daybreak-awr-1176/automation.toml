@@ -1,0 +1,10 @@
+version = 1
+id = "revisi-n-daybreak-awr-1176"
+kind = "heartbeat"
+name = "Revisión Daybreak AWR-1176"
+prompt = "Javier ya envió el prompt corregido a la sesión Daybreak 01a10651-d998-7c62-9826-a36152caab8e. No interrumpas, reinicies ni envíes mensajes a esa sesión. Antes de 2026-10-11 05:46:25 UTC no leas su conversación ni inspecciones su estado. Si llega aquí el dictamen completo, retoma el trabajo autorizado de AWR-1176 con el mismo Luna Max implementador y el mismo asesor de ingeniería: verifica las identidades revisadas y deriva correcciones o el siguiente paso permitido según el dictamen. Si no llega antes de esa hora, Javier autoriza leer la sesión una vez para recuperar su respuesta o conocer el bloqueo. Conserva las restricciones y el alcance del Goal original; no confundas aprobación para staging con aceptación R1–R9 y no autorices main o producción. Mantente en silencio mientras no haya un resultado o bloqueo accionable. Este seguimiento es único; cuando se resuelva, desactívalo para no repetir lecturas."
+status = "PAUSED"
+rrule = "FREQ=MINUTELY;INTERVAL=10;COUNT=2"
+target_thread_id = "01a1035e-45a4-76d1-80d5-f27f81c5c974"
+created_at = 1791697030036
+updated_at = 1791697381358

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Idea Council"
+  short_description: "Discute ideas con al menos dos perspectivas expertas"
+  default_prompt: "Usa $idea-council para discutir esta idea desde varias perspectivas, contrastar las alternativas y sintetizar lo que conviene hacer o seguir explorando."

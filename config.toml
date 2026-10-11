@@ -1,20 +1,21 @@
-model = "gpt-6-astra"
+model = "gpt-6.1-sol"
 model_context_window = 272000
 model_auto_compact_token_limit = 260000
-model_reasoning_effort = "medium"
+model_reasoning_effort = "xhigh"
 personality = "pragmatic"
 model_verbosity = "medium"
 
 
 
 
-approval_policy = "on-request"
-approvals_reviewer = "guardian_subagent"
-sandbox_mode = "workspace-write"
+approval_policy = "never"
+approvals_reviewer = "user"
+sandbox_mode = "danger-full-access"
 
 
 notify = ["/Users/javierpiedra/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 model_reasoning_summary = "concise"
+service_tier = "default"
 
 [mcp_servers.node_repl]
 args = []
@@ -27,14 +28,14 @@ NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_n
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/javierpiedra/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 CODEX_HOME = "/Users/javierpiedra/.codex"
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab,mcpapps"
 BROWSER_USE_TINYSKY_ENABLED = "1"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.924.22138"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/javierpiedra/.codex/plugins/cache/openai-bundled/browser/26.924.22138/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.1007.21159"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/javierpiedra/.codex/plugins/cache/openai-bundled/browser/26.1007.21159/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/javierpiedra/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
 
@@ -55,6 +56,7 @@ multi_agent = true
 memories = true
 js_repl = false
 default_mode_request_user_input = true
+local_thread_store_compression = true
 
 [agents]
 max_concurrent_threads_per_session = 6
@@ -147,6 +149,9 @@ enabled = true
 enabled = true
 
 [plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."code-review@openai-bundled"]
 enabled = true
 
 [projects."/Users/javierpiedra/Desktop/goodancestor/newsletter-gpt"]
@@ -536,6 +541,9 @@ trust_level = "trusted"
 [projects."/Users/javierpiedra/Documents/ChatGPT/compras"]
 trust_level = "trusted"
 
+[projects."/Users/javierpiedra/Documents/ChatGPT/AM OS"]
+trust_level = "trusted"
+
 [marketplaces.openai-bundled]
 source_type = "local"
 source = "/Users/javierpiedra/.codex/.tmp/bundled-marketplaces/openai-bundled"
@@ -607,6 +615,10 @@ enabled = false
 name = "build-web-apps:shadcn"
 enabled = false
 
+[[skills.config]]
+path = "/Users/javierpiedra/.codex/skills/hatch-pet/SKILL.md"
+enabled = false
+
 [desktop]
 appearanceTheme = "system"
 usePointerCursors = true
@@ -615,7 +627,7 @@ dictationDictionary = []
 followUpQueueMode = "queue"
 preventSleepWhileRunning = true
 keepRemoteControlAwakeWhilePluggedIn = true
-selected-avatar-id = "custom:pimienta"
+selected-avatar-id = "pet_6abb5ace6a6081919a5736fe83bb0473"
 git-branch-prefix = "feature/<epic>/<linear-branch>"
 git-commit-instructions = '''
 Write commit messages in this format:
@@ -732,6 +744,9 @@ toys-audio-visualizer-enabled = false
 external-agent-import-sync-enabled = false
 browser-show-full-url = true
 reduced-motion-preference = "off"
+confirm-before-close = "never"
+primary-number-shortcut-target = "sidebar"
+notifications-sound = "Purr"
 
 [desktop.open-in-target-preferences]
 global = "vscode"

@@ -8,12 +8,12 @@
     "key": "Ctrl+Command+Alt+C"
   },
   {
-    "command": "focusQuickChat",
-    "key": null
-  },
-  {
     "command": "forceReloadSkills",
     "key": "Command+S"
+  },
+  {
+    "command": "globalDictationHold",
+    "key": "Ctrl+Shift+D"
   },
   {
     "command": "hotkeyWindow",
@@ -30,6 +30,10 @@
   {
     "command": "openAvatarOverlay",
     "key": null
+  },
+  {
+    "command": "openOrbit",
+    "key": "Command+D"
   },
   {
     "command": "openSideChat",

@@ -17,6 +17,7 @@ When a conflict changes the action taken, explain it in one sentence.
 
 ## Communication
 
+- Prefer `request_user_input` for questions whenever it is available and appropriate.
 - Be direct, clear, and concise. Lead with the answer.
 - Prefer answers under 50 words for simple requests. Use enough detail to
   complete the requested deliverable and make the result understandable.
@@ -134,10 +135,21 @@ When a conflict changes the action taken, explain it in one sentence.
   reading earlier updates or tool output.
 - State the outcome for your assigned scope, the concrete result, the evidence
   supporting it, and any material limitation or unfinished work.
-- When blocked, identify the observed obstacle, what it prevents, and what
-  is needed to proceed. Distinguish a known cause from a suspected cause.
-- Identify the next action and who can take it when known. Ask Javier only
-  for the specific decision, input, or authority that is missing.
+- At the end of every blocked turn, including Goal continuations, make three
+  things explicit: the observed blocker and what it prevents; the recommended
+  next action and who can take it; and the specific decision, input, or
+  permission needed to proceed. Distinguish known causes from suspected ones.
+- If permission is the blocker, present a concrete approval request before
+  ending the turn. Name the action, target, scope, material side effects, and
+  the rule, tool restriction, or automatic approval rejection requiring it.
+  Prefer an available interactive approval or input tool when it supports and
+  permits permission requests. If none does, ask one direct question at the
+  end of the final response. Do not require Javier to type a prescribed phrase
+  or repeat an approval already given.
+- Check existing authorization before asking. Keep an unanswered permission
+  request pending and resume the authorized action when its answer arrives.
+  Do not loop through unchanged blocker reports or repeat checks of completed
+  work while waiting; make the pending request and recommended next step clear.
 - Scale detail to the task and honor explicitly requested output formats.
 
 ## Task progress

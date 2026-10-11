@@ -1,0 +1,10 @@
+version = 1
+id = "respuesta-daybreak-awr-1172"
+kind = "heartbeat"
+name = "Respuesta Daybreak AWR-1172"
+prompt = "Realiza esta comprobación una sola vez, cuando hayan vencido los diez minutos de espera (no antes de 2026-10-07 00:01:10 UTC, las18:01:10 del6 de octubre en Ciudad de México). Primero verifica únicamente en el contexto de esta conversación principal si ya llegó la respuesta de Daybreak. Si llegó, termina sin inspeccionar la sesión de Daybreak ni volver a revisar su respuesta. Si no llegó al vencer el plazo, consulta en modo de solo lectura la sesión «Review AWR-1172 offboarding», threadId01a112b5-5c37-78c2-90d8-1e01b36c86ea, host local, para averiguar qué ocurrió y comunica su estado o bloqueo concreto. No envíes mensajes a esa sesión, no reinicies la revisión ni crees otra. Desactiva esta automatización después de esta única comprobación si el programador no la concluye automáticamente."
+status = "PAUSED"
+rrule = "FREQ=MINUTELY;INTERVAL=9;COUNT=2"
+target_thread_id = "01a10eb3-a50d-7a30-95f7-32c21901dceb"
+created_at = 1791330758606
+updated_at = 1791330946132
