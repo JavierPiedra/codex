@@ -89,12 +89,13 @@ archivos no demuestra acceso al servicio ni disponibilidad del modelo.
 
 ## Comprobación y actualización
 
-Abrir un chat nuevo después de instalar. Verificar que las skills ofrecidas
-usen el namespace `javier:*` y que el paquete instalado coincida con la
-selección de `scripts/migration.json`, incluidos sus recursos y los perfiles.
-Algunas skills de invocación explícita pueden no aparecer en el catálogo;
-comprobarlas por su ruta instalada. Comprobar también que los textos globales
-corresponden a esta fuente antes de retirar las copias anteriores.
+Abrir un chat nuevo después de instalar. Comparar las skills registradas y
+habilitadas con la selección de `scripts/migration.json`; comprobar el
+namespace `javier:*`, los recursos asociados y los perfiles. Las skills con
+`allow_implicit_invocation: false` no aparecen en el contexto inicial del
+chat; comprobar su invocación en el selector de skills por separado.
+Comprobar también que los textos globales corresponden a esta fuente antes de
+retirar las copias anteriores.
 
 Los checks del repositorio usan datos sintéticos y no consultan credenciales,
 mensajes, historiales reales ni proveedores:
