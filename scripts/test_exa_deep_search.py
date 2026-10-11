@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import tempfile
 import types
 import unittest
 from unittest.mock import Mock, patch
@@ -37,6 +38,15 @@ def failure(status, *, retry_after=None, body=None):
         headers["Retry-After"] = retry_after
     return urllib.error.HTTPError(exa.ENDPOINT, status, "fixture", headers,
                                   io.BytesIO(json.dumps(body or {"error": "Fixture error", "requestId": "offline-error"}).encode()))
+
+
+def stream(events, *, terminate=True):
+    content = ": keepalive\r\n\r\n" + "".join("event: message\ndata: " + json.dumps(event) + "\n\n" for event in events)
+    if terminate:
+        content += "data: [DONE]\n\n"
+    response = io.BytesIO(content.encode())
+    response.headers = {"Content-Type": "text/event-stream; charset=utf-8"}
+    return response
 
 
 class SearchContract(unittest.TestCase):
@@ -67,7 +77,7 @@ class SearchContract(unittest.TestCase):
                 self.assertEqual(json.loads(request.data), {"query": "Fixture question", "type": mode,
                     "numResults": 5, "contents": {"highlights": True}, "includeDomains": ["example.com"],
                     "additionalQueries": ["distinct fixture"]})
-                self.assertEqual(self.opener.open.call_args.kwargs, {"timeout": 60})
+                self.assertEqual(self.opener.open.call_args.kwargs, {"timeout": 120})
                 self.assertEqual(result["costDollars"]["total"], 0.015)
                 self.assertEqual(result["results"][0]["url"], "https://example.com/research")
                 self.assertEqual(result["requestId"], "offline-request")
@@ -84,6 +94,183 @@ class SearchContract(unittest.TestCase):
         self.assertEqual(body["outputSchema"]["type"], "text")
         self.assertEqual(result["output"], output)
         self.assertIsNone(result["costDollars"])
+
+    def test_complete_request_forwards_every_current_deep_compatible_option(self):
+        schema = {"type": "object", "properties": {"findings": {"type": "array", "items": {
+            "type": "object", "properties": {"claim": {"type": "string"}}, "required": ["claim"]}}},
+            "required": ["findings"], "additionalProperties": False}
+        body = {"query": "Fixture research", "type": "deep-reasoning", "numResults": 10,
+            "includeDomains": ["*.example.com", "example.org/research"], "excludeDomains": ["example.net"],
+            "startPublishedDate": "2026-04-11T06:00:00.000Z", "endPublishedDate": "2026-10-12T05:59:59.999Z",
+            "moderation": True, "additionalQueries": ["Fixture alternative"], "category": "publication",
+            "userLocation": {"country": "MX", "latitude": 19.4, "longitude": -99.1},
+            "objective": "Audit independently defined requirements", "userIdentifier": "opaque-fixture_1",
+            "systemPrompt": "Prefer original evidence", "stream": False, "outputSchema": schema,
+            "contents": {"text": {"maxCharacters": 10000, "includeHtmlTags": True, "verbosity": "full",
+                "includeSections": ["body", "metadata"], "excludeSections": ["navigation", "footer"]},
+                "highlights": {"query": "Fixture passages", "dynamic": True, "verbosity": "high"},
+                "summary": {"query": "Fixture summary", "schema": {"type": "object", "properties": {
+                    "summary": {"type": "string"}}}},
+                "extras": {"links": 3, "imageLinks": 1, "richImageLinks": 2, "richLinks": 4, "codeBlocks": 5},
+                "livecrawlTimeout": 90000, "maxAgeHours": 0, "subpages": 3, "subpageTarget": ["docs", "research"]}}
+        output = {"content": {"findings": [{"claim": "Fixture claim"}]}, "grounding": []}
+        self.opener.open.return_value = success(output=output, searchTime=123)
+        original = json.dumps(body, sort_keys=True)
+        result = exa.search(request=body, betas=[exa.BETAS[0]], timeout=300)
+        request = self.opener.open.call_args.args[0]
+        self.assertEqual(json.loads(request.data), body)
+        self.assertEqual(json.dumps(body, sort_keys=True), original)
+        self.assertEqual(request.get_header("Exa-beta"), exa.BETAS[0])
+        self.assertEqual(self.opener.open.call_args.kwargs["timeout"], 300)
+        self.assertEqual(result["output"], output)
+        self.assertEqual(result["searchTime"], 123)
+        self.assertEqual(result["mode"], "deep-reasoning")
+
+    def test_user_example_is_supported_as_a_request_file_and_dry_run_is_offline(self):
+        body = {"query": "Fixture research", "type": "deep-reasoning", "numResults": 10,
+            "startPublishedDate": "2026-04-11T06:00:00.000Z", "endPublishedDate": "2026-10-12T05:59:59.999Z",
+            "outputSchema": {"type": "text"}, "contents": {"highlights": True, "maxAgeHours": 0}}
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "request.json"
+            path.write_text(json.dumps(body), encoding="utf-8")
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                self.assertEqual(exa.main(["search", "--request-file", str(path), "--dry-run", "--retries", "0"]), 0)
+            preview = json.loads(out.getvalue())
+        self.assertEqual(preview["request"], body)
+        self.assertFalse(preview["chargeable"])
+        self.backend.get_password.assert_not_called()
+        self.opener.open.assert_not_called()
+
+    def test_active_variants_and_explicit_nulls_are_not_replaced_with_defaults(self):
+        for contents in (None, {}, {"text": True, "highlights": False, "maxAgeHours": -1},
+                         {"highlights": {"maxCharacters": 300}, "subpageTarget": "docs"}):
+            with self.subTest(contents=contents):
+                body = {"query": "Fixture", "contents": contents, "numResults": None,
+                        "category": "custom topical hint", "userLocation": "MX", "stream": True}
+                self.opener.open.return_value = success()
+                exa.search(request=body)
+                sent = json.loads(self.opener.open.call_args.args[0].data)
+                self.assertEqual(sent, {**body, "type": "deep"})
+        # stream without outputSchema is ordinary JSON transport for the same explicit deep mode.
+        self.assertEqual(sent["type"], "deep")
+
+    def test_invalid_options_and_documented_incompatibilities_stop_before_auth(self):
+        cases = [
+            {"type": None}, {"type": "auto"}, {"type": "deep-lite"}, {"apiKey": FAKE_KEY}, {"unknown": True},
+            {"startPublishedDate": "2026-04-11"}, {"startPublishedDate": "2026-02-30T00:00:00Z"},
+            {"startPublishedDate": "2026-10-11T00:00:00Z", "endPublishedDate": "2026-04-11T00:00:00Z"},
+            {"category": "people", "excludeDomains": []}, {"category": "company", "startPublishedDate": "2026-01-01T00:00:00Z"},
+            {"compliance": "hipaa"}, {"contents": {"snapshotAsOf": "2026-10-01"}},
+            {"userLocation": {"latitude": 19.4}}, {"userLocation": {"latitude": 91, "longitude": 0}},
+            {"userLocation": {"country": "Mexico"}}, {"userIdentifier": "email@example.com"},
+            {"objective": "x" * 4097}, {"numResults": True}, {"moderation": "true"},
+            {"contents": {"maxAgeHours": 721}}, {"contents": {"maxAgeHours": -2}},
+            {"contents": {"livecrawlTimeout": 90001}}, {"contents": {"text": {"includeSections": ["invalid"]}}},
+            {"contents": {"extras": {"links": 1001}}}, {"contents": {"subpages": 101}},
+            {"userLocation": {"latitude": float("nan"), "longitude": 0}},
+        ]
+        for fields in cases:
+            with self.subTest(fields=fields), self.assertRaises(exa.ExaError) as caught:
+                exa.search(request={"query": "Fixture", **fields})
+            self.assertNotIn(FAKE_KEY, json.dumps(caught.exception.details))
+        self.backend.get_password.assert_not_called()
+        self.opener.open.assert_not_called()
+
+    def test_deprecated_parameters_are_rejected_instead_of_silently_ignored(self):
+        cases = [{name: None} for name in ("startCrawlDate", "endCrawlDate", "includeText", "excludeText", "context")]
+        cases += [{"contents": {name: None}} for name in ("context", "livecrawl", "crawledBeforeDate")]
+        cases += [{"contents": {"highlights": {name: None}}} for name in ("numSentences", "highlightsPerUrl")]
+        for fields in cases:
+            with self.subTest(fields=fields), self.assertRaises(exa.ExaError):
+                exa.search(request={"query": "Fixture", **fields})
+        self.backend.get_password.assert_not_called()
+        self.opener.open.assert_not_called()
+
+    def test_highlight_beta_requires_explicit_opt_in_and_valid_combinations(self):
+        for highlights, betas in (({"dynamic": True}, []), ({"dynamic": False}, []), ({"verbosity": "low"}, []),
+                ({"dynamic": True, "maxCharacters": 10}, [exa.BETAS[0]]),
+                ({"verbosity": "medium", "maxCharacters": 10}, [exa.BETAS[0]]), (True, ["unknown-beta"])):
+            with self.subTest(highlights=highlights), self.assertRaises(exa.ExaError):
+                exa.search(request={"query": "Fixture", "contents": {"highlights": highlights}}, betas=betas)
+        self.backend.get_password.assert_not_called()
+        self.opener.open.assert_not_called()
+
+    def test_output_schema_limits_and_json_schema_validity_prevent_billable_errors(self):
+        invalid = [{"type": "object", "properties": {f"p{i}": {"type": "string"} for i in range(11)}},
+            {"type": "object", "properties": {"items": {"type": "array"}}},
+            {"type": "object", "properties": {"value": {"type": "invalid-type"}}},
+            {"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object",
+                "properties": {"nested": {"type": "object"}}}}}},
+            {"type": "object", "properties": {"a": {"type": "object", "properties": {"b": {
+                "type": "object", "properties": {"c": {"type": "object"}}}}}}}]
+        for schema in invalid:
+            with self.subTest(schema=schema), self.assertRaises(exa.ExaError):
+                exa.search(request={"query": "Fixture", "outputSchema": schema})
+        with self.assertRaises(exa.ExaError):
+            exa.search(request={"query": "Fixture", "contents": {"summary": {"schema": {"type": "bad-type"}}}})
+        self.backend.get_password.assert_not_called()
+        self.opener.open.assert_not_called()
+
+    def test_sse_completion_uses_authoritative_output_after_reset_and_preserves_sources_cost(self):
+        sources = [{"url": "https://example.com/research", "extras": {"links": ["https://example.com/docs"]}}]
+        final = {"content": {"claim": "Fixture answer"}, "grounding": [{"field": "claim", "confidence": "high",
+                 "citations": [{"url": "https://example.com/research", "title": "Fixture source"}]}]}
+        self.opener.open.return_value = stream([
+            {"type": "text-delta", "delta": FAKE_KEY[:10]}, {"type": "text-delta", "delta": FAKE_KEY[10:]},
+            {"type": "stream-reset", "streamReset": True},
+            {"type": "grounding", "grounding": []}, {"type": "results", "results": sources, "requestId": "stream-fixture"},
+            {"type": "done", "output": final, "searchTime": 456, "costDollars": {"total": 0.12}}])
+        result = exa.search(request={"query": "Fixture", "type": "deep-reasoning", "stream": True,
+            "outputSchema": {"type": "object", "properties": {"claim": {"type": "string"}}}})
+        self.assertEqual(result["output"], final)
+        self.assertEqual(result["results"], sources)
+        self.assertEqual(result["costDollars"], {"total": 0.12})
+        self.assertEqual(result["requestId"], "stream-fixture")
+        self.assertEqual(result["searchTime"], 456)
+        self.assertNotIn(FAKE_KEY, json.dumps(result))
+        self.assertTrue(json.loads(self.opener.open.call_args.args[0].data)["stream"])
+
+    def test_sse_errors_truncation_and_malformed_events_are_redacted_and_never_replayed(self):
+        cases = [stream([{"type": "error", "error": {"message": FAKE_KEY}, "requestId": "failed-stream"}]),
+                 stream([{"type": "text-delta", "delta": "Partial"}]),
+                 stream([{"type": "text-delta", "delta": "Partial"}], terminate=False),
+                 stream([{"type": "unknown-event"}]), stream([{"type": "done", "output": None, "searchTime": 10}])]
+        for response in cases:
+            with self.subTest(response=response):
+                self.opener.open.reset_mock()
+                self.opener.open.return_value = response
+                with self.assertRaises(exa.ExaError) as caught:
+                    exa.search(request={"query": "Fixture", "stream": True, "outputSchema": {"type": "text"}})
+                self.assertEqual(self.opener.open.call_count, 1)
+                self.assertNotIn(FAKE_KEY, json.dumps(caught.exception.details))
+        self.sleep.assert_not_called()
+
+    def test_request_files_reject_ambiguous_inputs_invalid_json_duplicates_and_nonfinite_values(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "request.json"
+            for content in ('[]', 'invalid-json', '{"query":"first","query":"second"}',
+                            '{"query":"Fixture","numResults":NaN}'):
+                path.write_text(content, encoding="utf-8")
+                with self.subTest(content=content), self.assertRaises(exa.ExaError):
+                    exa.read_request_file(path)
+            path.unlink()
+            with self.assertRaises(exa.ExaError):
+                exa.read_request_file(path)
+        with self.assertRaises(exa.ExaError):
+            exa.search("Ambiguous override", request={"query": "Fixture"})
+        self.backend.get_password.assert_not_called()
+        self.opener.open.assert_not_called()
+
+    def test_missing_validation_dependency_and_bundled_schema_have_safe_offline_errors(self):
+        with patch.object(exa, "Draft202012Validator", None), self.assertRaises(exa.ExaError) as caught:
+            exa.search("Fixture", dry_run=True)
+        self.assertEqual(caught.exception.details["code"], "MISSING_DEPENDENCY")
+        with patch.object(exa, "REQUEST_SCHEMA", Path("missing-fixture.schema.json")), self.assertRaises(exa.ExaError) as caught:
+            exa.search("Fixture", dry_run=True)
+        self.assertEqual(caught.exception.details["code"], "MISSING_RESOURCE")
+        self.backend.get_password.assert_not_called()
+        self.opener.open.assert_not_called()
 
     def test_transient_http_failures_retry_same_deep_request_with_bounds(self):
         self.opener.open.side_effect = [failure(429, retry_after="3"), failure(503), success()]

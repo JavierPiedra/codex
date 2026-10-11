@@ -18,7 +18,8 @@ los siete perfiles y la referencia de revisión externa en el Codex home de
 cada equipo. Estas instrucciones globales no se activan por instalar el plugin.
 
 `scripts/setup.py --with-runtime` crea un entorno Python bajo
-`<codex_home>/javier-runtime` con `keyring` y `tzdata`, y registra su ejecutable
+`<codex_home>/javier-runtime` con `keyring`, `tzdata` y validación JSON Schema/fechas,
+y registra su ejecutable
 en `javier-paths.toml`. Python 3.11 o posterior es necesario para el setup;
 se ha preparado para el Python 3.12 suministrado por la app. Cada equipo conserva
 su configuración, permisos, autenticación y conexiones. No se distribuyen
@@ -92,6 +93,13 @@ cuando existe. `--synthesize` añade texto generado con grounding y `--retries 0
 limita la búsqueda a un intento. No ejecuta Exa Agent ni cambia a búsqueda ordinaria.
 Las búsquedas consumen créditos y requieren autorización; la configuración no las
 ejecuta. Ver [la skill](plugins/javier/skills/exa-deep-search/SKILL.md) para los límites.
+Para todas las opciones de Search compatibles con los dos modos profundos, usar
+`search --request-file <request.json>` con los nombres camelCase de la API.
+`--dry-run` valida el archivo sin leer credenciales ni llamar a Exa. La
+[referencia de opciones](plugins/javier/skills/exa-deep-search/references/api-options.md)
+incluye fechas, contenido, frescura, esquemas, filtros, ubicación, SSE y beta de
+highlights. Actualizar el runtime con `scripts/setup.py --with-runtime` al adoptar
+esta versión. Snapshot e HIPAA son incompatibles con estos modos y se rechazan.
 
 Por decisión de Javier, `whatsapp-group-review` conserva la base local de macOS.
 Se incluye en ambos catálogos, pero en Windows se detiene con

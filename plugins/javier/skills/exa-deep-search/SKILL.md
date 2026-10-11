@@ -59,15 +59,36 @@ answer the question. `--include-domain` and `--additional-query` may be repeated
 when the requested scope warrants source filtering or distinct search directions.
 Use `--help` for the bounds; there is no arbitrary endpoint or search-type override.
 
+For date windows, domain exclusions, category, location, moderation, custom text
+or object synthesis schemas, output instructions, streaming, and all nested
+content controls, read [references/api-options.md](references/api-options.md).
+Create a JSON request using the API's camelCase fields and use:
+
+```text
+<runtime-python> <skill-dir>/scripts/exa_deep_search.py search --request-file <request.json> --dry-run
+<runtime-python> <skill-dir>/scripts/exa_deep_search.py search --request-file <request.json> --retries 0
+```
+
+The dry run validates offline without accessing the credential store. The second
+command is chargeable. A request file cannot be combined with query/API shortcut
+flags. Dynamic Highlights and highlight verbosity require explicit
+`--beta dynamic-highlights-2026-08-28` opt-in. Snapshot Search and HIPAA mode are
+incompatible with both deep modes; report that restriction without switching.
+Unknown or deprecated fields fail before credential access. Native credential
+commands remain available when search dependencies need a runtime update.
+
 The default is at most three attempts (two retries) for HTTP 429, 500, 502, 503,
 or 504, with bounded exponential delays. `Retry-After` is honored when within the
 30-second delay bound; longer values stop the run. `--retries 0` limits it to one
 attempt. Timeouts and transport errors stop without replay because completion and
 billing may be uncertain. Do not restart a failed run automatically. Malformed
-responses, authentication, payment, or permission errors also stop without
+JSON/SSE responses, incomplete streams, authentication, payment, or permission errors also stop without
 changing modes. Exa deprecates `resolvedSearchType` and says it may be empty;
 do not branch on it or use it to confirm which mode ran. The returned `mode`
 records the helper's explicit request type.
+`--timeout` sets a 1–300 second per-socket timeout (default 120). For SSE, the
+helper consumes typed events and prints one completed JSON response, preserving
+the final synthesis after stream resets. It does not print interim deltas.
 
 ## Return the findings
 
@@ -86,6 +107,6 @@ records the helper's explicit request type.
 The endpoint, modes, response fields, and errors were checked against Exa's
 [Search API reference](https://exa.ai/docs/reference/search),
 [Deep Search guide](https://exa.ai/docs/search/deep-search), and
-[error documentation](https://exa.ai/docs/admin/error-codes) on 2026-10-11.
+[OpenAPI specification](https://exa.ai/docs/exa-spec.yaml) on 2026-10-11.
 Recheck those sources when diagnosing an API contract change. Live searches and
 cross-machine credential persistence require separate authorized verification.
