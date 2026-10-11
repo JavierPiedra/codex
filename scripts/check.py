@@ -15,11 +15,15 @@ def check(root=ROOT):
     plugin = root / "plugins/javier"
     manifest = json.loads((plugin / "plugin.json").read_text(encoding="utf-8"))
     migration = json.loads((root / "scripts/migration.json").read_text(encoding="utf-8"))
+    catalog = json.loads((root / "scripts/skill-catalog.json").read_text(encoding="utf-8"))["skills"]
     market = json.loads((root / ".agents/plugins/marketplace.json").read_text(encoding="utf-8"))
     assert manifest["name"] == "javier" and re.fullmatch(r"\d+\.\d+\.\d+", manifest["version"])
     assert market["plugins"][0]["source"]["path"] == "./plugins/javier"
     dirs = {p.name for p in (plugin / "skills").iterdir() if p.is_dir()}
-    assert dirs == set(migration["selected"]) and len(dirs) == 31
+    assert len(catalog) == len(set(catalog)), "Duplicate catalog entries"
+    assert dirs == set(catalog), "Plugin directories differ from the current catalog"
+    assert len(migration["selected"]) == 31 and len(set(migration["selected"])) == 31
+    assert set(migration["selected"]).issubset(dirs), "Missing migrated skill"
     assert not dirs.intersection(migration["excluded"])
     for name in sorted(dirs):
         path = plugin / "skills" / name / "SKILL.md"

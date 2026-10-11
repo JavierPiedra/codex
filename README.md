@@ -1,13 +1,14 @@
 # Codex personal de Javier
 
 La fuente canónica de las skills personales es `plugins/javier/skills/`.
-El plugin `javier` contiene las 31 skills seleccionadas y se invoca como
+El plugin `javier` contiene las 32 skills del catálogo actual y se invoca como
 `$javier:write-goal`, `$javier:idea-council`, etc. Las referencias a proveedores
 externos, como `$awra:prd` e Image Gen, conservan su proveedor.
 
 Las diez skills excluidas permanecen en el historial y en `skills/`, pero no
-forman parte del plugin. La selección exacta y las huellas de las copias
-anteriores están en `scripts/migration.json`.
+forman parte del plugin. El catálogo actual está en `scripts/skill-catalog.json`.
+La selección histórica de la migración y las huellas de las copias anteriores
+permanecen en `scripts/migration.json`.
 
 ## Qué instala cada parte
 
@@ -77,6 +78,21 @@ La clave se registra una vez por equipo con `--store-key` del helper, mediante
 un prompt oculto. El servicio sigue siendo `codex.invoice-goodancestor.wakatime`
 y la cuenta corresponde al usuario local. Nunca pasar la clave como argumento.
 
+`$javier:exa-deep-search` aparece como **Javier: Exa Deep Search**. Usa el mismo
+runtime con `keyring`, con una entrada independiente: servicio
+`codex.javier.exa-deep-search`, cuenta `api-key`. Ejecutar su helper
+`plugins/javier/skills/exa-deep-search/scripts/exa_deep_search.py` con el Python
+registrado y `setup` en un terminal local para introducir la clave de forma oculta;
+`update` la reemplaza y `remove` elimina solo la credencial local. Estas órdenes
+no llaman a Exa. No pasar la clave en argumentos, archivos ni variables de entorno.
+
+Para una búsqueda autorizada, usar `search "<pregunta>" --mode deep` o
+`--mode deep-reasoning`. Devuelve fuentes y el coste estimado reportado por la API
+cuando existe. `--synthesize` añade texto generado con grounding y `--retries 0`
+limita la búsqueda a un intento. No ejecuta Exa Agent ni cambia a búsqueda ordinaria.
+Las búsquedas consumen créditos y requieren autorización; la configuración no las
+ejecuta. Ver [la skill](plugins/javier/skills/exa-deep-search/SKILL.md) para los límites.
+
 Por decisión de Javier, `whatsapp-group-review` conserva la base local de macOS.
 Se incluye en ambos catálogos, pero en Windows se detiene con
 `UNSUPPORTED_PLATFORM`. La fuente Windows se definirá por separado.
@@ -87,7 +103,8 @@ archivos no demuestra acceso al servicio ni disponibilidad del modelo.
 
 ## Comprobación y actualización
 
-Abrir un chat nuevo después de instalar. Verificar las 31 entradas `javier:*`,
+Abrir un chat nuevo después de instalar. Verificar las 32 entradas `javier:*`
+contra `scripts/skill-catalog.json`,
 sus recursos asociados y los siete perfiles. Comprobar que los textos globales
 corresponden a esta fuente. Si el catálogo omite una skill, investigar la causa
 antes de retirar su copia anterior; la existencia del directorio no demuestra
