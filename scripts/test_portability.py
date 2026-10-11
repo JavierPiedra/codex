@@ -9,6 +9,7 @@ import sqlite3
 import subprocess
 import sys
 import tempfile
+import tomllib
 import types
 import unittest
 from unittest.mock import Mock, patch
@@ -48,7 +49,8 @@ class Portability(unittest.TestCase):
         self.assertEqual(setup.apply_guidance(self.home)["changed"], [])
         for name in ("config.toml", "auth.json"):
             self.assertEqual((self.home / name).read_bytes(), b"host-local fixture")
-        self.assertIn(str(awra), (self.home / "javier-paths.toml").read_text(encoding="utf-8"))
+        recorded = tomllib.loads((self.home / "javier-paths.toml").read_text(encoding="utf-8"))
+        self.assertEqual(Path(recorded["awra_guidance_root"]), awra.resolve())
 
     def test_override_and_invalid_external_path_fail_before_writes(self):
         (self.home / "AGENTS.override.md").write_bytes(b"override")
@@ -148,10 +150,11 @@ class Portability(unittest.TestCase):
 
     def test_whatsapp_database_is_readonly_and_windows_stops_before_reading(self):
         path = self.home / "Synthetic Chat.sqlite"
-        with sqlite3.connect(path) as conn:
-            conn.execute("CREATE TABLE ZWACHATSESSION (Z_PK INTEGER, ZPARTNERNAME TEXT)")
-            conn.execute("INSERT INTO ZWACHATSESSION VALUES (1, 'Fixture group')")
-        with whatsapp.open_readonly(path) as conn:
+        with contextlib.closing(sqlite3.connect(path)) as conn:
+            with conn:
+                conn.execute("CREATE TABLE ZWACHATSESSION (Z_PK INTEGER, ZPARTNERNAME TEXT)")
+                conn.execute("INSERT INTO ZWACHATSESSION VALUES (1, 'Fixture group')")
+        with contextlib.closing(whatsapp.open_readonly(path)) as conn:
             self.assertEqual(whatsapp.resolve_group(conn, "Fixture group")["chat_pk"], 1)
             with self.assertRaises(sqlite3.OperationalError):
                 conn.execute("DELETE FROM ZWACHATSESSION")
