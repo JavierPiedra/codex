@@ -1,11 +1,11 @@
 # Codex personal de Javier
 
 La fuente canónica de las skills personales es `plugins/javier/skills/`.
-El plugin `javier` contiene las 32 skills del catálogo actual y se invoca como
+El plugin `javier` contiene las skills seleccionadas y se invoca como
 `$javier:write-goal`, `$javier:idea-council`, etc. Las referencias a proveedores
 externos, como `$awra:prd` e Image Gen, conservan su proveedor.
 
-Las diez skills excluidas permanecen en el historial y en `skills/`, pero no
+Las skills excluidas permanecen en el historial y en `skills/`, pero no
 forman parte del plugin. El catálogo actual está en `scripts/skill-catalog.json`.
 La selección histórica de la migración y las huellas de las copias anteriores
 permanecen en `scripts/migration.json`.
@@ -13,8 +13,8 @@ permanecen en `scripts/migration.json`.
 ## Qué instala cada parte
 
 El marketplace `.agents/plugins/marketplace.json` distribuye únicamente el
-plugin. El setup explícito instala `AGENTS.md`, las dos políticas de agentes,
-los siete perfiles y la referencia de revisión externa en el Codex home de
+plugin. El setup explícito instala `AGENTS.md`, las políticas y perfiles de
+agentes y la referencia de revisión externa en el Codex home de
 cada equipo. Estas instrucciones globales no se activan por instalar el plugin.
 
 `scripts/setup.py --with-runtime` crea un entorno Python bajo
@@ -25,23 +25,21 @@ se ha preparado para el Python 3.12 suministrado por la app. Cada equipo conserv
 su configuración, permisos, autenticación y conexiones. No se distribuyen
 credenciales ni se modifican los runtimes de la app.
 
-## Instalación de la versión candidata
+## Instalación
 
-Esta rama prepara la versión 1.0.0. Hasta que se integre en `main`, usar
-`feature/codex/personal-skills-plugin` como referencia tanto para el marketplace
-como para la copia de fuente del setup. No mezclar una instalación de una rama
-con un setup de otra.
+Usar `main` para el marketplace y para la copia de fuente del setup. Actualizar
+ambos al mismo commit antes de ejecutar el setup; no mezclar versiones.
 
 Si `codex` no está en PATH, usar el ejecutable suministrado por la app. En Windows,
 el agente del equipo debe localizar ese ejecutable; no asumir que está instalado
 el CLI de forma independiente. Los siguientes comandos muestran sus argumentos:
 
 ```text
-codex plugin marketplace add JavierPiedra/codex --ref feature/codex/personal-skills-plugin
+codex plugin marketplace add JavierPiedra/codex --ref main
 codex plugin add javier@javier
 ```
 
-En la copia de fuente, hacer checkout de la misma rama. Revisar primero el setup:
+En la copia de fuente, hacer checkout del mismo commit. Revisar primero el setup:
 
 ```text
 <app-python> scripts/setup.py --dry-run
@@ -51,7 +49,7 @@ En la copia de fuente, hacer checkout de la misma rama. Revisar primero el setup
 En PowerShell, ejecutar rutas con espacios mediante el operador `&`:
 
 ```powershell
-& $codexCli plugin marketplace add JavierPiedra/codex --ref feature/codex/personal-skills-plugin
+& $codexCli plugin marketplace add JavierPiedra/codex --ref main
 & $codexCli plugin add javier@javier
 & $appPython '.\scripts\setup.py' --dry-run
 & $appPython '.\scripts\setup.py' --with-runtime
@@ -65,6 +63,10 @@ usuario más `.codex`. `--codex-home` permite probar en un directorio aislado.
 El setup conserva una copia de cada archivo global que reemplaza en
 `<codex_home>/javier-setup-backups/`. Si existe `AGENTS.override.md`, se detiene
 antes de escribir para resolver qué instrucciones deben aplicarse.
+Si Codex home también es un checkout Git, el setup se detiene cuando tendría
+que cambiar archivos versionados. Actualizar primero ese checkout al commit de
+la fuente y reconciliar sus cambios locales; el setup solo debe escribir allí
+el archivo de rutas del equipo y otros archivos no versionados.
 
 ## Fuentes y herramientas de cada equipo
 
@@ -111,12 +113,15 @@ archivos no demuestra acceso al servicio ni disponibilidad del modelo.
 
 ## Comprobación y actualización
 
-Abrir un chat nuevo después de instalar. Verificar las 32 entradas `javier:*`
-contra `scripts/skill-catalog.json`,
-sus recursos asociados y los siete perfiles. Comprobar que los textos globales
-corresponden a esta fuente. Si el catálogo omite una skill, investigar la causa
-antes de retirar su copia anterior; la existencia del directorio no demuestra
-que la app la ofrezca.
+Abrir un chat nuevo después de instalar. Comparar las skills registradas y
+habilitadas con `scripts/skill-catalog.json`; comprobar el
+namespace `javier:*`, los recursos asociados y los perfiles. Las skills con
+`allow_implicit_invocation: false` no aparecen en el contexto inicial del
+chat; comprobar su invocación en el selector de skills por separado.
+Comprobar también que los textos globales corresponden a esta fuente antes de
+retirar las copias anteriores. Si el catálogo omite una skill, investigar la
+causa antes de retirar su copia anterior; la existencia del directorio no
+demuestra que la app la ofrezca.
 
 Los checks del repositorio usan datos sintéticos y no consultan credenciales,
 mensajes, historiales reales ni proveedores:
@@ -133,8 +138,7 @@ ejecuta con Python 3.12 en macOS y Windows; sus resultados no sustituyen la
 comprobación del catálogo en las apps reales.
 
 Para actualizar, refrescar el marketplace Git, reinstalar el plugin y actualizar
-la copia de fuente al mismo commit antes de reejecutar el setup. Después de
-integrar la versión candidata, usar `main` como referencia del marketplace:
+la copia de fuente al mismo commit antes de reejecutar el setup:
 
 ```text
 codex plugin marketplace upgrade javier
@@ -156,10 +160,14 @@ privado. No toca las skills excluidas. Si alguna copia difiere —también por C
 se detiene antes de mover cualquier skill; revisar y reconciliar esa diferencia.
 No normalizar archivos automáticamente para ocultar cambios.
 
-La copia de fuente en Mac es también el Codex home activo. Hacer pull de esta
-migración en esa copia elimina del árbol las 31 rutas anteriores; por ello,
-integrarla allí solo después de validar ambos catálogos y el retiro. La copia
-aislada de trabajo y el plugin instalado permiten verificar antes de ese paso.
+En Mac, Codex home también es la copia Git activa. El pull de esta migración
+elimina las antiguas rutas de skills versionadas. Verificar primero el plugin
+en ambos equipos y archivar esas copias con `--retire-local-skills`. Después,
+revisar `git -C <codex_home> status --short` y reconciliar cualquier otro cambio
+versionado sin descartar ediciones propias. Actualizar con
+`git -C <codex_home> pull --ff-only origin main` y ejecutar el setup desde esa
+misma revisión. Git admite las eliminaciones locales de skills si coinciden
+con las del commit entrante; cualquier diferencia requiere revisión manual.
 
 ## Referencias del formato
 

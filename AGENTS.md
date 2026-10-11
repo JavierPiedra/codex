@@ -96,6 +96,31 @@ When a conflict changes the action taken, explain it in one sentence.
 - Do not write unit tests that merely check the presence or exact wording of
   text, labels, messages, or copy. Assert functional outcomes and integration
   contracts instead.
+- Choose the smallest test boundary that exercises the relevant failure.
+  Prefer fast, deterministic unit tests for calculations, validation, boundaries,
+  and invariants. Overlapping tests must add distinct detection or useful
+  diagnosis. Do not impose test-count or coverage quotas.
+- Derive expected results from explicit requirements, approved examples, or
+  independently checked calculations, not the production logic under test.
+  Treat undocumented existing behavior as provisional, not automatically
+  correct. A separate agent or fresh context does not establish correctness.
+- Define integration scenarios as preconditions, action, observable outcomes,
+  and forbidden effects. Exercise the relevant real internal components,
+  including isolated persistence when the behavior depends on it. Control
+  external systems at their boundaries and verify relevant contracts separately.
+  Use browser tests when interaction or rendering matters to the requirement.
+- For bug fixes, demonstrate that the regression test fails before the fix and
+  passes afterward for the intended reason. For other high-risk changes, use
+  targeted fault injection in disposable copies when justified and feasible,
+  keeping expectations fixed. Setup failures are not behavioral detection;
+  equivalent implementations should still pass.
+- Use mutation or property-based testing selectively. Review properties against
+  requirements; passing tests, coverage, and mutation scores are evidence within
+  their scope, not proof of correctness.
+- Do not weaken expectations, skip checks, or remove tests merely to obtain a
+  passing run. Justify changes against current requirements and retained
+  protection. Existing relevant tests may suffice; not every change needs new
+  tests.
 
 ## Scope and clarification
 

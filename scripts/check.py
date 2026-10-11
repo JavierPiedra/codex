@@ -22,7 +22,7 @@ def check(root=ROOT):
     dirs = {p.name for p in (plugin / "skills").iterdir() if p.is_dir()}
     assert len(catalog) == len(set(catalog)), "Duplicate catalog entries"
     assert dirs == set(catalog), "Plugin directories differ from the current catalog"
-    assert len(migration["selected"]) == 31 and len(set(migration["selected"])) == 31
+    assert len(migration["selected"]) == len(set(migration["selected"])), "Duplicate migrated skill entries"
     assert set(migration["selected"]).issubset(dirs), "Missing migrated skill"
     assert not dirs.intersection(migration["excluded"])
     for name in sorted(dirs):
