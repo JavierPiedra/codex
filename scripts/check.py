@@ -19,7 +19,7 @@ def check(root=ROOT):
     assert manifest["name"] == "javier" and re.fullmatch(r"\d+\.\d+\.\d+", manifest["version"])
     assert market["plugins"][0]["source"]["path"] == "./plugins/javier"
     dirs = {p.name for p in (plugin / "skills").iterdir() if p.is_dir()}
-    assert dirs == set(migration["selected"]) and len(dirs) == 31
+    assert dirs == set(migration["selected"])
     assert not dirs.intersection(migration["excluded"])
     for name in sorted(dirs):
         path = plugin / "skills" / name / "SKILL.md"

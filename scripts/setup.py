@@ -47,6 +47,18 @@ def atomic_write(path: Path, content: bytes) -> None:
         temporary.unlink(missing_ok=True)
 
 
+def tracked_changes_in_home(home: Path, changes: list[tuple[Path, bytes]]) -> list[str]:
+    """Prevent setup from dirtying a Codex home that is also a Git checkout."""
+    if not (home / ".git").exists():
+        return []
+    names = [path.as_posix() for path, _ in changes]
+    if not names:
+        return []
+    result = subprocess.run(["git", "-C", str(home), "ls-files", "-z", "--", *names],
+                            capture_output=True, check=True)
+    return sorted(result.stdout.decode("utf-8").rstrip("\0").split("\0")) if result.stdout else []
+
+
 def apply_guidance(home: Path, *, source: Path = SOURCE, dry_run: bool = False,
                    awra_guidance_root: Path | None = None,
                    awra_voice_root: Path | None = None) -> dict:
@@ -71,6 +83,11 @@ def apply_guidance(home: Path, *, source: Path = SOURCE, dry_run: bool = False,
     changes.append((Path("javier-paths.toml"), paths_content.encode()))
     changes = [(rel, data) for rel, data in changes
                if not (home / rel).exists() or (home / rel).read_bytes() != data]
+    tracked = tracked_changes_in_home(home, changes)
+    if tracked:
+        raise ValueError("Codex home is a Git checkout; setup would modify tracked files: "
+                         + ", ".join(tracked)
+                         + ". Reconcile its local changes and update the checkout before running setup.")
     backup = home / "javier-setup-backups" / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     backed_up = False
     if not dry_run:

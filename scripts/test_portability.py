@@ -62,6 +62,25 @@ class Portability(unittest.TestCase):
             setup.apply_guidance(self.home, awra_voice_root=self.home / "absent")
         self.assertFalse((self.home / "javier-paths.toml").exists())
 
+    def test_guidance_refuses_to_dirty_a_git_checkout(self):
+        subprocess.run(["git", "init", str(self.home)], capture_output=True, check=True)
+        (self.home / "AGENTS.md").write_bytes(b"tracked older guidance")
+        subprocess.run(["git", "-C", str(self.home), "add", "AGENTS.md"],
+                       capture_output=True, check=True)
+        with self.assertRaisesRegex(ValueError, "AGENTS.md"):
+            setup.apply_guidance(self.home)
+        self.assertEqual((self.home / "AGENTS.md").read_bytes(), b"tracked older guidance")
+        self.assertFalse((self.home / "javier-paths.toml").exists())
+
+    def test_guidance_accepts_matching_tracked_files(self):
+        subprocess.run(["git", "init", str(self.home)], capture_output=True, check=True)
+        shutil.copyfile(ROOT / "AGENTS.md", self.home / "AGENTS.md")
+        subprocess.run(["git", "-C", str(self.home), "add", "AGENTS.md"],
+                       capture_output=True, check=True)
+        result = setup.apply_guidance(self.home)
+        self.assertNotIn("AGENTS.md", result["changed"])
+        self.assertTrue((self.home / "javier-paths.toml").exists())
+
     def retirement_fixture(self):
         source = self.home / "source"
         installed = self.home / "installed"

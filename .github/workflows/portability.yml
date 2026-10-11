@@ -1,7 +1,7 @@
 name: Mac and Windows portability
 on:
   push:
-    branches: [main, feature/codex/personal-skills-plugin]
+    branches: [main]
   pull_request:
 permissions:
   contents: read
