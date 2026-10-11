@@ -2,7 +2,7 @@
 
 This document governs agent topology, lifecycle, communication, waiting, reuse,
 and handoffs. Model selection is governed by
-`/Users/javierpiedra/.codex/agent-model-routing.md`.
+`{codex_home}/agent-model-routing.md`.
 
 Javier's explicit orchestration instructions override these defaults.
 

@@ -194,11 +194,29 @@ When a conflict changes the action taken, explain it in one sentence.
 - The only time an agent may add a Linear status without separate explicit
   instruction is when creating a new Linear issue.
 
+## Host paths
+
+Resolve `{codex_home}` using this host's effective `CODEX_HOME`, or
+`Path.home() / ".codex"` when unset. Resolve installed skills from their
+catalog paths; plugin cache versions are not stable source paths. Use the
+active shell and the app-supplied executable paths, including quoting paths
+with spaces on Windows. Braced path names in this guidance are descriptions
+to resolve, not automatic variable interpolation.
+
+For bundled Python helpers, use the `python` executable recorded in
+`javier-paths.toml` under Codex home. If it is absent or unavailable, run the
+source repository setup with `--with-runtime` using the app-supplied Python.
+Do not install packages into a versioned app bundle or plugin cache.
+
+For Awra workflows, read `javier-paths.toml` under Codex home to locate
+`awra_guidance_root` or `awra_voice_root` when needed. Do not infer missing
+locations or treat a bundled skill as proof that an external source exists.
+
 ## Agent Delegation
 
 - Before the first agent operation in a context, read:
-  - `/Users/javierpiedra/.codex/agent-model-routing.md`
-  - `/Users/javierpiedra/.codex/agent-orchestration.md`
+  - `{codex_home}/agent-model-routing.md`
+  - `{codex_home}/agent-orchestration.md`
 - `agent-model-routing.md` owns model and reasoning selection.
 - `agent-orchestration.md` owns lifecycle, communication, waiting, reuse, and
   handoffs.

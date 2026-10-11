@@ -1,12 +1,18 @@
 # Track maintained configuration; ignore runtime state and unknown root entries.
 /*
 !/.gitignore
+!/.gitattributes
 !/*.md
 !/config.toml
 !/keybindings.json
 !/agents/
 !/rules/
 !/skills/
+!/plugins/
+!/scripts/
+!/references/
+!/.agents/
+!/.github/
 !/automations/
 
 # Bundled skills are installed and updated by Codex.
