@@ -1,0 +1,4 @@
+interface:
+  display_name: "Javier: Exa Deep Search"
+  short_description: "Research with Exa deep or deep-reasoning search"
+  default_prompt: "Use $javier:exa-deep-search in deep mode to research this question and return findings with sources and API-reported cost."
