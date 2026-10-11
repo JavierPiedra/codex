@@ -90,6 +90,10 @@ When a conflict changes the action taken, explain it in one sentence.
 
 ## Tests
 
+For Awra repositories, follow the testing policy in
+`contributing/workflow.md` from the shared Awra guidance located through
+Host paths. The rules below apply to non-Awra repositories.
+
 - Add or retain tests only when they verify critical functionality or critical
   integration behavior. Each test must protect a concrete behavior or failure
   mode; avoid unnecessary, redundant, or implementation-mirroring tests.
