@@ -2,6 +2,8 @@
 
 Use only the clauses needed for the task; replace placeholders with established
 requirements. Do not turn this layout into a validation grammar.
+Measure the final substituted block using the character-count rule in
+`SKILL.md`; it must fit within 4,000 characters before delivery.
 
 ```text
 /goal [Observable result and target], following [relevant governing source].
