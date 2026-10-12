@@ -1,29 +1,47 @@
-/goal [OBSERVABLE FINAL OUTCOME].
+# Adaptable Goal template
 
-Verify it with:
-- [TEST, BENCHMARK, ARTIFACT, LOG, SOURCE, OR REVIEW SURFACE]
+Use only the clauses needed for the task; replace placeholders with established
+requirements. Do not turn this layout into a validation grammar.
 
-Acceptance criteria:
-- [BINARY OR QUANTITATIVE CONDITION]
+```text
+/goal [Observable result and target], following [relevant governing source].
+Complete when [acceptance conditions], demonstrated by [appropriate evidence].
+Respect [material scope, non-regression requirements, and existing authority].
+[Add necessary context, dependencies, checkpoints, or supplied limits.]
+Deliver [the requested artifact or evidence-based report].
+```
 
-Preserve:
-- [NON-REGRESSION CONSTRAINT]
+## Example: investigation with incomplete evidence
 
-Read first:
-- [ISSUE, PLAN, DOCUMENT, LOG, OR SOURCE FILE]
+Assume the requested deliverable is a read-only incident report using the
+available logs, not a guaranteed diagnosis:
 
-Work only within:
-- [PERMITTED FILES, REPOSITORIES, TOOLS, DATA, AND ENVIRONMENTS]
+```text
+/goal Produce a read-only incident report for the checkout failures in the agreed
+time window. Use the supplied logs and deployment history to build a timeline
+and distinguish confirmed causes, supported hypotheses, and unanswered questions.
+Link each material conclusion to its evidence. If retention or access prevents
+checking a claim, identify the missing source and the next input needed while
+continuing the independent analysis. Finish with the report and its evidence
+gaps; do not change services or customer data.
+```
 
-Do not:
-- [OUT-OF-SCOPE CHANGE OR INVALID SHORTCUT]
+## Example: multi-part implementation
 
-After each [MEANINGFUL CHANGE OR EVALUATION EVENT], record the hypothesis, action, evidence, result, and next action. Run the nearest relevant verification and retain a change only when it improves the evidence without violating constraints.
+Assume an approved plan defines the replacement import format, repositories,
+fixtures, data preservation, and local-only delivery:
 
-Mark complete only when every acceptance criterion has current evidence. If [BLOCKING CONDITION] or [BUDGET LIMIT] is reached, stop and report attempts, evidence, best state reached, precise blocker, remaining risk, and the next input, permission, or decision needed. Budget exhaustion is not success.
+```text
+/goal Replace the old import format across the backend and frontend as specified
+in the approved plan, migrating the data that must survive and removing the
+obsolete paths. Demonstrate the plan's acceptance examples through the interface
+and isolated persistence, including rejection of invalid inputs without partial
+writes. Work in the plan's repositories and local test environments. Follow the
+dependencies through verifiable milestones and retain decisions needed for the
+next milestone. Report any unavailable fixture or unresolved contract without
+claiming its requirement is complete. Deliver local changes and verification
+evidence.
+```
 
-Safety:
-- [MINIMUM ACCESS, DRY RUN, APPROVAL, ROLLBACK, OR PAUSE REQUIREMENT]
-
-Final output:
-- [REPORT OR ARTIFACT, LOCATION, AND REQUIRED EVIDENCE]
+These examples do not authorize execution or prescribe budgets, new approvals,
+extra reviewers, or a fixed number of iterations.

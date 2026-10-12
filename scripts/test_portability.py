@@ -138,14 +138,6 @@ class Portability(unittest.TestCase):
             {"projects": [{"name": "Project", "total_seconds": 1810}]}]})
         self.assertEqual(result[0]["hours"], "1.01")
 
-    def test_goal_validation_accepts_file_with_spaces_and_rejects_unbounded_goal(self):
-        path = self.home / "Goal draft.txt"
-        command = [sys.executable, str(ROOT / "plugins/javier/skills/write-goal/scripts/validate_goal.py"), "--file", str(path)]
-        path.write_text("/goal Produce an artifact with tests, preserve existing data; if blocked report evidence; stop after 3 attempts.", encoding="utf-8")
-        self.assertEqual(subprocess.run(command, capture_output=True).returncode, 0)
-        path.write_text("/goal keep trying forever", encoding="utf-8")
-        self.assertEqual(subprocess.run(command, capture_output=True).returncode, 1)
-
     def test_invoice_cli_runs_with_unicode_paths_and_leap_year_dates(self):
         result = subprocess.run([sys.executable, str(ROOT / "plugins/javier/skills/invoice-goodancestor/scripts/invoice_math.py"),
                                  "2024-02", "--timer", "Revisión=1:30", "--project", "Work=2.25", "--json"],
