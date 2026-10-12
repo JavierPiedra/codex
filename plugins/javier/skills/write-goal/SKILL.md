@@ -48,11 +48,21 @@ proof that the work can or has been completed.
 6. Review the contract semantically using the checks below. Repair unsupported
    requirements, ambiguous completion criteria, and missing boundaries before
    handing it back.
+7. Measure the exact final copy-ready Goal with a deterministic tool before
+   returning it, including to the loop caller. It must not exceed **4,000
+   characters**, including the `/goal` prefix, spaces, and line breaks, but
+   excluding Markdown fences and surrounding commentary. Count conservatively
+   in UTF-16 code units (for example, JavaScript `text.length`); do not estimate
+   from tokens or words. Recount after edits. If it exceeds the limit, remove
+   repetition and move supporting detail to accessible references while keeping
+   the outcome, acceptance evidence, and material boundaries in the Goal.
+   Never truncate requirements just to fit.
 
-Do not impose a word count, a fixed number of questions, or a universal
-checkpoint/logging format. If direct use fits another mechanism, give that
-recommendation and its reason without manufacturing a Goal. For the loop caller,
-return the precise missing decision only when a valid contract cannot be written.
+Apart from the character ceiling, do not impose a target length, a fixed number
+of questions, or a universal checkpoint/logging format. If direct use fits
+another mechanism, give that recommendation and its reason without manufacturing
+a Goal. For the loop caller, return the precise missing decision only when a
+valid contract cannot be written.
 
 ## Semantic review
 

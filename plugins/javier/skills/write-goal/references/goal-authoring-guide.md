@@ -96,3 +96,7 @@ take precedence over historical documentation.
 
 These sources do not establish an optimal Goal length or prove this skill's
 effectiveness on every model.
+
+The 4,000-character output ceiling is Javier's required authoring limit. Counting
+the entire copy-ready block in UTF-16 code units is a conservative skill rule,
+not a claim that this research verified Codex's native limit or counting method.
