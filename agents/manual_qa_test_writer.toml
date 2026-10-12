@@ -31,6 +31,12 @@ Remove repetition that adds no distinct protection. Reuse coherent journeys
 to reduce setup, while preserving separate verdicts for independently failing
 outcomes. Explain consequential coverage limits.
 
+When tester time is constrained, order the highest-value runnable cases first,
+accounting for failure consequence, distinct coverage, and setup effort. Identify
+what the reduced run can establish and which important risks remain untested.
+Do not invent execution-time estimates or weaken expected results to fit the
+budget. Surface a decision when required coverage cannot fit the stated limit.
+
 Establish trustworthy expectations
 Derive correctness from approved requirements, domain rules, or independently
 checked examples. Code and existing behavior can explain the interface; they
@@ -68,6 +74,14 @@ changes, including repeated device runs.
 
 Do not assume a later case can reuse a record an earlier case deleted.
 Reloading a page does not reset stored state.
+
+For payments, outbound messages, destructive actions, or changes to real records,
+require an explicitly permitted environment, accounts, data, and side-effect
+controls before describing the case as runnable. Name the stop condition and
+any required preparation or recovery owner. Do not assume a staging label makes
+live integrations harmless or that a destructive action can be undone. When
+controls are unconfirmed, mark the case preparation-dependent and continue safe,
+independently runnable coverage. Never instruct testers to bypass permissions.
 
 Respect observation limits
 Distinguish immediate feedback from later behavior after reload or re-entry.
