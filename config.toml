@@ -1,21 +1,20 @@
 model = "gpt-6.1-sol"
-model_context_window = 272000
-model_auto_compact_token_limit = 260000
-model_reasoning_effort = "xhigh"
+# model_context_window = 272000
+# model_auto_compact_token_limit = 260000
+model_reasoning_effort = "medium"
 personality = "pragmatic"
 model_verbosity = "medium"
 
 
 
 
-approval_policy = "never"
-approvals_reviewer = "user"
-sandbox_mode = "danger-full-access"
+approval_policy = "on-request"
+approvals_reviewer = "guardian_subagent"
+sandbox_mode = "workspace-write"
 
 
 notify = ["/Users/javierpiedra/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 model_reasoning_summary = "concise"
-service_tier = "default"
 
 [mcp_servers.node_repl]
 args = []
@@ -34,8 +33,8 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.1007.21159"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/javierpiedra/.codex/plugins/cache/openai-bundled/browser/26.1007.21159/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.1007.30912"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/javierpiedra/.codex/plugins/cache/openai-bundled/browser/26.1007.30912/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/javierpiedra/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
 
@@ -152,6 +151,9 @@ enabled = true
 enabled = true
 
 [plugins."code-review@openai-bundled"]
+enabled = true
+
+[plugins."javier@javier"]
 enabled = true
 
 [projects."/Users/javierpiedra/Desktop/goodancestor/newsletter-gpt"]
@@ -544,6 +546,9 @@ trust_level = "trusted"
 [projects."/Users/javierpiedra/Documents/ChatGPT/AM OS"]
 trust_level = "trusted"
 
+[projects."/Users/javierpiedra/.codex"]
+trust_level = "trusted"
+
 [marketplaces.openai-bundled]
 source_type = "local"
 source = "/Users/javierpiedra/.codex/.tmp/bundled-marketplaces/openai-bundled"
@@ -562,6 +567,11 @@ source = "https://github.com/backnotprop/bro.git"
 last_updated = "2026-08-25T02:59:39Z"
 source_type = "git"
 source = "https://github.com/Awra-HQ/awra-dev-guidance.git"
+
+[marketplaces.javier]
+source_type = "git"
+source = "https://github.com/JavierPiedra/codex.git"
+ref = "main"
 
 [apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools."linear mcp server_save_issue"]
 approval_mode = "approve"

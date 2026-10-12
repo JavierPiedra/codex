@@ -54,3 +54,7 @@ node_modules/
 *.bak
 *.tmp
 *~
+
+# Generated plugin runtime and installed cache.
+/plugins/.plugin-appserver/
+/plugins/cache/
