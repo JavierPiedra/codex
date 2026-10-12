@@ -1,6 +1,6 @@
 interface:
   display_name: "Write Goal"
-  short_description: "Draft and validate evidence-based Goals"
+  short_description: "Draft and review verifiable Goal contracts"
   default_prompt: "Use $javier:write-goal to turn this request into a reviewable Codex Goal without starting Goal mode."
 
 policy:

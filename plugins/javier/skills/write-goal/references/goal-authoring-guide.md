@@ -1,59 +1,98 @@
 # Goal authoring guide
 
-## Tool selection
+## Choosing the mechanism
 
-| Mechanism | Choose when |
+A Goal is a persistent objective for one thread. It is useful when the finish
+line is verifiable and reaching it may take adaptive action/check cycles.
+
+| Mechanism | Use when |
 |---|---|
-| Normal prompt | One small, concrete, linear action |
-| `/plan` | The target, scope, or constraints are not settled |
-| `/goal` | A verifiable outcome requires adaptive action-check-adjust cycles |
-| Skill | A procedure or format should be reused across tasks |
-| `AGENTS.md` | Guidance must apply automatically inside a repository |
-| Scheduled task | Work starts or repeats by clock or calendar |
-| `codex exec` | Work runs non-interactively in a script or CI pipeline |
+| Normal prompt | One small, concrete, linear action or a single answer |
+| `/plan` | A material target, outcome, or constraint still needs deciding |
+| `/goal` | One durable objective needs evidence-based continuation |
+| Skill | The requested deliverable is a reusable procedure |
+| `AGENTS.md` | Guidance should apply across repository tasks |
+| Scheduled task | The agent should start or repeat by clock or calendar |
+| `codex exec` | Execution belongs in a script or CI |
 
-A Goal is thread-scoped persistent state and a completion contract. It is not global memory, repository policy, or a scheduler. A Skill defines a reusable method; a Goal defines the specific result for the current thread.
+A task about a scheduled business process is not necessarily a request to
+schedule the agent. Likewise, uncertainty about implementation does not prevent
+a Goal when the outcome and verification are clear. A research Goal may aim to
+resolve uncertainty through a report; it need not presuppose the answer.
 
-## Required contract
+The implementation-loop caller has already selected Goal mode. Do not redirect
+its small tasks to normal prompts.
 
-Write one observable final state, then define:
+## Sufficient evidence
 
-- **Evidence:** current tests, benchmarks, artifacts, logs, sources, screenshots, or review criteria that prove the outcome.
-- **Acceptance criteria:** binary or quantitative conditions. For metrics, name the dataset or benchmark, threshold, repetitions, and tolerance when relevant.
-- **Constraints:** behavior, compatibility, quality, or data that must not regress.
-- **Boundaries:** permitted files, repositories, tools, data, environments, and external systems.
-- **Initial context:** issues, plans, documents, logs, or source files to inspect first.
-- **Iteration policy:** how to test each material change, retain or discard it, and choose the next attempt from evidence.
-- **Checkpoint cadence:** events such as after each meaningful change or benchmark run, not times such as every Monday.
-- **Stops:** success, genuine blockage, and budget exhaustion must be separate outcomes.
-- **Safety:** require minimum access, dry runs, rollback planning, and explicit approval before external or irreversible actions when applicable.
-- **Observability:** record hypothesis, action, evidence, result, decision, and next action briefly.
-- **Final output:** identify the report or artifact and the evidence it must contain.
+Keep the outcome, target, verification, and material limits clear. These are
+semantic requirements, not mandatory headings.
 
-## Stop conditions
+- For behavior, describe the relevant action, expected result, and forbidden
+  effects. Include negative cases where they protect a concrete requirement.
+- For a metric, use the agreed benchmark, conditions, threshold, and tolerance.
+  Do not invent a numeric target to make vague improvement appear measurable.
+- For an artifact or subjective result, name its audience, required content,
+  observable use, or agreed rubric. A command or binary test is not always the
+  appropriate evidence.
+- For research, distinguish confirmed findings, approximations, unsupported
+  claims, and unavailable evidence. An uncertainty report can be complete when
+  that is the requested deliverable; it cannot replace promised exact proof.
+- Reference accessible, authoritative context. Embed the necessary information
+  when a reference will not be available to the executing thread.
 
-Mark complete only when every acceptance criterion has current evidence. If blocked, report attempts, evidence, precise blocker, best state reached, remaining risk, and the input or permission needed. If budget is exhausted, stop substantive work and report progress; never reinterpret exhaustion as success.
+Tests and review must cover the acceptance requirement they support. Compilation,
+a generated report, or green CI alone does not prove a broader runtime outcome.
 
-## Anti-patterns
+## Add operating detail when it changes execution
 
-Repair or redirect:
+| Detail | Include when |
+|---|---|
+| Initial references | They contain necessary requirements or prior decisions |
+| Plan and milestones | Dependencies or complexity make progress hard to track |
+| Persistent notes | Continuations or handoffs need recoverable decisions and evidence |
+| Experiment policy | Trials need a defined comparison and retention criterion |
+| Blocker condition | Missing access, inputs, review, or a decision prevents dependent work |
+| Budget | Javier or an applicable instruction supplied a concrete limit |
+| Approval or recovery step | The actual action and its existing authority require it |
 
-- vague activities such as “improve,” “clean up,” or “investigate” without a final observable state;
-- unrelated backlog items grouped into one Goal;
-- no named verification surface;
-- unrestricted scope such as “everything” or “all repositories”;
-- rigid step lists that prevent adaptation to evidence;
-- infinite continuation such as “never stop”;
-- calendar recurrence inside a Goal;
-- disabling tests, assertions, security controls, or approvals as a route to success;
-- production, secrets, deployment, deletion, or destructive changes without explicit limits and approval stops;
-- subjective criteria without a rubric or review surface;
-- describing an approximation as an exact reproduction.
+Use meaningful events for checkpoints, not calendar recurrence. Reuse existing
+progress artifacts when they fit; do not require a new file per Goal or a log
+entry per tool call. Do not copy another harness's agent topology or restart
+policy into a Goal.
 
-## Length heuristic
+Scope should protect the requested boundaries without prescribing a solution
+that cannot reach the outcome. A materially broader target requires a decision,
+not silent expansion.
 
-- Simple quantitative Goal: roughly 30–80 words.
-- Normal engineering Goal: roughly 80–180 words.
-- Research or high-risk Goal: roughly 150–300 words.
+## Authority and lifecycle
 
-These are authoring heuristics, not platform limits. Prefer the shortest contract that makes completion auditable without inventing missing facts.
+The authoring skill specifies the work and how to assess it. The executing
+workflow and current tools control Goal activation, continuation, and status.
+
+Do not encode a fixed blocked-state turn count or claim that prose limits are
+native runtime controls. A missing permission stops the dependent action; it
+need not stop unrelated authorized work or immediately change the Goal state.
+Report the impediment and required input without redefining success.
+
+Retain budgets that were requested, and distinguish exhaustion from completion.
+Do not introduce a default budget or reapproval of actions already authorized.
+Recovery, rollback, and compatibility are task decisions, not automatic additions.
+
+## Evidence behind this guidance
+
+Consult these when revising the skill or checking a platform claim, not on
+every invocation. Reviewed for this rewrite on 2026-10-12; live tool contracts
+take precedence over historical documentation.
+
+- [OpenAI: Using Goals](https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex)
+  describes persistent objectives and evidence-based completion.
+- [OpenAI: Codex best practices](https://developers.openai.com/codex/learn/best-practices)
+  separates task context from durable instructions and conditional planning.
+- [Anthropic: Harness design](https://www.anthropic.com/engineering/harness-design-long-running-apps)
+  reports model-dependent changes to useful scaffolding; it is not a Codex benchmark.
+- [OpenAI: Skill evaluations](https://developers.openai.com/blog/eval-skills)
+  describes evaluating observable behavior, rather than trusting a plausible draft.
+
+These sources do not establish an optimal Goal length or prove this skill's
+effectiveness on every model.

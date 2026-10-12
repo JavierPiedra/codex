@@ -1,120 +1,89 @@
 ---
 name: write-goal
-description: Draft, review, repair, and validate Codex Goals as evidence-based completion contracts. Use only when the user explicitly invokes `$javier:write-goal` or `$javier:goal-implementation-loop`, which declares this skill as a required dependency. Never activate it from model judgment alone, and never use it to execute work or start Goal mode.
+description: Draft, review, and repair verifiable Codex Goal contracts when Javier explicitly invokes `$javier:write-goal` or its required caller `$javier:goal-implementation-loop`. Authoring only; never start Goal mode or execute the described work.
 ---
 
 # Write Goal
 
-When running a bundled helper, resolve its path from this installed skill
-directory and use the `python` path in `{codex_home}/javier-paths.toml`.
-Quote executable and file paths for the active shell.
+Produce the shortest contract that preserves the requested outcome, its evidence,
+and material limits. Review its meaning before returning it; authoring is not
+proof that the work can or has been completed.
 
-Produce a reviewable, validated Goal contract. This skill never calls Goal
-tools or executes the underlying work.
+## Invocation and ownership
 
-## Invocation Boundary
+- **Direct:** Javier invokes `$javier:write-goal` to author a Goal. Return it for
+  review without activating it.
+- **Caller:** `$javier:goal-implementation-loop` requires this skill first. Return
+  the reviewed contract and unresolved material questions to that caller, which
+  alone owns activation and execution. Its explicit selection settles the choice
+  of Goal even for a small linear task.
+- A request to inspect or edit this skill is about the skill itself, not an
+  instruction to draft or activate a Goal.
+- Keep `allow_implicit_invocation: false`. Do not call Goal tools or perform the
+  work described in a draft.
 
-This skill has two authorized callers:
+## Authoring
 
-- **Direct:** Javier explicitly invokes `$javier:write-goal`. Return the contract for
-  review; do not start Goal mode or begin the underlying work.
-- **Goal implementation loop:** Javier explicitly invokes
-  `$javier:goal-implementation-loop`, whose public contract requires this skill as its
-  first step. Return the validated contract to that workflow. The caller alone
-  decides whether to request authorization or start Goal mode.
+1. Identify the caller and read only the applicable instructions and task
+   references needed to establish the outcome, target, authority, and evidence.
+   Reuse settled decisions and existing authorization.
+2. For direct use, recommend a Goal when one coherent, verifiable objective
+   should persist across turns and the next action is likely to depend on
+   intermediate evidence. Prefer a normal prompt for one small linear action,
+   or `/plan` when an unresolved decision prevents defining the outcome.
+   Read the [authoring guide](references/goal-authoring-guide.md) when routing,
+   evidence, or operating limits need clarification.
+3. Ask a focused question before choosing between materially different targets,
+   outcomes, authority, or effects. Do not invent those decisions to finish a
+   draft. State only material assumptions; leave routine implementation choices
+   to the executing workflow.
+4. Draft an observable outcome with acceptance evidence and material boundaries.
+   Identify the artifact, behavior, metric, or review rubric that distinguishes
+   completion from a plausible approximation. Use the
+   [template](assets/goal-template.md) when helpful; its layout is optional.
+5. Add context, milestones, progress records, experiment rules, dependencies,
+   or specific blocker handling only when needed for this task. Reference an
+   existing plan or governing source instead of duplicating it. Preserve budgets
+   and limits actually supplied; do not invent tokens, durations, or retry caps.
+6. Review the contract semantically using the checks below. Repair unsupported
+   requirements, ambiguous completion criteria, and missing boundaries before
+   handing it back.
 
-Do not activate this skill merely because the model considers it relevant.
-Keep `allow_implicit_invocation: false`.
+Do not impose a word count, a fixed number of questions, or a universal
+checkpoint/logging format. If direct use fits another mechanism, give that
+recommendation and its reason without manufacturing a Goal. For the loop caller,
+return the precise missing decision only when a valid contract cannot be written.
 
-## Workflow
+## Semantic review
 
-1. Read [references/goal-authoring-guide.md](references/goal-authoring-guide.md).
-2. Identify whether the caller is direct or `$javier:goal-implementation-loop`.
-3. For direct use, classify the request as one of:
-   - normal prompt
-   - `/plan`
-   - `/goal`
-   - Skill
-   - `AGENTS.md`
-   - scheduled task
-   - `codex exec`
-4. Recommend `/goal` in direct use only when all are true:
-   - the desired outcome is observable and verifiable;
-   - multiple action-check-adjust cycles are likely;
-   - the next action depends on intermediate evidence; and
-   - one coherent objective belongs to the current thread.
-5. When called by `$javier:goal-implementation-loop`, treat Javier's explicit skill
-   selection as the `/goal` decision. Author the shortest valid Goal even for a
-   small bounded request. Do not redirect it to a normal prompt merely because
-   the work is linear.
-6. Extract or infer the objective, evidence, acceptance criteria, constraints,
-   boundaries, initial context, iteration policy, checkpoint cadence, success
-   stop, blocked stop, budget stop, safety limits, observability, assumptions,
-   and final output.
-7. Ask at most one focused question only when a missing fact materially changes
-   the tool choice or completion criteria. Otherwise state a reasonable
-   assumption and continue.
-8. Draft the Goal using [assets/goal-template.md](assets/goal-template.md). Scale
-   its length to the risk and complexity; omit irrelevant sections without
-   omitting required semantics.
-9. Validate the draft semantically and, when the draft is available as plain
-   text, run:
+Check the contract against the request and authoritative context:
 
-   ```text
-   <shared-python> <installed-skill>/scripts/validate_goal.py --file <draft-file>
-   ```
+- Does it preserve every required result without adding adjacent work or
+  silently narrowing success?
+- Can each acceptance condition be assessed with appropriate evidence? Name
+  known checks or review surfaces; do not invent commands, datasets, thresholds,
+  or prerequisites that have not been established.
+- Are target, scope, non-regression requirements, and action authority clear
+  enough to proceed without guessing? Preserve existing authorization and any
+  retained action-time checkpoint; a Goal grants no additional permissions.
+- Can execution adapt its approach without changing the acceptance criteria?
+  Missing evidence, spent effort, or an exhausted budget is not completion.
+- Are genuine unresolved dependencies distinguished from ordinary uncertainty?
+  Stop dependent actions when necessary and identify what would unlock them,
+  while allowing independent authorized progress. Defer formal lifecycle
+  transitions to the current Goal tool contract.
 
-10. Repair validation errors before returning the draft. Surface warnings that
-    require user judgment.
-
-## Redirections
-
-For direct use:
-
-- Redirect calendar recurrence to a scheduled task.
-- Redirect an undefined finish line or unresolved target architecture to
-  `/plan`.
-- Redirect one small, linear action to a normal prompt.
-- Redirect a reusable procedure to a Skill.
-- Redirect standing repository guidance to `AGENTS.md`.
-- Redirect CI or scripted non-interactive work to `codex exec`.
-
-When called by `$javier:goal-implementation-loop`, do not apply the small-action
-redirection. Stop and return the precise missing decision only when no valid,
-thread-scoped Goal can be authored.
-
-## Validation Requirements
-
-Require:
-
-- one principal observable outcome;
-- named tests, benchmarks, artifacts, logs, sources, or review surfaces;
-- acceptance criteria that can be marked `pass`, `fail`, or `blocked`;
-- explicit non-regression constraints and work boundaries;
-- an event-based checkpoint cadence, never calendar scheduling;
-- distinct success, blocked, and budget exits;
-- safety limits for external, destructive, production, credentialed, or
-  irreversible actions; and
-- a short iteration record and an evidence-based final report.
-
-Reject success based only on plausibility, effort, token use, or elapsed time.
-Treat budget exhaustion as a stop condition, not completion.
+This is a reasoning check, not a keyword test or a guarantee of execution.
+Do not require particular phrases to express evidence, constraints, or blockage.
 
 ## Output
 
-For direct use, return in Javier's language:
+Respond in Javier's language. When a Goal fits, return a copy-ready `/goal`
+block plus only material assumptions, unresolved questions, or warnings.
+Explain tool fit when it changes the recommendation; omit empty sections and
+generic pass/warning scorecards.
 
-1. `Tool fit`: recommendation and concise rationale.
-2. `Assumptions`: only material assumptions.
-3. `Missing critical input`: omit when empty.
-4. A copy-ready `/goal` block.
-5. `Validation`: pass/warning status for outcome, evidence, constraints,
-   boundaries, iteration, stop conditions, safety, and observability.
-6. `Warnings`: risks or suggested scope cuts; omit when empty.
-
-For `$javier:goal-implementation-loop`, return the validated Goal contract,
-assumptions, and unresolved warnings to the caller without starting Goal mode or
-performing mutations.
-
-Keep the answer compact. Do not claim that a well-written Goal grants
-permissions, bypasses sandboxing, or makes unsafe work safe.
+For the loop caller, return the semantically validated contract with any
+remaining material assumptions or warnings. Do not reproduce its issue, branch,
+agent, review, or PR workflow here; preserve applicable obligations by reference
+or as acceptance requirements without taking over execution.
