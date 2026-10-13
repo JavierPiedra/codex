@@ -1,6 +1,6 @@
 ---
 name: goal-implementation-loop
-description: Run an explicitly requested Goal implementation through scoped issue tracking, branch preparation, Luna Max implementation, Daybreak review, verification, and pull-request handoff.
+description: Run an explicitly requested Goal implementation through scoped issue tracking, branch preparation, Luna Max implementation, Daybreak review, verification, pull-request handoff, and temporary-resource cleanup.
 ---
 
 # Goal Implementation Loop
@@ -13,8 +13,10 @@ own narrower responsibilities.
 Invoking it explicitly authorizes the required `write-goal` validation and,
 when the request is mutating, the smallest necessary Linear issue structure,
 an in-scope implementation commit, and closing references for issues the Goal
-fully delivers. It does not authorize unrelated external mutations, a merge,
-or a production action unless that action and target were already authorized.
+fully delivers. Cleanup of disposable resources created for the Goal is part
+of this workflow, subject to the ownership and authorization rules below. It
+does not authorize unrelated external mutations, a merge, or a production
+action unless that action and target were already authorized.
 
 ## Goal and readiness
 
@@ -157,6 +159,37 @@ public contracts, architecture, setup, operations, or recorded decisions and
 the existing source would otherwise become inaccurate. If no authorized source
 is evident, ask instead of inventing one.
 
+## Cleanup before completion
+
+After the required work and handoff are complete, clean up temporary resources
+created for this Goal before calling `update_goal` complete. Inspect their
+ownership and current use; retain anything still needed for review, manual QA,
+recovery, or an authorized delivery step.
+
+- Stop unused development servers, background processes, containers, and
+  isolated local environments created for the Goal. Remove disposable preview
+  environments, temporary databases, and synthetic test data only within the
+  existing authority for those exact targets.
+- Close browser tabs opened for the Goal that no longer serve a purpose. Keep
+  tabs Javier opened or is using and any result or handoff tab still needed.
+- Archive unused Goal worktrees with the host's managed-worktree archive tool
+  when available. Preserve commits, uncommitted changes, untracked files, and
+  needed ignored files before removing a checkout; managed archives may omit
+  ignored files. Use recoverable archival rather than forced deletion. Keep
+  primary or shared checkouts and worktrees needed by pending work.
+- Remove Goal-only scratch files and temporary credential files once unused.
+  Preserve deliverables and required evidence outside resources being removed.
+
+Leave shared, production, user-owned, or uncertain resources intact. Reuse
+existing authorization for routine Goal-owned cleanup; ask only when removal
+requires additional authority or Javier retained an explicit checkpoint.
+
+Verify that each cleanup action succeeded. Include a short cleanup result in
+the final outcome: what was removed, what was retained and why, and any failure
+or pending action. A failed required cleanup remains unfinished work; do not
+mark the Goal complete while it is unresolved. Retaining a resource for a
+confirmed ongoing use is a completed cleanup decision.
+
 ## Authorization and outcomes
 
 Before merge, deployment, destructive action, production change, permission
@@ -174,8 +207,9 @@ work. Follow repository PR rules.
 
 Report one compact outcome with the Goal state, changed surface, closure set and
 issue-to-commit evidence, branch/worktree, implementation owner, Daybreak
-result, checks actually run, documentation status, and PR URL or reason no PR
-was opened. Call `update_goal` complete only when the required work and closure
-coverage are complete. Do not call an issue closed until its closing commit has
-reached the default branch and that integration result is verified. Never claim
+result, checks actually run, documentation status, PR URL or reason no PR was
+opened, and cleanup result. Call `update_goal` complete only when the required
+work, closure coverage, and resource cleanup are complete. Do not call an issue
+closed until its closing commit has reached the default branch and that
+integration result is verified. Never claim
 unrun review, verification, deployment, or production observation as passed.
