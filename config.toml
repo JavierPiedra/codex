@@ -1,7 +1,7 @@
 model = "gpt-6.1-sol"
 # model_context_window = 272000
 # model_auto_compact_token_limit = 260000
-model_reasoning_effort = "medium"
+model_reasoning_effort = "xhigh"
 personality = "pragmatic"
 model_verbosity = "medium"
 

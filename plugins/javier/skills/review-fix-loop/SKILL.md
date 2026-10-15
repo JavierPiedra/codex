@@ -25,13 +25,14 @@ missing, a fix would exceed scope, or an irreversible action would be required.
 
 Use `agent-model-routing.md` and `agent-orchestration.md`.
 
-- Use one read-only reviewer selected by `agent-model-routing.md`, with medium
-  reasoning by default and high reasoning when complexity or material risk
-  warrants it.
+- Use one independent read-only `gpt-6-astra` / `high` general reviewer,
+  as defined by `agent-model-routing.md`.
 - Keep one separate exclusive implementation writer. The reviewer never edits.
 - Send findings to the existing writer, and reuse the same reviewer after fixes.
-- If the required reviewer is unavailable, report the workflow as blocked
-  rather than substituting an undeclared model.
+- For material cybersecurity changes or an explicit security-review request,
+  use a *separate* final `gpt-6-sol` / `xhigh` reviewer with Daybreak Blue.
+- If a required reviewer is unavailable, report the dependent review as blocked
+  rather than silently substituting a different model or mode.
 
 ## Review And Fix
 
@@ -45,6 +46,14 @@ For each pass:
 2. Have the implementation writer apply the smallest in-scope fixes.
 3. Rerun checks affected by those fixes.
 4. Have the same reviewer inspect the updated exact diff or head.
+
+For security-relevant work, perform the Daybreak Blue security review last
+on the final head. After security-driven fixes, repeat affected general review
+before returning to the same security reviewer for the final verdict. Do not
+claim a security pass for a head that changed after it was reviewed. If native
+Daybreak is unavailable, use the external security-review handoff in
+`{codex_home}/references/external-daybreak-review.md` without creating a
+new session on Javier's behalf.
 
 Stop when no actionable findings remain, a decision is required, or further
 work would expand scope. Do not add optional cleanup after the goal is met.

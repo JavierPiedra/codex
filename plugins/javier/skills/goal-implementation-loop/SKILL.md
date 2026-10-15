@@ -1,6 +1,6 @@
 ---
 name: goal-implementation-loop
-description: Run an explicitly requested Goal implementation through scoped issue tracking, branch preparation, Luna Max implementation, Daybreak review, verification, pull-request handoff, and temporary-resource cleanup.
+description: Run an explicitly requested Goal through scoped issue tracking, branch preparation, Luna Max implementation, Astra general review, conditional final Daybreak Blue security review, verification, PR handoff, and cleanup.
 ---
 
 # Goal Implementation Loop
@@ -57,26 +57,27 @@ out-of-scope, planning, or review issue merely to obtain a closing reference.
 
 ## Roles and ownership
 
-This workflow uses the following defaults unless Javier explicitly overrides
-an assignment. These Goal-specific defaults supersede older generic routing
-model defaults; retain the applicable lifecycle and authorization policies.
+Use these role defaults unless Javier explicitly overrides them. The
+model-routing and orchestration policies own availability and lifecycle;
+do not choose weaker Goal-specific routes.
 
-- The main session is the orchestrator: `gpt-6-sol` / `medium` by default.
-- One `gpt-6-luna` / `max` writer owns implementation and in-scope fixes.
-- One read-only engineering council uses `goal_engineering_advisor` with
-  `gpt-6-astra` / `high`. Include it in the validated Goal and consult it using
+- Main orchestrator: `gpt-6.1-sol` / `xhigh`.
+- One exclusive implementation writer: `gpt-6-luna` / `max`.
+- Read-only Goal engineering council: `goal_engineering_advisor` with
+  `gpt-6-astra` / `xhigh`. Include it in the validated Goal and use
   [the engineering protocol](references/engineering-advisor.md).
-- One independent read-only Daybreak reviewer handles the stable implementation.
-  Use the host-supported Daybreak route (including Daybreak Blue where exposed)
-  and current reviewer routing, with
-  medium reasoning by default or high for materially risky changes.
+- Independent read-only general reviewer: `gpt-6-astra` / `high`.
+- For a material cybersecurity surface or an explicit cybersecurity review:
+  add a separate *final* read-only reviewer using `gpt-6-sol` / `xhigh`
+  with verified Daybreak Blue access. Skip it only when cybersecurity review
+  is not applicable.
 
 Record the requested assignments separately from the observed runtime. A skill
 cannot change the model of an already-running main session. If its model or a
 required route is unavailable or cannot be established, explain the limitation
 and request the appropriate session/model selection instead of claiming a
 switch or silently substituting a model. Use the external-review path below
-when native Daybreak is unavailable.
+when a required native Daybreak security review is unavailable.
 
 Keep one exclusive writer for each branch, worktree, database, deployment,
 provider, and shared integration surface. Additional Luna Max writers require
@@ -84,7 +85,7 @@ independent issues and non-overlapping files and external mutation targets.
 The orchestrator directs the writer and reports its proposed approach and
 progress to the engineering council. The council challenges drift, unproductive
 repetition, and unnecessary complexity; it does not write code, direct competing
-writers, or replace independent Daybreak review.
+writers, or replace independent general or final cybersecurity review.
 
 Give the writer its exact scope, governing sources, permitted mutations,
 acceptance criteria, checks, dependencies, and stop conditions. Consult the
@@ -94,35 +95,42 @@ Apply its concrete direction or document an evidence-backed reason to differ;
 escalate only decisions that change the Goal, authority, or explicit limits.
 Do not turn consultation into a per-tool approval or status-polling loop.
 
-## Daybreak review and manual handoff
+## Independent reviews and final cybersecurity handoff
 
-After implementation stabilizes, review the exact diff or head against the Goal,
-repository rules, and relevant correctness, security, operations, complexity,
-and contract risks. Confirm native Daybreak availability from the host before
-spawning. A model name alone does not establish Daybreak mode.
+Once implementation stabilizes, have the independent Astra High general reviewer
+inspect the exact diff or head against the Goal, repository requirements,
+correctness, contracts, operations, and unnecessary complexity. The reviewer
+is read-only and distinct from the Luna writer. Consolidate actionable
+findings, have the existing writer fix them, run affected checks, and reuse
+the same reviewer to verify the changed head.
 
-If native spawning is unsupported, rejected, or Daybreak mode cannot be
-established, produce a ready-to-paste reviewer prompt **inside the main chat**
-using the external-review handoff at
-`{codex_home}/references/external-daybreak-review.md`.
-Javier can paste it into a new or existing Daybreak session. Do not repeatedly
-try alternate model identifiers, create a substitute reviewer, or require a
-native subagent when the external review can satisfy the same review contract.
+When the Goal changes a material cybersecurity surface (including authorization,
+tenant isolation, sensitive data, secrets, credentials, payment state, webhooks,
+or untrusted input), or Javier explicitly requests cybersecurity review, perform
+a separate final security review with `gpt-6-sol` / `xhigh` and Daybreak Blue.
+Focus on concrete exploitable security risks, trust boundaries, and missing
+security verification. Conduct this last, after the general review is resolved,
+against the exact final candidate. A model identifier alone does not establish
+Daybreak mode; confirm it is enabled in the host.
 
-The prompt must identify the originating session by its actual thread ID and
-require the reviewer to send the verdict back to that session. Record the
-external reviewer session once known and reuse it for re-review. Distinguish
-Javier's designation of the Daybreak session from independently observed runtime
-metadata; missing native spawn capability is not a failure of an otherwise
-valid review performed in the designated session. Missing review evidence still
-blocks review-dependent handoff or completion. Continue independent authorized
-work while waiting; a generated prompt is not a completed review.
+If required native Daybreak review is unsupported, rejected, or cannot be
+established, place the full ready-to-paste security review prompt **in the main
+chat** using `{codex_home}/references/external-daybreak-review.md`. Javier
+selects the new or existing Daybreak session; do not create one without
+authorization, try model aliases, or replace it with a non-Daybreak reviewer.
+The prompt must include the actual originating session/thread ID and request
+return delivery of the verdict. Reuse Javier's designated reviewer session for
+re-review. Distinguish designation from observed mode; an undelivered prompt
+is not a completed review. Pending security evidence blocks security-dependent
+handoff, but not independent authorized work.
 
-Send consolidated actionable findings to the same writer, apply in-scope fixes,
-rerun affected checks, and have the same reviewer recheck the resulting head.
-The external path follows this same loop. Do not create a second writer to fix
-review findings. Stop the fix loop when findings are resolved, require a material
-product decision, exceed scope, lack required evidence, or cannot be verified.
+If the security reviewer identifies actionable findings, return them to
+the existing Luna writer, apply only in-scope fixes, rerun affected checks,
+and have the same Astra reviewer recheck the affected general diff. Then
+return the *final* head to the same Daybreak reviewer for the last pass.
+Any later code change invalidates the final security verdict. Never create
+a second writer to fix review findings. Stop when findings are resolved,
+a material decision is needed, scope would be exceeded, or evidence is missing.
 
 ## Commit closure
 
@@ -201,13 +209,13 @@ required, or when Javier retained an action-time checkpoint. Do not invent a
 generic rollback template or discard concrete authority because it did not
 repeat one. Continue independent authorized work meanwhile.
 
-Open a PR by default after implementation, Daybreak review, fixes, verification,
-and the closure audit unless Javier requested no PR, hold PR, or local-only
+Open a PR by default after implementation, applicable general and final
+cybersecurity reviews, fixes, verification, and the closure audit unless Javier requested no PR, hold PR, or local-only
 work. Follow repository PR rules.
 
 Report one compact outcome with the Goal state, changed surface, closure set and
-issue-to-commit evidence, branch/worktree, implementation owner, Daybreak
-result, checks actually run, documentation status, PR URL or reason no PR was
+issue-to-commit evidence, branch/worktree, implementation owner, general-review and applicable final Daybreak security
+verdicts, checks actually run, documentation status, PR URL or reason no PR was
 opened, and cleanup result. Call `update_goal` complete only when the required
 work, closure coverage, and resource cleanup are complete. Do not call an issue
 closed until its closing commit has reached the default branch and that
