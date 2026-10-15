@@ -1,6 +1,7 @@
 # External Daybreak review handoff
 
-Use when the main session cannot create the required native Daybreak reviewer.
+Use only when a final cybersecurity review is required but the main session
+cannot create a native `gpt-6-sol` / `xhigh` reviewer with Daybreak Blue.
 Print the complete prompt in one copyable code block in the main chat; do not
 only save a file or link to these instructions. Javier chooses the new or
 existing Daybreak session and pastes the prompt there. Do not create or change
@@ -22,9 +23,11 @@ and unnecessary personal or clinical data out of the handoff.
 ## Prompt template
 
 ```text
-Act as the independent, read-only Daybreak reviewer for this Goal. Javier will
-run this review in the Daybreak session he selected. Report the runtime/mode
-information you can actually observe; do not infer it from this prompt.
+Act as the independent final read-only cybersecurity reviewer for this Goal.
+Requested route: GPT-6 Sol (`gpt-6-sol`), `xhigh` reasoning, Daybreak Blue
+access enabled. Javier selects the Daybreak session. Report only the model,
+reasoning level, and mode you can actually observe; do not infer them from the
+prompt or session name.
 
 Originating session: [actual thread ID]
 Originating host: [actual host ID, if available]
@@ -40,8 +43,12 @@ Scope and governing sources:
 Evidence supplied by the orchestrator:
 [Checks and results; label simulated, reported, live, and unrun evidence]
 
-Review the exact target for correctness, contract compliance, security,
-operational behavior, unnecessary complexity, and missing acceptance evidence.
+Review the exact target for actionable security defects: authentication,
+authorization, tenant isolation, sensitive-data exposure, trust boundaries,
+credential handling, payment and webhook integrity, untrusted inputs, and
+other security risks applicable to this change. Focus on plausible exploitation
+paths and independently supported findings, not a repeat of the Astra general
+code review. Check security-sensitive acceptance evidence.
 Use targeted read-only inspection. Do not edit files, modify Git/PR/issue state,
 merge, deploy, mutate data, call live providers, or launch additional agents.
 Do not treat a missing artifact or inaccessible target as approval: report
@@ -70,7 +77,8 @@ the originating session. Never claim delivery without a successful tool result.
 Correlate the verdict with the originating Goal and the exact reviewed artifact.
 Record whether the reviewer session was designated by Javier or its Daybreak
 mode was independently observed; do not require inaccessible native metadata
-from a manually selected session. If code changed, send the delta and new head
-to the same reviewer before treating approval as current. Consolidate findings
+from a manually selected session. If code changed, have the general reviewer check the affected delta first;
+then send the new head to the same Daybreak reviewer for the *last* review
+before treating the cybersecurity verdict as current. Consolidate findings
 for the existing writer. A pending handoff does not authorize bypassing review,
 merging, deployment, or Goal completion.

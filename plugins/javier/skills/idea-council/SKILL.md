@@ -35,23 +35,16 @@ agent operation, read:
 
 ## Model selection
 
-For HR and every council or supporting subagent, use the strongest currently
-available model for complex reasoning, with reasoning effort at least
-`high`. Reassess availability at each invocation using the host's supported
-models, capability descriptions, and Javier's latest applicable designation
-of the best model. Do not hardcode model identifiers in this skill or infer
-a capability ranking from version numbers or the routing table alone.
+Use `agent-model-routing.md`: the default for read-only council and
+supporting specialist roles is `gpt-6-astra` / `xhigh`, unless Javier
+explicitly selects another available route. Do not downgrade to a weaker
+inherited model or effort merely because a profile leaves these unset.
+Confirm host availability and pass the model and effort when supported.
+Do not infer active runtime selection from a policy declaration.
 
-This skill's explicit best-model requirement overrides lower-capability
-default routes. Pass the selected model and effort explicitly when supported;
-verify that profile settings and inherited defaults do not select a weaker
-model or effort below `high`. If a profile cannot accept that route, use its
-unchanged role instructions in an eligible read-only assignment when supported.
-Declare the selected route, and distinguish requested selection from runtime
-metadata actually observed. If the required route or delegation is unavailable,
-report the limitation instead of silently downgrading or simulating a council.
-If the best-model designation remains materially ambiguous, resolve it with
-Javier before delegation.
+If a required route or delegation is unavailable, report the limitation
+instead of silently downgrading or simulating a council. Only create agents
+when the requested council has the necessary authority.
 
 ## Choose perspectives; HR is optional
 

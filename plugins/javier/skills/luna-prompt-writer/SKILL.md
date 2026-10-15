@@ -1,6 +1,6 @@
 ---
 name: luna-prompt-writer
-description: Draft, rewrite, or audit prompts for GPT-5.6 Luna; deliver the prompt without executing its task.
+description: Draft, rewrite, or audit prompts for GPT-6 Luna Max; deliver the prompt without executing its task.
 ---
 
 # Luna Prompt Writer
@@ -33,7 +33,7 @@ For a rewrite or audit, fix demonstrated defects and retain working requirements
 - For review, research, planning, extraction, or summarization, read the relevant section of [references/task-contracts.md](references/task-contracts.md). Ordinary prose writing needs no additional reference.
 - For API message templates, runtime settings, or repeated tool workflows, read [references/integration.md](references/integration.md).
 
-This skill targets Luna prompts but does not assert that general prompting practices are unique to Luna. Prose cannot change the selected model, reasoning effort, or tool access. Verify current official documentation only when a model or host capability affects the requested prompt; otherwise preserve the caller's configuration.
+This skill targets GPT-6 Luna Max prompts but does not assert that general prompting practices are unique to Luna. Prose cannot change the selected model, reasoning effort, or tool access. Verify current official documentation only when a model or host capability affects the requested prompt; otherwise preserve the caller's configuration.
 
 ## Deliver
 

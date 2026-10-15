@@ -5,7 +5,7 @@ Read this reference for the engineering council included by default in a
 
 ## Assignment and continuity
 
-Use `goal_engineering_advisor` with `gpt-6-astra` / `high`, its read-only
+Use `goal_engineering_advisor` with `gpt-6-astra` / `xhigh`, its read-only
 boundary, and disabled delegation. The profile at
 `{codex_home}/agents/goal_engineering_advisor.toml` owns its technical and adversarial
 mandate; preserve its advisory authority and read-only boundary in the
@@ -18,7 +18,8 @@ acceptance criteria, exclusions, governing contracts, current execution plan,
 relevant evidence, and any explicit time or resource limits. Supply source
 pointers sufficient for targeted inspection. The orchestrator retains planning,
 assignment, and delivery responsibility. The consultant advises the orchestrator;
-Daybreak retains its independent review role.
+the Astra reviewer retains general review and Daybreak Blue retains the
+conditional final cybersecurity review.
 
 ## Progress reports
 

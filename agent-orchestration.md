@@ -16,7 +16,9 @@ Choose the role and lane form required by the model-routing policy:
 
 - the root CTO role only when Javier explicitly requests CTO supervision;
 - a native implementation writer for a fully defined implementation lane;
-- a native independent reviewer when review semantics are required;
+- a native independent Astra general reviewer when review semantics are required;
+- a separate final Daybreak Blue security reviewer only for material cybersecurity
+  surfaces or an explicit cybersecurity-review request;
 - a senior orchestrator for orchestration or judgment work; and
 - an explicitly authorized special route when the assignment requires it.
 
@@ -95,8 +97,13 @@ test run.
 
 Never give two lanes overlapping write ownership.
 
-Use one independent reviewer for a stable implementation. Send consolidated
-findings to the existing implementer, then reuse the same reviewer after fixes.
+Use one independent Astra general reviewer for a stable implementation. For
+material cybersecurity work, add a separate final Daybreak Blue security review
+after general findings have been addressed. Never treat security review as a
+substitute for general review. Send consolidated findings to the existing
+implementer and reuse each reviewer for subsequent review of its own scope.
+After any security-driven fix, recheck the affected general review and have
+the security reviewer inspect the final exact head last.
 
 Only the root may delegate by default. A child may fan out only when its
 assignment explicitly authorizes named, bounded, non-overlapping child lanes,

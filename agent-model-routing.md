@@ -11,38 +11,57 @@ Lifecycle and handoff rules live in
 
 | Assignment | Route | Topology |
 | --- | --- | --- |
+| Senior orchestration, including Goal orchestration | `gpt-6.1-sol` / `xhigh` | Root or authorized delegated orchestrator |
+| Fully defined implementation writer | `gpt-6-luna` / `max` | Native `spawn_agent` subagent |
+| Independent general code, contract, and correctness review | `gpt-6-astra` / `high` | Independent read-only reviewer |
+| Goal engineering advisor/council | `gpt-6-astra` / `xhigh` | Read-only `goal_engineering_advisor` |
+| Other read-only council specialists | `gpt-6-astra` / `xhigh` | Bounded, independent specialist lanes |
+| Final review of materially cybersecurity-relevant changes | `gpt-6-sol` / `xhigh` with Daybreak Blue | Separate independent read-only security reviewer |
 | CTO supervision explicitly requested by Javier | `gpt-6-astra` / `max` | Root CTO role only |
-| Fully defined implementation lane | `gpt-6-luna` / `max` | Native `spawn_agent` subagent |
-| Senior orchestration or unresolved judgment | `gpt-6-sol` / `medium` | Native or managed lane |
-| Independent code or security review | Host-supported Daybreak route / `medium` or `high` | Independent read-only native or external reviewer |
-| Authorized unusually difficult decision | `gpt-6-sol` / `high` | Native lane |
 
-The CTO route uses `gpt-6-astra` with `max` only when Javier explicitly
-requests CTO supervision and the host supports that exact route. A route names
-the requested assignment; it does not prove that the runtime selected or
-observed it. Do not silently substitute a model or reasoning level.
+Javier's explicit model or reasoning instruction overrides these defaults.
+Do not create agents or managed sessions solely because a route exists.
+A declared route does not establish the host's selected model, effort, or
+Daybreak status. Do not silently substitute a model or reasoning level.
 
-For independent review, use the host-supported Daybreak route, including
-Daybreak Blue where exposed, with medium reasoning by default or high for
-materially risky changes. Confirm native availability before spawning; a model
-name alone does not establish Daybreak mode. Do not silently substitute a
-non-Daybreak reviewer.
+## Independent review sequence
 
-If native spawning is unsupported, rejected, or Daybreak mode cannot be
-established, use the external-review handoff defined in
-`{codex_home}/references/external-daybreak-review.md`.
-Produce its ready-to-paste prompt in the main chat, including the originating
-thread ID and the requirement to send the verdict back to that session. Do not
-repeatedly try alternate model identifiers. Distinguish Javier's designation of
-the external Daybreak session from independently observed runtime metadata;
-missing native metadata does not invalidate review from the designated session.
-A generated handoff prompt is not a completed review.
+Use Astra High for general review of correctness, Goal compliance,
+contracts, architecture, maintainability, and operational behavior. Do not
+route general reviews through Daybreak by default.
 
-Astra availability alone does not activate CTO or add a supervisory layer to a
-simple task. The exact model and reasoning identifiers above are route entries,
-not a capability ranking. If a requested route is unavailable or cannot be
-observed, report that limitation and continue any independent authorized work;
-block only a dependent action that is incompatible without the route.
+For a material cybersecurity surface, or an explicit cybersecurity-review
+request, add a distinct final security pass using `gpt-6-sol` with Daybreak
+Blue and `xhigh`. Material surfaces include authorization and tenant
+isolation, sensitive records, secrets and credentials, payment state, webhooks,
+untrusted input or file handling, privilege boundaries, and other
+security-critical changes. Routine work without material cybersecurity
+implications does not require Daybreak.
+
+The Daybreak pass is last on the final candidate after the Astra review and
+its fixes. If security findings change code, recheck affected changes with
+the existing general reviewer, then have the same Daybreak security reviewer
+inspect the final head again. Subsequent code changes invalidate that verdict.
+
+Daybreak Blue is an access mode, not a separate model identifier. In Codex,
+verify the host exposes and enables Daybreak Blue for `gpt-6-sol`; for
+compatible Responses API calls set `model = gpt-6-sol` and
+`access_programs.cyber = daybreak_blue`. Do not select deprecated Daybreak
+model aliases or assume a model name enables the access program.
+
+When required native Daybreak security review is unsupported, rejected, or
+unobservable, use the manual handoff in
+`{codex_home}/references/external-daybreak-review.md`. Provide its full
+ready-to-paste prompt in the originating chat with the actual originating
+thread ID; do not start a session without Javier's authorization. Reuse the
+chosen session for re-review. A prompt is not a completed review. Missing
+Daybreak evidence blocks only the security-dependent handoff, not unrelated
+authorized work.
+
+The CTO route applies only when Javier explicitly requests CTO supervision.
+Astra availability alone does not add a supervisor to routine work.
+If a required route is unavailable, state the limitation, continue independent
+authorized work, and block only dependent actions.
 
 ## Fully Defined Assignment
 
