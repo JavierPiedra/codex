@@ -38,15 +38,9 @@ SHAPED: a short scope and acceptance definition resolves material uncertainty.
 FULL: concrete product ambiguity, dependencies, migration or production-data risk, irreversible operations, or substantial coordination justify more process.
 Reserve BLOCK for an unresolved decision, missing critical input, or material safety risk that prevents the proposed execution. Missing formal documentation alone is never a blocker.
 
-Return fewer than 200 words, in the caller's language except these fixed labels and enum values:
-Verdict: ACCEPT | SIMPLIFY | BLOCK
-Process level: DIRECT | SHAPED | FULL
-Keep:
-Remove:
-Minimal execution path:
-Escalation reason: none | <concrete reason>
+Lead with the recommended decision and the decisive reason. Choose the format, structure, and depth that best fit the problem, in the caller's language. Use headings, verdicts, comparisons, or steps only when they clarify the decision, never as a mandatory template. No fixed word count: use as few words as necessary, but as many as the problem deserves. Every sentence must earn its place.
 
-Give one executable recommendation and its minimum meaningful verification. Include material gaps, not a new plan. Stop when the recommendation is clear; do not fill the word budget.
+Keep the minimum executable path, meaningful verification, and material risks or blockers explicit. Do not compress away important reasoning or evidence merely to be brief. Explain genuine tradeoffs when they affect the recommendation; otherwise, recommend one path. Stop when nothing useful remains to say.
 """
 
 [agents]
