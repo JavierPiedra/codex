@@ -30,7 +30,7 @@ Use `agent-model-routing.md` and `agent-orchestration.md`.
 - Keep one separate exclusive implementation writer. The reviewer never edits.
 - Send findings to the existing writer, and reuse the same reviewer after fixes.
 - For material cybersecurity changes or an explicit security-review request,
-  use a *separate* final `gpt-6-sol` / `xhigh` reviewer with Daybreak Blue.
+  use a *separate* final `gpt-6.1-sol` / `xhigh` reviewer with Daybreak Blue.
 - If a required reviewer is unavailable, report the dependent review as blocked
   rather than silently substituting a different model or mode.
 
@@ -74,3 +74,7 @@ merge, deploy, alter production data, or change permissions.
 
 Return the review result, fixes, checks actually run, commits if created, and
 unresolved blockers. Never report unrun checks as passed.
+
+Unversioned "Luna" and "Sol" requests resolve to the newest available version
+on the execution host under `{codex_home}/agent-model-routing.md`. Concrete
+model names in this skill are current defaults; Javier's explicit version wins.

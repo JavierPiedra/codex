@@ -1,10 +1,10 @@
 # Coding implementation handoffs
 
-Unless the user assigns a different role, the orchestrator investigates and chooses the design; Luna implements and verifies the approved contract. Permit ordinary local coding decisions within that contract. If a missing architectural decision changes the implementation, identify it instead of assigning Luna an implicit redesign.
+Unless the user assigns a different role, the orchestrator investigates and chooses the design; GPT-6 Luna implements and verifies the approved contract. Permit ordinary local coding decisions within that contract. If a missing architectural decision changes the implementation, identify it instead of assigning GPT-6 Luna an implicit redesign.
 
 Include the approved behavior, relevant files or verified discovery anchors, allowed scope, invariants, acceptance cases, and appropriate checks. Retain technical decisions that prevent incorrect implementation even when they require a longer prompt. Require the smallest coherent change under applicable repository instructions; do not weaken tests to manufacture a pass.
 
-Use supplied or verified test commands. Otherwise instruct Luna to locate established checks in repository configuration. Distinguish checks that passed, failed, or could not run; tests do not establish manual QA, deployment, or runtime behavior.
+Use supplied or verified test commands. Otherwise instruct GPT-6 Luna to locate established checks in repository configuration. Distinguish checks that passed, failed, or could not run; tests do not establish manual QA, deployment, or runtime behavior.
 
 Define the entire authorized completion point. If the request includes implementation, running it, inspecting the result, and fixing failures, include those outcomes rather than stopping at a first draft. Reuse valid evidence for unchanged work and rerun affected checks after fixes.
 

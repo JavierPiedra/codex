@@ -7,6 +7,21 @@ Javier's explicit model or reasoning instruction overrides these defaults.
 Lifecycle and handoff rules live in
 `{codex_home}/agent-orchestration.md`.
 
+## Unversioned model names
+
+When Javier says "Luna" or "Sol" without an explicit version, resolve that
+family to its newest version available on the execution host at action time.
+Check the current tool model list or host model catalog before selecting it;
+do not assume a remembered identifier is still the newest. Preserve the
+requested reasoning effort when supported. An explicit version requested by
+Javier takes precedence. If availability cannot be established, report the
+uncertainty instead of silently selecting an older version.
+
+The concrete Luna and Sol identifiers below, in agent profiles, and in skills
+record the currently available defaults, not permanent version pins for an
+unversioned request. Update them when a newer available version is confirmed.
+Currently: GPT-6 Luna (`gpt-6-luna`) and GPT-6.1 Sol (`gpt-6.1-sol`).
+
 ## Routing Table
 
 | Assignment | Route | Topology |
@@ -78,12 +93,12 @@ For `create_thread`, omit `model` and `thinking` overrides unless Javier
 selected a host-supported value under that host's contract. Do not claim a
 model or runtime switch from a policy entry.
 
-## Luna Max Subagents
+## GPT-6 Luna Max Subagents
 
 For a delegated fully defined implementation lane, use a native
 `gpt-6-luna` subagent with `max` reasoning by default. A simple edit does not
 require spawning an agent merely because this route exists.
-Use one Luna Max implementer by default. Add Luna Max subagents only for
+Use one GPT-6 Luna Max implementer by default. Add GPT-6 Luna Max subagents only for
 independent assignments with non-overlapping write and external-mutation
 ownership. Reuse the same subagent for fixes and follow-through.
 

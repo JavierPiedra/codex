@@ -1,4 +1,4 @@
-model = "gpt-6.1-sol"
+model = "gpt-daybreak-blue-latest"
 # model_context_window = 272000
 # model_auto_compact_token_limit = 260000
 model_reasoning_effort = "xhigh"
@@ -15,10 +15,12 @@ sandbox_mode = "workspace-write"
 
 notify = ["/Users/javierpiedra/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 model_reasoning_summary = "concise"
+service_tier = "default"
 
 [mcp_servers.node_repl]
 args = []
 command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+env_vars = ["BROWSER_USE_ACCESS_EXECUTOR_ID", "BROWSER_USE_ACCESS_PIPE_PATH", "BROWSER_USE_ACCESS_VERIFYING_IDENTITY"]
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
@@ -33,8 +35,8 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.1007.30912"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/javierpiedra/.codex/plugins/cache/openai-bundled/browser/26.1007.30912/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.1016.62342"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/javierpiedra/.codex/plugins/cache/openai-bundled/browser/26.1016.62342/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/javierpiedra/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
 
@@ -48,6 +50,9 @@ enabled = false
 url = "https://developers.openai.com/mcp"
 
 [mcp_servers.linear]
+url = "https://mcp.linear.app/mcp"
+
+[mcp_servers.linear-wevote]
 url = "https://mcp.linear.app/mcp"
 
 [features]
@@ -150,10 +155,10 @@ enabled = true
 [plugins."unified-computer-use@openai-bundled"]
 enabled = true
 
-[plugins."code-review@openai-bundled"]
+[plugins."javier@javier"]
 enabled = true
 
-[plugins."javier@javier"]
+[plugins."code-review@openai-bundled"]
 enabled = true
 
 [projects."/Users/javierpiedra/Desktop/goodancestor/newsletter-gpt"]
@@ -609,9 +614,13 @@ approval_mode = "approve"
 [apps.connector_2128aebfecb84f64a069897515042a44.tools."gmail.send_email"]
 approval_mode = "approve"
 
+[tui]
+screen_reader_detection_done = true
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 gpt-6-astra = 4
+"gpt-6.1-sol" = 1
 
 [memories]
 generate_memories = true
@@ -773,7 +782,16 @@ global = "vscode"
 [desktop.daybreak-enabled]
 accountId = "739be100-5ba2-45a8-8d1c-40b77dba5f33"
 userId = "user-supGksOC67i1kl35SFyp310l"
-enabled = false
+enabled = true
 
 [shell_environment_policy.set]
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "9230e2bd8b24b7ac7a0ba6774c64bf0d78ecdabbdd91d0ed627b02a587bae2df"
+
+[browser_use.origins."https://staging.farmaciasdebarrio.com"]
+access = "allow"
+
+[browser_use.origins."http://localhost:3000"]
+access = "allow"
+
+[browser_use.origins."https://staging.awra.mx"]
+access = "allow"

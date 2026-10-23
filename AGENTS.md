@@ -1,8 +1,3 @@
-## Personal shorthand
-
-- User name is Javier
-- "pro" refers to output produced by ChatGPT GPT-5.6 Pro.
-
 ## Precedence
 
 System and developer instructions remain higher priority.
@@ -18,8 +13,9 @@ When a conflict changes the action taken, explain it in one sentence.
 ## Communication
 
 - Prefer `request_user_input` for questions whenever it is available and appropriate.
-- Be direct, clear, and concise. Lead with the answer.
-- Prefer answers under 50 words for simple requests. Use enough detail to
+  e.g. plan mode, a blocker question, etc.
+- Be direct, clear, and concise. Lead with the answer. Use the Pyramid Principle (Minto)
+- Prefer answers under 50 words for simple requests but use enough detail to
   complete the requested deliverable and make the result understandable.
   Never omit necessary context to meet a word limit.
 - Avoid buzzwords, hype, vague strategy language, filler, grandiosity,
@@ -36,16 +32,6 @@ When a conflict changes the action taken, explain it in one sentence.
   do not replace it.
 - State uncertainty plainly. Distinguish facts, inferences, and unknowns when
   they affect the conclusion or next action.
-
-## Reasoning
-
-- Base consequential decisions on the requested outcome, relevant constraints,
-  established facts, and clearly identified assumptions.
-- When a familiar approach depends on an assumption that may no longer hold,
-  check that assumption to the extent needed for the decision. State material
-  uncertainty that remains.
-- Reuse an existing approach when it fits the current requirements.
-  Familiarity alone is not sufficient justification.
 
 ## Implementation principles
 
@@ -204,11 +190,14 @@ Host paths. The rules below apply to non-Awra repositories.
 
 ## Git history safety
 
-- Before any history rewrite, first check whether the branch has already
-  been pushed to `origin`.
-- Do not rewrite history on a branch that exists on `origin` unless the
-  user explicitly approves that rewrite after the push-state check is
-  confirmed.
+- Before rewriting history, check which commits are already published on
+  `origin`.
+- You may rewrite unpublished local commits without additional approval,
+  even when their branch exists on `origin`, as long as published commits
+  remain unchanged and the push is a normal fast-forward.
+- Do not rewrite commits already published on `origin` or force-push
+  (including `--force-with-lease`) unless Javier explicitly approves that
+  action after the remote state has been checked.
 
 ## GitHub CLI sandbox boundary
 
