@@ -69,12 +69,12 @@ do not choose weaker Goal-specific routes.
 - Independent read-only general reviewer: `gpt-6-astra` / `high`.
 - For a material cybersecurity surface or an explicit cybersecurity review:
   add a separate *final* read-only reviewer using latest available Sol / `xhigh`
-  with verified Daybreak Blue access. Skip it only when cybersecurity review
-  is not applicable.
+  with Daybreak Blue, using Javier's designation as described below. Skip it
+  only when cybersecurity review is not applicable.
 
 Record the requested assignments separately from the observed runtime. A skill
 cannot change the model of an already-running main session. If its model or a
-required route is unavailable or cannot be established, explain the limitation
+required route is unavailable or rejected, explain the limitation
 and request the appropriate session/model selection instead of claiming a
 switch or silently substituting a model. Use the external-review path below
 when a required native Daybreak security review is unavailable.
@@ -110,19 +110,29 @@ or untrusted input), or Javier explicitly requests cybersecurity review, perform
 a separate final security review with latest available Sol / `xhigh` and Daybreak Blue.
 Focus on concrete exploitable security risks, trust boundaries, and missing
 security verification. Conduct this last, after the general review is resolved,
-against the exact final candidate. A model identifier alone does not establish
-Daybreak mode; confirm it is enabled in the host.
+against the exact final candidate.
 
-If required native Daybreak review is unsupported, rejected, or cannot be
-established, place the full ready-to-paste security review prompt **in the main
-chat** using `{codex_home}/references/external-daybreak-review.md`. Javier
+Sessions cannot determine authoritatively whether their requests use Daybreak
+Blue. Javier's explicit selection or designation of a Daybreak reviewer is
+sufficient to establish that routing choice for this workflow. Record it as
+Javier-designated; do not ask the reviewer to attest its mode or use model
+identifiers, turn history, local configuration, or host flags to certify the
+review's Daybreak execution. Do not block handoff, issue a HOLD, request another
+review, or ask Javier to reconfirm solely because the session cannot observe
+Daybreak mode. The review must still inspect the exact candidate and return
+its substantive verdict and evidence.
+
+If a native Daybreak reviewer is unavailable or its creation is rejected,
+place the full ready-to-paste security review prompt **in the main chat** using
+`{codex_home}/references/external-daybreak-review.md`. Javier
 selects the new or existing Daybreak session; do not create one without
 authorization, try model aliases, or replace it with a non-Daybreak reviewer.
 The prompt must include the actual originating session/thread ID and request
 return delivery of the verdict. Reuse Javier's designated reviewer session for
-re-review. Distinguish designation from observed mode; an undelivered prompt
-is not a completed review. Pending security evidence blocks security-dependent
-handoff, but not independent authorized work.
+re-review. Distinguish Javier's routing designation from evidence that the
+review was performed; an undelivered prompt is not a completed review.
+Pending security evidence blocks security-dependent handoff, but not
+independent authorized work.
 
 If the security reviewer identifies actionable findings, return them to
 the existing Luna writer, apply only in-scope fixes, rerun affected checks,
