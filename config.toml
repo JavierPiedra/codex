@@ -795,3 +795,6 @@ access = "allow"
 
 [browser_use.origins."https://staging.awra.mx"]
 access = "allow"
+
+[tools.update_plan]
+enabled = true
