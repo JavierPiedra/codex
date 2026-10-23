@@ -16,13 +16,12 @@ Lifecycle and handoff rules live in
 | Independent general code, contract, and correctness review | `gpt-6-astra` / `high` | Independent read-only reviewer |
 | Goal engineering advisor/council | `gpt-6-astra` / `xhigh` | Read-only `goal_engineering_advisor` |
 | Other read-only council specialists | `gpt-6-astra` / `xhigh` | Bounded, independent specialist lanes |
-| Final review of materially cybersecurity-relevant changes | `gpt-6-sol` / `xhigh` with Daybreak Blue | Separate independent read-only security reviewer |
+| Final review of materially cybersecurity-relevant changes | Daybreak Blue | Separate independent read-only security reviewer |
 | CTO supervision explicitly requested by Javier | `gpt-6-astra` / `max` | Root CTO role only |
 
 Javier's explicit model or reasoning instruction overrides these defaults.
 Do not create agents or managed sessions solely because a route exists.
-A declared route does not establish the host's selected model, effort, or
-Daybreak status. Do not silently substitute a model or reasoning level.
+Do not silently substitute a model or reasoning level.
 
 ## Independent review sequence
 
@@ -31,8 +30,8 @@ contracts, architecture, maintainability, and operational behavior. Do not
 route general reviews through Daybreak by default.
 
 For a material cybersecurity surface, or an explicit cybersecurity-review
-request, add a distinct final security pass using `gpt-6-sol` with Daybreak
-Blue and `xhigh`. Material surfaces include authorization and tenant
+request, add a distinct final security pass using Daybreak Blue. Material
+surfaces include authorization and tenant
 isolation, sensitive records, secrets and credentials, payment state, webhooks,
 untrusted input or file handling, privilege boundaries, and other
 security-critical changes. Routine work without material cybersecurity
@@ -43,20 +42,15 @@ its fixes. If security findings change code, recheck affected changes with
 the existing general reviewer, then have the same Daybreak security reviewer
 inspect the final head again. Subsequent code changes invalidate that verdict.
 
-Daybreak Blue is an access mode, not a separate model identifier. In Codex,
-verify the host exposes and enables Daybreak Blue for `gpt-6-sol`; for
-compatible Responses API calls set `model = gpt-6-sol` and
-`access_programs.cyber = daybreak_blue`. Do not select deprecated Daybreak
-model aliases or assume a model name enables the access program.
-
-When required native Daybreak security review is unsupported, rejected, or
-unobservable, use the manual handoff in
+When required native Daybreak security review is unsupported or rejected,
+use the manual handoff in
 `{codex_home}/references/external-daybreak-review.md`. Provide its full
 ready-to-paste prompt in the originating chat with the actual originating
 thread ID; do not start a session without Javier's authorization. Reuse the
-chosen session for re-review. A prompt is not a completed review. Missing
-Daybreak evidence blocks only the security-dependent handoff, not unrelated
-authorized work.
+chosen session for re-review. Always instruct the reviewer to send the full
+report to the session requesting the review. A prompt is not a completed review.
+A pending security review blocks only the security-dependent handoff, not
+unrelated authorized work.
 
 The CTO route applies only when Javier explicitly requests CTO supervision.
 Astra availability alone does not add a supervisor to routine work.
@@ -96,6 +90,6 @@ ownership. Reuse the same subagent for fixes and follow-through.
 ## Route Declaration
 
 Before starting a delegated or managed lane, record its objective, topology,
-exact model and reasoning, exclusive ownership, and the policy condition that
+the assigned route, exclusive ownership, and the policy condition that
 selected the route. Requested or declared routing does not establish external
 authority, permissions, or observed execution.
