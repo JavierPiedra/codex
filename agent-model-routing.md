@@ -17,17 +17,16 @@ requested reasoning effort when supported. An explicit version requested by
 Javier takes precedence. If availability cannot be established, report the
 uncertainty instead of silently selecting an older version.
 
-The concrete Luna and Sol identifiers below, in agent profiles, and in skills
-record the currently available defaults, not permanent version pins for an
-unversioned request. Update them when a newer available version is confirmed.
-Currently: GPT-6 Luna (`gpt-6-luna`) and GPT-6.1 Sol (`gpt-6.1-sol`).
+Agent profiles that require a concrete model identifier record the current
+available default. Resolve unversioned requests using the rule above and
+refresh the configured identifier when a newer available version is confirmed.
 
 ## Routing Table
 
 | Assignment | Route | Topology |
 | --- | --- | --- |
-| Senior orchestration, including Goal orchestration | `gpt-6.1-sol` / `xhigh` | Root or authorized delegated orchestrator |
-| Fully defined implementation writer | `gpt-6-luna` / `max` | Native `spawn_agent` subagent |
+| Senior orchestration, including Goal orchestration | latest available Sol / `xhigh` | Root or authorized delegated orchestrator |
+| Fully defined implementation writer | latest available Luna / `max` | Native `spawn_agent` subagent |
 | Independent general code, contract, and correctness review | `gpt-6-astra` / `high` | Independent read-only reviewer |
 | Goal engineering advisor/council | `gpt-6-astra` / `xhigh` | Read-only `goal_engineering_advisor` |
 | Other read-only council specialists | `gpt-6-astra` / `xhigh` | Bounded, independent specialist lanes |
@@ -93,12 +92,12 @@ For `create_thread`, omit `model` and `thinking` overrides unless Javier
 selected a host-supported value under that host's contract. Do not claim a
 model or runtime switch from a policy entry.
 
-## GPT-6 Luna Max Subagents
+## Latest available Luna subagents
 
 For a delegated fully defined implementation lane, use a native
-`gpt-6-luna` subagent with `max` reasoning by default. A simple edit does not
-require spawning an agent merely because this route exists.
-Use one GPT-6 Luna Max implementer by default. Add GPT-6 Luna Max subagents only for
+subagent running the latest available Luna with `max` reasoning by default.
+A simple edit does not require spawning an agent merely because this route exists.
+Use one implementer by default. Add more Luna subagents only for
 independent assignments with non-overlapping write and external-mutation
 ownership. Reuse the same subagent for fixes and follow-through.
 

@@ -1,6 +1,6 @@
 ---
 name: goal-implementation-loop
-description: Run an explicitly requested Goal through scoped issue tracking, branch preparation, GPT-6 Luna Max implementation, Astra general review, conditional final Daybreak Blue security review, verification, PR handoff, and cleanup.
+description: Run an explicitly requested Goal through scoped issue tracking, branch preparation, latest available Luna with max reasoning implementation, Astra general review, conditional final Daybreak Blue security review, verification, PR handoff, and cleanup.
 ---
 
 # Goal Implementation Loop
@@ -61,14 +61,14 @@ Use these role defaults unless Javier explicitly overrides them. The
 model-routing and orchestration policies own availability and lifecycle;
 do not choose weaker Goal-specific routes.
 
-- Main orchestrator: `gpt-6.1-sol` / `xhigh`.
-- One exclusive implementation writer: `gpt-6-luna` / `max`.
+- Main orchestrator: latest available Sol / `xhigh`.
+- One exclusive implementation writer: latest available Luna / `max`.
 - Read-only Goal engineering council: `goal_engineering_advisor` with
   `gpt-6-astra` / `xhigh`. Include it in the validated Goal and use
   [the engineering protocol](references/engineering-advisor.md).
 - Independent read-only general reviewer: `gpt-6-astra` / `high`.
 - For a material cybersecurity surface or an explicit cybersecurity review:
-  add a separate *final* read-only reviewer using `gpt-6.1-sol` / `xhigh`
+  add a separate *final* read-only reviewer using latest available Sol / `xhigh`
   with verified Daybreak Blue access. Skip it only when cybersecurity review
   is not applicable.
 
@@ -80,7 +80,7 @@ switch or silently substituting a model. Use the external-review path below
 when a required native Daybreak security review is unavailable.
 
 Keep one exclusive writer for each branch, worktree, database, deployment,
-provider, and shared integration surface. Additional GPT-6 Luna Max writers require
+provider, and shared integration surface. Additional Luna writers using the same model and reasoning require
 independent issues and non-overlapping files and external mutation targets.
 The orchestrator directs the writer and reports its proposed approach and
 progress to the engineering council. The council challenges drift, unproductive
@@ -100,14 +100,14 @@ Do not turn consultation into a per-tool approval or status-polling loop.
 Once implementation stabilizes, have the independent Astra High general reviewer
 inspect the exact diff or head against the Goal, repository requirements,
 correctness, contracts, operations, and unnecessary complexity. The reviewer
-is read-only and distinct from the GPT-6 Luna writer. Consolidate actionable
+is read-only and distinct from the Luna writer. Consolidate actionable
 findings, have the existing writer fix them, run affected checks, and reuse
 the same reviewer to verify the changed head.
 
 When the Goal changes a material cybersecurity surface (including authorization,
 tenant isolation, sensitive data, secrets, credentials, payment state, webhooks,
 or untrusted input), or Javier explicitly requests cybersecurity review, perform
-a separate final security review with `gpt-6.1-sol` / `xhigh` and Daybreak Blue.
+a separate final security review with latest available Sol / `xhigh` and Daybreak Blue.
 Focus on concrete exploitable security risks, trust boundaries, and missing
 security verification. Conduct this last, after the general review is resolved,
 against the exact final candidate. A model identifier alone does not establish
@@ -125,7 +125,7 @@ is not a completed review. Pending security evidence blocks security-dependent
 handoff, but not independent authorized work.
 
 If the security reviewer identifies actionable findings, return them to
-the existing GPT-6 Luna writer, apply only in-scope fixes, rerun affected checks,
+the existing Luna writer, apply only in-scope fixes, rerun affected checks,
 and have the same Astra reviewer recheck the affected general diff. Then
 return the *final* head to the same Daybreak reviewer for the last pass.
 Any later code change invalidates the final security verdict. Never create
@@ -223,5 +223,5 @@ integration result is verified. Never claim
 unrun review, verification, deployment, or production observation as passed.
 
 Unversioned "Luna" and "Sol" requests resolve to the newest available version
-on the execution host under `{codex_home}/agent-model-routing.md`. Concrete
-model names in this skill are current defaults; Javier's explicit version wins.
+on the execution host under `{codex_home}/agent-model-routing.md`. Javier's explicit
+version takes precedence.
