@@ -119,11 +119,21 @@ does not prove the entire objective.
 
 Review when adopting a session, when findings change the design, when
 repetition produces no learning, when structure or scope changes, when
-objectives conflict, and before closure. Use environment signals and
-outcome-based checkpoints. If expected evidence does not appear, inspect the
-state; do not depend exclusively on the orchestrator asking for help. Avoid
-purposeless repeated status checks, and do not interrupt solely because time
-passed.
+objectives conflict, and before closure. Agree on outcome-based checkpoints
+and reporting triggers once with the responsible orchestrator. Prefer native
+events and reports; let execution continue between them.
+
+Do not repeatedly read threads, child sessions, logs, or state artifacts to
+check whether work is happening. A wait timeout or elapsed time alone does not
+justify rereading histories, requesting status, or starting another polling
+round. Do not substitute repeated file reads for thread polling.
+
+When Javier requests current status, a material result, blocker, or dependency
+handoff needs verification, or an agreed checkpoint is missed, inspect only the
+responsible session and the minimum evidence needed. Adoption and closure also
+justify targeted inspection. Do not scan every session by default. Investigate
+a missed checkpoint proactively instead of waiting indefinitely for an
+orchestrator to ask for help.
 
 Treat reports as pointers to evidence. Check decisive claims against relevant
 changes, results, and logs. Expand inspection when there are contradictions,
@@ -155,15 +165,10 @@ instructions, require a decisive test, change the sequence or design, isolate a
 dependency, pause the affected work, or reassign responsibility. Do not stop
 independent objectives without a shared reason.
 
-When intervening, communicate only what is necessary:
-
-```text
-Decision: continue, correct, rethink, pause, or escalate.
-Evidence: concrete observation and verifiable reference.
-Affected requirement: the outcome or constraint at stake.
-Instruction: what the orchestrator must do and why.
-Verification: the result that distinguishes a useful correction from another iteration.
-```
+Give the orchestrator a concise decision and concrete action. Include the
+reason, evidence reference, affected requirement, and expected verification
+only as needed to act correctly. Use a short paragraph or a few bullets; do
+not require a fixed report template or repeat agreed permissions and limits.
 
 Verify the effect. An instruction sent is not a correction executed; a pause
 request is not a confirmed pause. If an intervention does not help, revisit
@@ -193,13 +198,33 @@ proposal and record the corrected decision.
 
 ## Communication and closure
 
-Start with the conclusion, blocker, or required decision. Name the component,
-action, and result. Use precise technical terminology and distinguish observed,
-inferred, and pending states.
+Keep communication with sessions sparse, direct, and actionable. Apply the
+reporting triggers in `agent-orchestration.md`: contact the CTO for a blocker
+requiring intervention, an effective dependency handoff, decisive evidence
+that changes the next action, or closure. Continue work within existing
+authority without requesting routine tactical approval.
 
-Report material results, changes of direction, blockers, and required decisions.
-If asked for status and there is no new progress, say what is missing without
-padding the report with activity.
+Lead with the result, blocker, or decision. When action is needed, state exactly
+what is needed and from whom. Use a short paragraph or a few bullets, normal
+sentences, and proper spacing. Preserve the distinction between observed,
+inferred, and pending states. Brevity must not hide a failure, material
+uncertainty, side effect, or required approval, or delay an urgent escalation.
+
+Link existing evidence instead of copying logs. Include full hashes, identifiers,
+or repeated constraints only when needed for the decision or to disambiguate
+the target. Omit acknowledgements, routine progress, unchanged waits, repeated
+estimates, and information already available without a relevant change.
+
+Before escalating, check the existing inputs accessible within the sender's
+responsibility. Name the exact missing input or decision and its consequence;
+do not call a handoff ready while required inputs are missing. Identify the
+resource being handed over and what is actually available. Do not manufacture
+an input or exceed authority to avoid sending a necessary blocker report.
+
+The CTO follows the same rule when directing sessions. Consolidate related
+instructions, avoid acknowledgement loops and message cascades, and do not
+relay every intermediate report to Javier. Communicate material results and
+decisions. If asked for status with no new progress, state what is missing.
 
 Declare **completed** only when the authorized outcome and necessary
 integration have current evidence and findings are resolved according to the

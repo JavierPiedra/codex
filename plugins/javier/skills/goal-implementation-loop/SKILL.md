@@ -1,6 +1,6 @@
 ---
 name: goal-implementation-loop
-description: Run an explicitly requested Goal through scoped issue tracking, branch preparation, Luna Max implementation, Astra general review, conditional final Daybreak Blue security review, verification, PR handoff, and cleanup.
+description: Run an explicitly requested Goal through scoped issue tracking, branch preparation, latest available Luna with max reasoning implementation, Astra general review, conditional final Daybreak Blue security review, verification, PR handoff, and cleanup.
 ---
 
 # Goal Implementation Loop
@@ -61,14 +61,14 @@ Use these role defaults unless Javier explicitly overrides them. The
 model-routing and orchestration policies own availability and lifecycle;
 do not choose weaker Goal-specific routes.
 
-- Main orchestrator: `gpt-6.1-sol` / `xhigh`.
-- One exclusive implementation writer: `gpt-6-luna` / `max`.
+- Main orchestrator: latest available Sol / `xhigh`.
+- One exclusive implementation writer: latest available Luna / `max`.
 - Read-only Goal engineering council: `goal_engineering_advisor` with
   `gpt-6-astra` / `xhigh`. Include it in the validated Goal and use
   [the engineering protocol](references/engineering-advisor.md).
 - Independent read-only general reviewer: `gpt-6-astra` / `high`.
 - For a material cybersecurity surface or an explicit cybersecurity review:
-  add a separate *final* read-only reviewer using `gpt-6-sol` / `xhigh`
+  add a separate *final* read-only reviewer using latest available Sol / `xhigh`
   with verified Daybreak Blue access. Skip it only when cybersecurity review
   is not applicable.
 
@@ -80,7 +80,7 @@ switch or silently substituting a model. Use the external-review path below
 when a required native Daybreak security review is unavailable.
 
 Keep one exclusive writer for each branch, worktree, database, deployment,
-provider, and shared integration surface. Additional Luna Max writers require
+provider, and shared integration surface. Additional Luna writers using the same model and reasoning require
 independent issues and non-overlapping files and external mutation targets.
 The orchestrator directs the writer and reports its proposed approach and
 progress to the engineering council. The council challenges drift, unproductive
@@ -107,7 +107,7 @@ the same reviewer to verify the changed head.
 When the Goal changes a material cybersecurity surface (including authorization,
 tenant isolation, sensitive data, secrets, credentials, payment state, webhooks,
 or untrusted input), or Javier explicitly requests cybersecurity review, perform
-a separate final security review with `gpt-6-sol` / `xhigh` and Daybreak Blue.
+a separate final security review with latest available Sol / `xhigh` and Daybreak Blue.
 Focus on concrete exploitable security risks, trust boundaries, and missing
 security verification. Conduct this last, after the general review is resolved,
 against the exact final candidate. A model identifier alone does not establish
@@ -221,3 +221,7 @@ work, closure coverage, and resource cleanup are complete. Do not call an issue
 closed until its closing commit has reached the default branch and that
 integration result is verified. Never claim
 unrun review, verification, deployment, or production observation as passed.
+
+Unversioned "Luna" and "Sol" requests resolve to the newest available version
+on the execution host under `{codex_home}/agent-model-routing.md`. Javier's explicit
+version takes precedence.

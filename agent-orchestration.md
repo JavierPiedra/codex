@@ -57,7 +57,7 @@ delegate does not authorize a child to fan out.
 4. Reuse the same role for fixes, re-review, checks, and follow-through.
 5. Close or replace it only after terminal completion or confirmed failure.
 
-Use `followup_task` for native agents, including Luna Max implementers. Do not
+Use `followup_task` for native agents, including latest available Luna with max reasoning implementers. Do not
 create or continue a managed session for Luna work. Continue the same managed
 session only when another route explicitly requires one. Do not create a
 replacement merely because work is slow or a wait timed out.
