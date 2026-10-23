@@ -13,7 +13,7 @@
 ## What subscription do you have?
 
 ```text
-<subscription or Missing>
+<confirmed subscription tier name>
 ```
 
 ## What platform is your computer?
@@ -55,6 +55,11 @@ Context window usage: <value, not applicable, or not provided>
 
 ## Missing information
 
-```text
-- <only unresolved required or materially useful facts, or None>
-```
+<Omit this section when none. Otherwise list only unresolved required or
+materially useful facts here, outside the copy-pasteable issue fields.>
+
+## Optional next steps for Javier
+
+<Omit this section when none. Otherwise suggest concrete optional additions,
+such as a screenshot crop and redactions, and explain what they would show.
+These instructions are for Javier, not text to paste into the issue.>

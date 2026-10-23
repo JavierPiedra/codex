@@ -12,6 +12,13 @@ separate explicit request.
 
 ## Fields and evidence
 
+- Write fields as final public issue content for readers with no chat context.
+- Preserve the user's stated problem; do not substitute a different issue.
+- Exclude drafting/submission status, apologies, conversation history, redaction
+  instructions, and verification bookkeeping from issue fields.
+- Reuse known user facts, including the exact subscription tier name. Put only
+  material unknowns in `Missing information`.
+
 Prepare a suggested title, Codex App version, subscription, platform, issue,
 reproduction steps, expected behavior, and additional information. Version,
 subscription, issue description, and reproduction steps are required by the
@@ -21,7 +28,7 @@ report useful.
 Extract only observed details: affected surface, actual and expected behavior,
 smallest reliable reproduction, frequency, first occurrence/regression,
 visible errors, and relevant session or usage information. Distinguish facts
-from hypotheses and write `Unknown` when evidence is absent.
+from hypotheses; omit unsupported claims.
 
 For permitted read-only macOS inspection, use:
 
@@ -63,10 +70,16 @@ missing, include it only in the `Missing information` section.
 ## Output
 
 Read [templates/issue-output.md](./templates/issue-output.md) and return its
-sections in the same order. Each heading must be followed by a `text` code fence
-containing only the value for that GitHub field. Keep the fields independently
-copy-pasteable; do not combine the report into one code fence or put commentary
-inside a field.
+sections in the same order. Each GitHub field heading must be followed by a
+`text` code fence containing only its final value. Keep fields independently
+copy-pasteable; omit unresolved fields and list their missing facts afterward.
+
+Keep `Missing information` and optional guidance to Javier outside the field
+code fences. When useful, give Javier concrete optional steps to strengthen or
+complete the report, such as attaching a screenshot with a specified crop and
+redactions, or adding a short recording or diagnostic value. Explain what each
+would show. Do not require these extras or delay the draft for them. Omit empty
+missing-information and optional-guidance sections.
 
 If Javier asks for a duplicate check and GitHub read access is available,
 search `openai/codex` using the affected surface, visible symptom, and exact
