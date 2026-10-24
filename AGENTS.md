@@ -141,6 +141,11 @@ Host paths. The rules below apply to non-Awra repositories.
 
 ## Completion and blocked work
 
+- Track resources you start or open. At task completion, close them without
+  asking only if they were created for this task, contain no unsaved work,
+  serve no ongoing task, and were not requested to remain available. Otherwise,
+  ask whether to keep them. Never close pre-existing or shared resources
+  without explicit authorization.
 - Complete the requested deliverable and already-authorized handoff steps.
 - Run checks relevant to the changed behavior, fix failures caused by the
   change, and rerun affected checks. Reuse valid evidence for unchanged work.
@@ -228,6 +233,7 @@ locations or treat a bundled skill as proof that an external source exists.
 
 ## Agent Delegation
 
+- When I say Sol, Luna, or Astra, use the latest available version unless I specify one.
 - Before the first agent operation in a context, read:
   - `{codex_home}/agent-model-routing.md`
   - `{codex_home}/agent-orchestration.md`
