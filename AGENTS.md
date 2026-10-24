@@ -169,11 +169,7 @@ Host paths. The rules below apply to non-Awra repositories.
 
 ## Task progress
 
-- Use a plan when dependencies, uncertainty, or coordination make progress
-  difficult to track. Simple tasks do not need one merely because they
-  require multiple actions.
-- Outside Plan Mode, maintain that plan with `update_plan` when available;
-  otherwise use concise progress updates.
+- Always use `update_plan` when available and permitted by the active mode.
 - Reuse an existing plan; otherwise create the fewest useful steps, each with
   a verifiable outcome. While executing it, keep one step `in_progress`.
 - When all planned work is complete, mark every step `completed`. Do not mark
