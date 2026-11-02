@@ -625,6 +625,8 @@ gpt-6-astra = 4
 [memories]
 generate_memories = true
 use_memories = true
+extract_model = "gpt-6-luna"
+consolidation_model = "gpt-6.1-terra"
 
 [[skills.config]]
 name = "build-web-apps:stripe-best-practices"
@@ -799,6 +801,3 @@ access = "allow"
 [tools.update_plan]
 enabled = true
 
-[memories]
-extract_model = "gpt-6-luna"
-consolidation_model = "gpt-6.1-terra"
