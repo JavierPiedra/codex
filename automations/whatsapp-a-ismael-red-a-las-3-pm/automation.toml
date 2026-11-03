@@ -1,0 +1,10 @@
+version = 1
+id = "whatsapp-a-ismael-red-a-las-3-pm"
+kind = "heartbeat"
+name = "WhatsApp a Ismael RED a las 3 pm"
+prompt = "El 13 de octubre de 2026 a las 15:00, hora America/Mexico_City, envía UNA SOLA VEZ por WhatsApp Desktop al contacto exacto Ismael RED este texto literal, sin comillas ni modificaciones: Hola Ismael, buenas tardes. Qué tal va tu día? Javier autorizó expresamente este destinatario, mensaje y hora en esta conversación. El contacto no pudo verificarse al programar porque la Mac se bloqueó. Al ejecutarte, primero busca Ismael RED en WhatsApp, comprueba que hay un contacto individual inequívoco con ese nombre exacto y verifica el encabezado del chat antes de escribir. Si hay ambigüedad, no envíes y pregunta a Javier. Comprueba los mensajes recientes para no duplicar este envío. Usa exclusivamente cua_repl para interacciones de UI y obtén estado actual antes de actuar. Los clics por accesibilidad en WhatsApp a veces no tienen efecto: verifica el estado y usa la captura o el teclado cuando haga falta; en el envío anterior Return desde el campo de composición sí envió el mensaje. Verifica el texto enviado, destinatario, hora y estado observado y reporta fielmente si salió después de las 15:00. Si la Mac está bloqueada o WhatsApp no está accesible, reporta el bloqueo y no marques el mensaje enviado. Después de este único intento pausa esta automatización, sin reintentos automáticos ni repeticiones."
+status = "PAUSED"
+rrule = "FREQ=DAILY;BYHOUR=15;BYMINUTE=0;BYSECOND=0;COUNT=1"
+target_thread_id = "01a136bf-bf74-7733-9d50-1b85d9e56eb5"
+created_at = 1791924486807
+updated_at = 1791925244099

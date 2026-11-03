@@ -1,0 +1,10 @@
+version = 1
+id = "prueba-whatsapp-a-luis-pedraza"
+kind = "heartbeat"
+name = "Prueba WhatsApp a Luis Pedraza"
+prompt = "El 13 de octubre de 2026 a las 14:25 en America/Mexico_City, envía una sola vez por WhatsApp Desktop al contacto exacto Luis Pedraza el texto literal: prueba de programación. Javier autorizó explícitamente este destinatario, texto y hora. El chat Luis Pedraza fue verificado en WhatsApp Desktop en esta tarea, con último audio enviado por Javier a las 14:11 del mismo día. Antes de enviar verifica el encabezado Luis Pedraza; no envíes a otro chat y no dupliques si el mensaje ya aparece enviado. Usa cua_repl para todas las interacciones de UI, obteniendo estado actual antes de actuar. Verifica el mensaje enviado en el chat y reporta la hora y estado observado. Después de este único intento pausa esta automatización. Si el Mac está bloqueado o WhatsApp no está accesible, reporta el bloqueo y no marques el mensaje enviado."
+status = "PAUSED"
+rrule = "FREQ=DAILY;BYHOUR=14;BYMINUTE=25;BYSECOND=0;COUNT=1"
+target_thread_id = "01a136bf-bf74-7733-9d50-1b85d9e56eb5"
+created_at = 1791923049059
+updated_at = 1791923189675
