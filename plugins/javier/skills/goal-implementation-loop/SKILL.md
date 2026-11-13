@@ -37,6 +37,20 @@ request. Confirm the target repository, allowed mutation scope, comparison base
 and PR target when relevant, required checks and environment, existing issue,
 branch and worktree context, and unresolved dependencies.
 
+## Communication and plan
+
+Keep `update_plan` current when available and required, using the fewest useful
+outcome-based steps and updating them at meaningful transitions. Leave unfinished
+steps incomplete. The plan does not replace required user-facing updates.
+
+In the main chat, report completed milestones, material changes, blockers,
+decisions or actions needed from Javier, and the final outcome. Use one or two
+short sentences unless more detail is needed. Do not relay routine
+acknowledgments, individual test details, subagent activity, or unchanged waits.
+When an update is required and nothing has changed, briefly state what is
+underway and what the next step will resolve. Answer direct status and detail
+requests at the requested level.
+
 ## Issue, branch, and worktree
 
 Every mutating implementation needs a matching existing Linear issue or the
@@ -61,7 +75,8 @@ Use these role defaults unless Javier explicitly overrides them. The
 model-routing and orchestration policies own availability and lifecycle;
 do not choose weaker Goal-specific routes.
 
-- Main orchestrator: latest available Sol / `xhigh`.
+- Main orchestrator: `gpt-6.1-sol` / `xhigh` by default; `gpt-6.1-terra` /
+  `xhigh` is also accepted.
 - One exclusive implementation writer: latest available Luna / `max`.
 - Read-only Goal engineering council: `goal_engineering_advisor` with
   `gpt-6-astra` / `xhigh`. Include it in the validated Goal and use
@@ -169,8 +184,9 @@ explicitly authorized.
 
 Run objective checks appropriate to the changed surface and repository rules:
 focused tests plus relevant lint, formatting, typecheck, build, codegen,
-schema, migration, browser, API, or manual checks. State exact commands and
-results; distinguish pre-existing failures and unrun checks.
+schema, migration, browser, API, or manual checks. Keep exact commands and
+results accessible in existing task evidence; report checks at the detail needed
+to assess the outcome and distinguish pre-existing failures and unrun checks.
 
 Update canonical documentation only when the change affects durable behavior,
 public contracts, architecture, setup, operations, or recorded decisions and
@@ -202,11 +218,11 @@ Leave shared, production, user-owned, or uncertain resources intact. Reuse
 existing authorization for routine Goal-owned cleanup; ask only when removal
 requires additional authority or Javier retained an explicit checkpoint.
 
-Verify that each cleanup action succeeded. Include a short cleanup result in
-the final outcome: what was removed, what was retained and why, and any failure
-or pending action. A failed required cleanup remains unfinished work; do not
-mark the Goal complete while it is unresolved. Retaining a resource for a
-confirmed ongoing use is a completed cleanup decision.
+Verify that each cleanup action succeeded. Report material cleanup failures,
+pending actions, and retained resources needing Javier's attention; keep other
+cleanup details accessible. A failed required cleanup remains unfinished work;
+do not mark the Goal complete while it is unresolved. Retaining a resource for
+a confirmed ongoing use is a completed cleanup decision.
 
 ## Authorization and outcomes
 
@@ -223,10 +239,11 @@ Open a PR by default after implementation, applicable general and final
 cybersecurity reviews, fixes, verification, and the closure audit unless Javier requested no PR, hold PR, or local-only
 work. Follow repository PR rules.
 
-Report one compact outcome with the Goal state, changed surface, closure set and
-issue-to-commit evidence, branch/worktree, implementation owner, general-review and applicable final Daybreak security
-verdicts, checks actually run, documentation status, PR URL or reason no PR was
-opened, and cleanup result. Call `update_goal` complete only when the required
+Report a compact outcome: what changed, the deliverable or PR, verification,
+and material limitations, blockers, decisions, or cleanup exceptions. Keep the
+closure mapping, review verdicts, exact checks, branch/worktree, and implementation
+ownership accessible in existing task evidence; include them when material,
+required, or requested. Call `update_goal` complete only when the required
 work, closure coverage, and resource cleanup are complete. Do not call an issue
 closed until its closing commit has reached the default branch and that
 integration result is verified. Never claim
